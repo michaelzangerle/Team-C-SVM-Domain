@@ -11,4 +11,7 @@ public class Main {
         System.out.print("Test");
     }
 
+    public static void test() {
+    }
+
 }
