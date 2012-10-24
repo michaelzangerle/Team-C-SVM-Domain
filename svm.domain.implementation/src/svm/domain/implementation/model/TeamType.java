@@ -8,23 +8,21 @@ package svm.domain.implementation.model;
  * To change this template use File | Settings | File Templates.
  */
 public class TeamType {
-    String name;
-    enum alias{};
-    String description;
+    ITeamTypeEntity teamTypeEntity;
 
     public String getName() {
-        return name;
+        return teamTypeEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.teamTypeEntity.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return teamTypeEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.teamTypeEntity.description = description;
     }
 }

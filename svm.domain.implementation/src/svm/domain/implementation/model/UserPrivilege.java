@@ -5,23 +5,21 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class UserPrivilege {
-    enum alias{};
-    String name;
-    String description;
+    IUserPrivilegeEntity userPrivilegeEntity;
 
     public String getName() {
-        return name;
+        return userPrivilegeEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.userPrivilegeEntity.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return userPrivilegeEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.userPrivilegeEntity.description = description;
     }
 }
