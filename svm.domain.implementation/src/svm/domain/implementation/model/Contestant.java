@@ -5,22 +5,25 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class Contestant {
-    Team internalTeam;
-    ExternalTeam externalTeam;
+    IContestantEntity contestantEntity;
+
+    public Contestant(IContestantEntity contestantEntity) {
+        this.contestantEntity = contestantEntity;
+    }
 
     public Team getInternalteam() {
-        return internalTeam;
+        return contestantEntity.internalTeam;
     }
 
     public void setInternalteam(Team internalTeam) {
-        this.internalTeam = internalTeam;
+        this.contestantEntity.internalTeam = internalTeam;
     }
 
     public ExternalTeam getExternalTeam() {
-        return externalTeam;
+        return contestantEntity.externalTeam;
     }
 
     public void setExternalTeam(ExternalTeam externalTeam) {
-        this.externalTeam = externalTeam;
+        this.contestantEntity.externalTeam = externalTeam;
     }
 }

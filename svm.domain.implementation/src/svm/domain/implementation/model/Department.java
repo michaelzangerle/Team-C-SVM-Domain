@@ -5,40 +5,41 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class Department {
-    String name;
-    String alias;
-    String description;
-    ContactDetails contactDetails;
+    IDepartmentEntity departmentEntity;
+
+    public Department(IDepartmentEntity departmentEntity) {
+        this.departmentEntity = departmentEntity;
+    }
 
     public String getName() {
-        return name;
+        return departmentEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.departmentEntity.name = name;
     }
 
     public String getAlias() {
-        return alias;
+        return departmentEntity.alias;
     }
 
     public void setAlias(String alias) {
-        this.alias = alias;
+        this.departmentEntity.alias = alias;
     }
 
     public String getDescription() {
-        return description;
+        return departmentEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.departmentEntity.description = description;
     }
 
     public ContactDetails getContactDetails() {
-        return contactDetails;
+        return departmentEntity.contactDetails;
     }
 
     public void setContactDetails(ContactDetails contactDetails) {
-        this.contactDetails = contactDetails;
+        this.departmentEntity.contactDetails = contactDetails;
     }
 }
