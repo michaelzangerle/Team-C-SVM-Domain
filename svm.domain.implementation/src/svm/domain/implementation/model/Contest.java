@@ -1,15 +1,18 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IContactDetails;
+import svm.domain.abstraction.modelInterfaces.IContest;
+
 import java.util.Date;
 
 /**
  * Projectteam
  * Date: 21.10.12
  */
-public class Contest implements svm.domain.abstraction.modelInterfaces.IContest {
+public class Contest implements IContest {
     IContestEntity contestEntity;
 
-    public (IContestEntity contestEntity){
+    public Contest(IContestEntity contestEntity){
         this.contestEntity = contestEntity;
     }
 
@@ -36,6 +39,11 @@ public class Contest implements svm.domain.abstraction.modelInterfaces.IContest 
     @Override
     public IContactDetails getContactDetails() {
         return contestEntity.contactDetails;
+    }
+
+    @Override
+    public void setContactDetails(IContactDetails contactDetails) {
+        this.contestEntity.contactDetails = contactDetails;
     }
 
     @Override
