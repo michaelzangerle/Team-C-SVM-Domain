@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.ISport;
 
 /**
@@ -50,7 +51,8 @@ public class Sport implements ISport {
     }
 
     @Override
-    public void setDepartment(Department department) {
+    public void setDepartment(IDepartment department) {
         this.sportEntity.department = department;
     }
+
 }
