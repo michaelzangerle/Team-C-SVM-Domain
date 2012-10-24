@@ -1,14 +1,16 @@
 package svm.domain.implementation.model;
 
 /**
- * Projectteam
- * Date: 21.10.12
+ * Created with IntelliJ IDEA.
+ * User: Tobias
+ * Date: 24.10.12
+ * Time: 14:33
+ * To change this template use File | Settings | File Templates.
  */
-public class Sport {
+public class MatchRules {
     String name;
-    String alias;
+    MatchType matchType;
     String description;
-    Department department;
 
     public String getName() {
         return name;
@@ -18,12 +20,12 @@ public class Sport {
         this.name = name;
     }
 
-    public String getAlias() {
-        return alias;
+    public MatchType getMatchType() {
+        return matchType;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setMatchType(MatchType matchType) {
+        this.matchType = matchType;
     }
 
     public String getDescription() {
@@ -32,13 +34,5 @@ public class Sport {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 }

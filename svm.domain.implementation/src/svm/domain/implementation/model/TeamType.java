@@ -1,12 +1,15 @@
 package svm.domain.implementation.model;
 
 /**
- * Projectteam
- * Date: 21.10.12
+ * Created with IntelliJ IDEA.
+ * User: Tobias
+ * Date: 24.10.12
+ * Time: 14:38
+ * To change this template use File | Settings | File Templates.
  */
-public class MemberRole {
-    enum alias{};
+public class TeamType {
     String name;
+    enum alias{};
     String description;
 
     public String getName() {
