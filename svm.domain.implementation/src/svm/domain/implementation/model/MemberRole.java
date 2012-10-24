@@ -1,10 +1,12 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IMemberRole;
+
 /**
  * Projectteam
  * Date: 21.10.12
  */
-public class MemberRole {
+public class MemberRole implements IMemberRole {
 
     IMemberRoleEntity memberRoleEntity;
 
@@ -12,18 +14,22 @@ public class MemberRole {
         this.memberRoleEntity = memberRoleEntity;
     }
 
+    @Override
     public String getName() {
         return memberRoleEntity.name;
     }
 
+    @Override
     public void setName(String name) {
         this.memberRoleEntity.name = name;
     }
 
+    @Override
     public String getDescription() {
         return memberRoleEntity.description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.memberRoleEntity.description = description;
     }

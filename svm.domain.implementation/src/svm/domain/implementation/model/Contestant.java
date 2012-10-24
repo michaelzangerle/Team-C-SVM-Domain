@@ -1,5 +1,7 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.ITeam;
+
 /**
  * Projectteam
  * Date: 21.10.12
@@ -11,12 +13,12 @@ public class Contestant {
         this.contestantEntity = contestantEntity;
     }
 
-    public Team getInternalteam() {
+    public ITeam getInternalteam() {
         return contestantEntity.internalTeam;
     }
 
-    public void setInternalteam(Team internalTeam) {
-        this.contestantEntity.internalTeam = internalTeam;
+    public void setInternalteam(ITeam internalITeam) {
+        this.contestantEntity.internalTeam = internalITeam;
     }
 
     public ExternalTeam getExternalTeam() {
