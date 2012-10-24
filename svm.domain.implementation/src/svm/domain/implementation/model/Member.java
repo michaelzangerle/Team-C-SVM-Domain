@@ -94,12 +94,12 @@ public class Member {
         this.memberEntitiy.userName = userName;
     }
 
-    public ContactDetails getContactDetails() {
+    public IContactDetails getContactDetails() {
         return memberEntitiy.contactDetails;
     }
 
-    public void setContactDetails(ContactDetails contactDetails) {
-        this.memberEntitiy.contactDetails = contactDetails;
+    public void setContactDetails(IContactDetails IContactDetails) {
+        this.memberEntitiy.contactDetails = IContactDetails;
     }
 
     public Double getFee() {

@@ -1,5 +1,7 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IDepartment;
+
 /**
  * Projectteam
  * Date: 21.10.12
@@ -36,11 +38,11 @@ public class Sport {
         this.sportEntity.description = description;
     }
 
-    public Department getDepartment() {
+    public IDepartment getDepartment() {
         return sportEntity.department;
     }
 
-    public void setDepartment(Department department) {
-        this.sportEntity.department = department;
+    public void setDepartment(IDepartment IDepartment) {
+        this.sportEntity.department = IDepartment;
     }
 }

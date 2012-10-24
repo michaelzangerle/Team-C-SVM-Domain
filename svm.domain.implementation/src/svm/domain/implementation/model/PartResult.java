@@ -1,5 +1,7 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IContestant;
+
 /**
  * Projectteam
  * Date: 21.10.12
@@ -19,12 +21,12 @@ public class PartResult {
         this.partResult.result = result;
     }
 
-    public Contestant getContestant() {
+    public IContestant getContestant() {
         return partResult.contestant;
     }
 
-    public void setContestant(Contestant contestant) {
-        this.partResult.contestant = contestant;
+    public void setContestant(IContestant IContestant) {
+        this.partResult.contestant = IContestant;
     }
 
     public String getComment() {
