@@ -12,9 +12,9 @@ public interface IMatchRules {
 
     void setName(String name);
 
-    MatchType getMatchType();
+    IMatchType getMatchType();
 
-    void setMatchType(MatchType matchType);
+    void setMatchType(IMatchType matchType);
 
     String getDescription();
 

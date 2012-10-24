@@ -1,6 +1,6 @@
 package svm.domain.abstraction.modelInterfaces;
 
-import svm.domain.implementation.model.ContactDetails;
+import svm.domain.abstraction.modelInterfaces.IContactDetails;
 
 import java.util.Date;
 
@@ -49,9 +49,9 @@ public interface IMember {
 
     void setUserName(String userName);
 
-    ContactDetails getContactDetails();
+    IContactDetails getContactDetails();
 
-    void setContactDetails(ContactDetails contactDetails);
+    void setContactDetails(IContactDetails contactDetails);
 
     Double getFee();
 

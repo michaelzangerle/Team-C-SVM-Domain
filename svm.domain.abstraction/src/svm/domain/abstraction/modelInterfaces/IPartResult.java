@@ -1,6 +1,6 @@
 package svm.domain.abstraction.modelInterfaces;
 
-import svm.domain.implementation.model.Contestant;
+import svm.domain.abstraction.modelInterfaces.IContestant;
 
 /**
  * Projectteam: Team C
@@ -11,9 +11,9 @@ public interface IPartResult {
 
     void setResult(Float result);
 
-    Contestant getContestant();
+    IContestant getContestant();
 
-    void setContestant(Contestant contestant);
+    void setContestant(IContestant contestant);
 
     String getComment();
 

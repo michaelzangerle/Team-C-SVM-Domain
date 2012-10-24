@@ -1,6 +1,6 @@
 package svm.domain.abstraction.modelInterfaces;
 
-import svm.domain.implementation.model.Department;
+import  svm.domain.abstraction.modelInterfaces.IDepartment;
 
 /**
  * Projectteam: Team C
@@ -19,7 +19,7 @@ public interface ISport {
 
     void setDescription(String description);
 
-    Department getDepartment();
+    IDepartment getDepartment();
 
-    void setDepartment(Department department);
+    void setDepartment(IDepartment department);
 }

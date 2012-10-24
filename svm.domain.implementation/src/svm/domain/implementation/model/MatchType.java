@@ -3,11 +3,8 @@ package svm.domain.implementation.model;
 import svm.domain.abstraction.modelInterfaces.IMatchType;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Patrick
- * Date: 24.10.12
- * Time: 14:29
- * To change this template use File | Settings | File Templates.
+ * Projectteam Team C
+ * Date: 21.10.12
  */
 public class MatchType implements IMatchType {
 
