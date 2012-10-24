@@ -1,11 +1,8 @@
 package svm.domain.abstraction.modelInterfaces;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Tobias
+ * Projectteam: Team C
  * Date: 24.10.12
- * Time: 15:36
- * To change this template use File | Settings | File Templates.
  */
 public interface IMatchType {
     String getName();

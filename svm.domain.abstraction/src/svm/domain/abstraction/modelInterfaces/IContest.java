@@ -3,11 +3,8 @@ package svm.domain.abstraction.modelInterfaces;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Tobias
+ * Projectteam: Team C
  * Date: 24.10.12
- * Time: 15:28
- * To change this template use File | Settings | File Templates.
  */
 public interface IContest {
     String getName();
@@ -18,9 +15,9 @@ public interface IContest {
 
     void setStart(Date start);
 
-    ContactDetails getContactDetails();
+    IContactDetails getContactDetails();
 
-    void setContactDetails(ContactDetails contactDetails);
+    void setContactDetails(IContactDetails contactDetails);
 
     Date getEnd();
 
