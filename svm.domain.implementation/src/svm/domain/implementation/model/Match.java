@@ -7,58 +7,57 @@ import java.util.Date;
  * Date: 21.10.12
  */
 public class Match {
-    String name;
-    Date start;
-    Date end;
-    Boolean cancelled;
-    String remarks;
-    ContactDetail contactDetails;
+    IMatchEntity matchEntity;
+
+    public Match(IMatchEntity matchEntity) {
+        this.matchEntity = matchEntity;
+    }
 
     public String getName() {
-        return name;
+        return matchEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.matchEntity.name = name;
     }
 
     public Date getStart() {
-        return start;
+        return matchEntity.start;
     }
 
     public void setStart(Date start) {
-        this.start = start;
+        this.matchEntity.start = start;
     }
 
     public Date getEnd() {
-        return end;
+        return matchEntity.end;
     }
 
     public void setEnd(Date end) {
-        this.end = end;
+        this.matchEntity.end = end;
     }
 
     public Boolean getCancelled() {
-        return cancelled;
+        return matchEntity.cancelled;
     }
 
     public void setCancelled(Boolean cancelled) {
-        this.cancelled = cancelled;
+        this.matchEntity.cancelled = cancelled;
     }
 
     public String getRemarks() {
-        return remarks;
+        return matchEntity.remarks;
     }
 
     public void setRemarks(String remarks) {
-        this.remarks = remarks;
+        this.matchEntity.remarks = remarks;
     }
 
-    public ContactDetail getContactDetails() {
-        return contactDetails;
+    public ContactDetails getContactDetails() {
+        return matchEntity.contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.matchEntity.contactDetails = contactDetails;
     }
 }

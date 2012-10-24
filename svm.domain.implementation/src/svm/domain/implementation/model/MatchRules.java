@@ -8,31 +8,33 @@ package svm.domain.implementation.model;
  * To change this template use File | Settings | File Templates.
  */
 public class MatchRules {
-    String name;
-    MatchType matchType;
-    String description;
+    IMatchRulesEntity matchRulesEntity;
+
+    public MatchRules(IMatchRulesEntity matchRulesEntity) {
+        this.matchRulesEntity = matchRulesEntity;
+    }
 
     public String getName() {
-        return name;
+        return matchRulesEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.matchRulesEntity.name = name;
     }
 
     public MatchType getMatchType() {
-        return matchType;
+        return matchRulesEntity.matchType;
     }
 
     public void setMatchType(MatchType matchType) {
-        this.matchType = matchType;
+        this.matchRulesEntity.matchType = matchType;
     }
 
     public String getDescription() {
-        return description;
+        return matchRulesEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.matchRulesEntity.description = description;
     }
 }

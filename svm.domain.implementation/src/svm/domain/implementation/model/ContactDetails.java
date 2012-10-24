@@ -5,10 +5,10 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 
-public class ContactDetail {
+public class ContactDetails {
     IContactDetailsEntity contactDetailsEntity;
 
-    public ContactDetail(IContactDetailsEntity contactDetailsEntity) {
+    public ContactDetails(IContactDetailsEntity contactDetailsEntity) {
         this.contactDetailsEntity = contactDetailsEntity;
     }
 

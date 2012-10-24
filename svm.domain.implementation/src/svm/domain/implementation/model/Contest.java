@@ -7,49 +7,49 @@ import java.util.Date;
  * Date: 21.10.12
  */
 public class Contest {
-    String name;
-    Date start;
-    Date end;
-    ContactDetail contactDetails;
-    Float fee;
+    IContestEntity contestEntity;
+
+    public (IContestEntity contestEntity){
+        this.contestEntity = contestEntity;
+    }
 
     public String getName() {
-        return name;
+        return contestEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.contestEntity.name = name;
     }
 
     public Date getStart() {
-        return start;
+        return contestEntity.start;
     }
 
     public void setStart(Date start) {
-        this.start = start;
+        this.contestEntity.start = start;
     }
 
-    public ContactDetail getContactDetails() {
-        return contactDetails;
+    public ContactDetails getContactDetails() {
+        return contestEntity.contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contestEntity.contactDetails = contactDetails;
     }
 
     public Date getEnd() {
-        return end;
+        return contestEntity.end;
     }
 
     public void setEnd(Date end) {
-        this.end = end;
+        this.contestEntity.end = end;
     }
 
     public Float getFee() {
-        return fee;
+        return contestEntity.fee;
     }
 
     public void setFee(Float fee) {
-        this.fee = fee;
+        this.contestEntity.fee = fee;
     }
 }

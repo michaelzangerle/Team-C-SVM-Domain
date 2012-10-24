@@ -17,7 +17,7 @@ public class Member {
     String avatar;
     String url;
     String userName;
-    ContactDetail contactDetails;
+    ContactDetails contactDetails;
 
     public String getTitle() {
         return title;
@@ -99,11 +99,11 @@ public class Member {
         this.userName = userName;
     }
 
-    public ContactDetail getContactDetails() {
+    public ContactDetails getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
+    public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
     }
 

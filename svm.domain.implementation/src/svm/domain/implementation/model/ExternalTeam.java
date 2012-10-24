@@ -5,32 +5,33 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class ExternalTeam {
-    String name;
-    String alias;
+    IExternalTeamEntity externalTeamEntity;
+
+    public ExternalTeam(IExternalTeamEntity externalTeamEntity) {
+        this.externalTeamEntity = externalTeamEntity;
+    }
 
     public String getName() {
-        return name;
+        return externalTeamEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.externalTeamEntity.name = name;
     }
 
     public String getAlias() {
-        return alias;
+        return externalTeamEntity.alias;
     }
 
     public void setAlias(String alias) {
-        this.alias = alias;
+        this.externalTeamEntity.alias = alias;
     }
 
-    public ContactDetail getContactDetails() {
-        return contactDetails;
+    public ContactDetails getContactDetails() {
+        return externalTeamEntity.contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.externalTeamEntity.contactDetails = contactDetails;
     }
-
-    ContactDetail contactDetails;
 }

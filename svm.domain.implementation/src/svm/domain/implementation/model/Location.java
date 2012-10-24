@@ -7,112 +7,105 @@ import sun.beans.editors.StringEditor;
  * Date: 21.10.12
  */
 public class Location {
-    String countryCode;
-    String postalCode;
-    String placeName;
-    String district;
-    String districtID;
-    String province;
-    String provinceID;
-    String community;
-    String communityID;
-    String latitude;
-    String longitude;
-    String accuracy;
+    ILocationEntity locationEntity;
+
+    public Location(ILocationEntity LocationEntity) {
+        this.locationEntity = LocationEntity;
+    }
 
     public String getCountryCode() {
-        return countryCode;
+        return locationEntity.countryCode;
     }
 
     public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+        this.locationEntity.countryCode = countryCode;
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return locationEntity.postalCode;
     }
 
     public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+        this.locationEntity.postalCode = postalCode;
     }
 
     public String getPlaceName() {
-        return placeName;
+        return locationEntity.placeName;
     }
 
     public void setPlaceName(String placeName) {
-        this.placeName = placeName;
+        this.locationEntity.placeName = placeName;
     }
 
     public String getDistrict() {
-        return district;
+        return locationEntity.district;
     }
 
     public void setDistrict(String district) {
-        this.district = district;
+        this.locationEntity.district = district;
     }
 
     public String getDistrictID() {
-        return districtID;
+        return locationEntity.districtID;
     }
 
     public void setDistrictID(String districtID) {
-        this.districtID = districtID;
+        this.locationEntity.districtID = districtID;
     }
 
     public String getProvince() {
-        return province;
+        return locationEntity.province;
     }
 
     public void setProvince(String province) {
-        this.province = province;
+        this.locationEntity.province = province;
     }
 
     public String getProvinceID() {
-        return provinceID;
+        return locationEntity.provinceID;
     }
 
     public void setProvinceID(String provinceID) {
-        this.provinceID = provinceID;
+        this.locationEntity.provinceID = provinceID;
     }
 
     public String getCommunity() {
-        return community;
+        return locationEntity.community;
     }
 
     public void setCommunity(String community) {
-        this.community = community;
+        this.locationEntity.community = community;
     }
 
     public String getCommunityID() {
-        return communityID;
+        return locationEntity.communityID;
     }
 
     public void setCommunityID(String communityID) {
-        this.communityID = communityID;
+        this.locationEntity.communityID = communityID;
     }
 
     public String getLatitude() {
-        return latitude;
+        return locationEntity.latitude;
     }
 
     public void setLatitude(String latitude) {
-        this.latitude = latitude;
+        this.locationEntity.latitude = latitude;
     }
 
     public String getLongitude() {
-        return longitude;
+        return locationEntity.longitude;
     }
 
     public void setLongitude(String longitude) {
-        this.longitude = longitude;
+        this.locationEntity.longitude = longitude;
     }
 
     public String getAccuracy() {
-        return accuracy;
+        return locationEntity.accuracy;
     }
 
     public void setAccuracy(String accuracy) {
-        this.accuracy = accuracy;
+        this.locationEntity.accuracy = accuracy;
     }
 }
