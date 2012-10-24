@@ -24,13 +24,13 @@ public class ExternalTeam {
         this.alias = alias;
     }
 
-    public ContactDetail getContactDetails() {
+    public ContactDetails getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
+    public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
     }
 
-    ContactDetail contactDetails;
+    ContactDetails contactDetails;
 }

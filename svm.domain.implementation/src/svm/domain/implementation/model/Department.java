@@ -8,7 +8,7 @@ public class Department {
     String name;
     String alias;
     String description;
-    ContactDetail contactDetails;
+    ContactDetails contactDetails;
 
     public String getName() {
         return name;
@@ -34,11 +34,11 @@ public class Department {
         this.description = description;
     }
 
-    public ContactDetail getContactDetails() {
+    public ContactDetails getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
+    public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
     }
 }

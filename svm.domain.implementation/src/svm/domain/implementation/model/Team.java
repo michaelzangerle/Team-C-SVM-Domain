@@ -7,58 +7,57 @@ import java.util.Date;
  * Date: 21.10.12
  */
 public class Team {
-    String name;
-    String alias;
-    Date founded;
-    Sport sport;
-    TeamType teamType;
-    Member contactPerson;
+    ITeamEntity teamEntity;
+
+    public Team(ITeamEntity teamEntity) {
+        this.teamEntity = teamEntity;
+    }
 
     public String getName() {
-        return name;
+        return teamEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.teamEntity.name = name;
     }
 
     public String getAlias() {
-        return alias;
+        return teamEntity.alias;
     }
 
     public void setAlias(String alias) {
-        this.alias = alias;
+        this.teamEntity.alias = alias;
     }
 
     public Date getFounded() {
-        return founded;
+        return teamEntity.founded;
     }
 
     public void setFounded(Date founded) {
-        this.founded = founded;
+        this.teamEntity.founded = founded;
     }
 
     public Sport getSport() {
-        return sport;
+        return teamEntity.sport;
     }
 
     public void setSport(Sport sport) {
-        this.sport = sport;
+        this.teamEntity.sport = sport;
     }
 
     public TeamType getTeamType() {
-        return teamType;
+        return teamEntity.teamType;
     }
 
     public void setTeamType(TeamType teamType) {
-        this.teamType = teamType;
+        this.teamEntity.teamType = teamType;
     }
 
     public Member getContactPerson() {
-        return contactPerson;
+        return teamEntity.contactPerson;
     }
 
     public void setContactPerson(Member contactPerson) {
-        this.contactPerson = contactPerson;
+        this.teamEntity.contactPerson = contactPerson;
     }
 }

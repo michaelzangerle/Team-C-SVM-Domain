@@ -2,56 +2,56 @@ package svm.domain.implementation.model;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Tobias
+ * User: Patrick
  * Date: 24.10.12
  * Time: 14:29
  * To change this template use File | Settings | File Templates.
  */
 public class MatchType {
-    enum alias{};
-    String name;
-    String description;
-    int draw;
-    int win;
-    int lose;
+
+    IMatchTypeEntity matchTypeEntity;
+
+    public MatchType(IMatchTypeEntity matchTypeEntity) {
+        this.matchTypeEntity = matchTypeEntity;
+    }
 
     public String getName() {
-        return name;
+        return matchTypeEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.matchTypeEntity.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return matchTypeEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.matchTypeEntity.description = description;
     }
 
     public int getDraw() {
-        return draw;
+        return matchTypeEntity.draw;
     }
 
     public void setDraw(int draw) {
-        this.draw = draw;
+        this.matchTypeEntity.draw = draw;
     }
 
     public int getWin() {
-        return win;
+        return matchTypeEntity.win;
     }
 
     public void setWin(int win) {
-        this.win = win;
+        this.matchTypeEntity.win = win;
     }
 
     public int getLose() {
-        return lose;
+        return matchTypeEntity.lose;
     }
 
     public void setLose(int lose) {
-        this.lose = lose;
+        this.matchTypeEntity.lose = lose;
     }
 }

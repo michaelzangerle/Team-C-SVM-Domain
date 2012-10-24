@@ -7,113 +7,107 @@ import java.util.Date;
  * Date: 21.10.12
  */
 public class Member {
-    String title;
-    String firstName;
-    String lastName;
-    String socialNumber;
-    Date birthDate;
-    Character gender;
-    Date entryDate;
-    String avatar;
-    String url;
-    String userName;
-    ContactDetail contactDetails;
+
+    IMemberEntitiy memberEntitiy;
+
+    public Member(IMemberEntitiy memberEntitiy) {
+        this.memberEntitiy = memberEntitiy;
+    }
 
     public String getTitle() {
-        return title;
+        return memberEntitiy.title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.memberEntitiy.title = title;
     }
 
     public String getFirstName() {
-        return firstName;
+        return memberEntitiy.firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.memberEntitiy.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return memberEntitiy.lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.memberEntitiy.lastName = lastName;
     }
 
     public String getSocialNumber() {
-        return socialNumber;
+        return memberEntitiy.socialNumber;
     }
 
     public void setSocialNumber(String socialNumber) {
-        this.socialNumber = socialNumber;
+        this.memberEntitiy.socialNumber = socialNumber;
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return memberEntitiy.birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+        this.memberEntitiy.birthDate = birthDate;
     }
 
     public Character getGender() {
-        return gender;
+        return memberEntitiy.gender;
     }
 
     public void setGender(Character gender) {
-        this.gender = gender;
+        this.memberEntitiy.gender = gender;
     }
 
     public Date getEntryDate() {
-        return entryDate;
+        return memberEntitiy.entryDate;
     }
 
     public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
+        this.memberEntitiy.entryDate = entryDate;
     }
 
     public String getAvatar() {
-        return avatar;
+        return memberEntitiy.avatar;
     }
 
     public void setAvatar(String avatar) {
-        this.avatar = avatar;
+        this.memberEntitiy.avatar = avatar;
     }
 
     public String getUrl() {
-        return url;
+        return memberEntitiy.url;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.memberEntitiy.url = url;
     }
 
     public String getUserName() {
-        return userName;
+        return memberEntitiy.userName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.memberEntitiy.userName = userName;
     }
 
-    public ContactDetail getContactDetails() {
-        return contactDetails;
+    public ContactDetails getContactDetails() {
+        return memberEntitiy.contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.memberEntitiy.contactDetails = contactDetails;
     }
 
     public Double getFee() {
-        return fee;
+        return memberEntitiy.fee;
     }
 
     public void setFee(Double fee) {
-        this.fee = fee;
+        this.memberEntitiy.fee = fee;
     }
 
-    Double fee;
 }

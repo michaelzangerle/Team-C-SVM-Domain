@@ -5,23 +5,26 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class MemberRole {
-    enum alias{};
-    String name;
-    String description;
+
+    IMemberRoleEntity memberRoleEntity;
+
+    public MemberRole(IMemberRoleEntity memberRoleEntity) {
+        this.memberRoleEntity = memberRoleEntity;
+    }
 
     public String getName() {
-        return name;
+        return memberRoleEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.memberRoleEntity.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return memberRoleEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.memberRoleEntity.description = description;
     }
 }

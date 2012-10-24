@@ -12,7 +12,7 @@ public class Match {
     Date end;
     Boolean cancelled;
     String remarks;
-    ContactDetail contactDetails;
+    ContactDetails contactDetails;
 
     public String getName() {
         return name;
@@ -54,11 +54,11 @@ public class Match {
         this.remarks = remarks;
     }
 
-    public ContactDetail getContactDetails() {
+    public ContactDetails getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
+    public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
     }
 }

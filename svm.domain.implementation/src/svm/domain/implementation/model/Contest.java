@@ -10,7 +10,7 @@ public class Contest {
     String name;
     Date start;
     Date end;
-    ContactDetail contactDetails;
+    ContactDetails contactDetails;
     Float fee;
 
     public String getName() {
@@ -29,11 +29,11 @@ public class Contest {
         this.start = start;
     }
 
-    public ContactDetail getContactDetails() {
+    public ContactDetails getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(ContactDetail contactDetails) {
+    public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
     }
 

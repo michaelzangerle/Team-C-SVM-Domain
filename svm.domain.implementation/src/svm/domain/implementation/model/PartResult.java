@@ -5,31 +5,33 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class PartResult {
-    Float result;
-    Contestant contestant;
-    String comment;
+    IPartResult partResult;
+
+    public PartResult(IPartResult partResult) {
+        this.partResult = partResult;
+    }
 
     public Float getResult() {
-        return result;
+        return partResult.result;
     }
 
     public void setResult(Float result) {
-        this.result = result;
+        this.partResult.result = result;
     }
 
     public Contestant getContestant() {
-        return contestant;
+        return partResult.contestant;
     }
 
     public void setContestant(Contestant contestant) {
-        this.contestant = contestant;
+        this.partResult.contestant = contestant;
     }
 
     public String getComment() {
-        return comment;
+        return partResult.comment;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        this.partResult.comment = comment;
     }
 }

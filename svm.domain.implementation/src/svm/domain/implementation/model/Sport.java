@@ -5,40 +5,42 @@ package svm.domain.implementation.model;
  * Date: 21.10.12
  */
 public class Sport {
-    String name;
-    String alias;
-    String description;
-    Department department;
+
+    ISportEntity sportEntity;
+
+    public Sport(ISportEntity sportEntity) {
+        this.sportEntity = sportEntity;
+    }
 
     public String getName() {
-        return name;
+        return sportEntity.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.sportEntity.name = name;
     }
 
     public String getAlias() {
-        return alias;
+        return sportEntity.alias;
     }
 
     public void setAlias(String alias) {
-        this.alias = alias;
+        this.sportEntity.alias = alias;
     }
 
     public String getDescription() {
-        return description;
+        return sportEntity.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.sportEntity.description = description;
     }
 
     public Department getDepartment() {
-        return department;
+        return sportEntity.department;
     }
 
     public void setDepartment(Department department) {
-        this.department = department;
+        this.sportEntity.department = department;
     }
 }
