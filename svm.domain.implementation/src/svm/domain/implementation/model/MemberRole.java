@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IMemberRole;
+import svm.persistence.abstraction.model.IMemberRoleEntity;
 
 /**
  * Projectteam

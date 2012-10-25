@@ -2,6 +2,7 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IContest;
+import svm.persistence.abstraction.model.IContestEntity;
 
 import java.util.Date;
 

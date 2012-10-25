@@ -1,19 +1,21 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IMember;
+import svm.persistence.abstraction.model.IMemberEntity;
 
 import java.util.Date;
 
 /**
- * Projectteam
+ * ProjectTeam: Team C
  * Date: 21.10.12
  */
 public class Member implements IMember {
 
-    IMemberEntitiy memberEntitiy;
+    IMemberEntity memberEntity;
 
-    public Member(IMemberEntitiy memberEntitiy) {
-        this.memberEntitiy = memberEntitiy;
+    public Member(IMemberEntity memberEntity) {
+        this.memberEntity = memberEntity;
     }
 
     @Override
@@ -117,12 +119,12 @@ public class Member implements IMember {
     }
 
     @Override
-    public ContactDetails getContactDetails() {
+    public IContactDetails getContactDetails() {
         return memberEntitiy.contactDetails;
     }
 
     @Override
-    public void setContactDetails(ContactDetails contactDetails) {
+    public void setContactDetails(IContactDetails contactDetails) {
         this.memberEntitiy.contactDetails = contactDetails;
     }
 

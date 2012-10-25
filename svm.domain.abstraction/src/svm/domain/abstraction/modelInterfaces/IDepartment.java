@@ -19,5 +19,5 @@ public interface IDepartment {
 
     IContactDetails getContactDetails();
 
-    void setContactDetails(IContactDetails IContactDetails);
+    void setContactDetails(IContactDetails contactDetails);
 }

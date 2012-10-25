@@ -1,6 +1,8 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IExternalTeam;
+import svm.persistence.abstraction.model.IExternalTeamEntity;
 
 /**
  * Projectteam

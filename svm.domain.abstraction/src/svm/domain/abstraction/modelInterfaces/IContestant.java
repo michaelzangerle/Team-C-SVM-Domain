@@ -5,9 +5,9 @@ package svm.domain.abstraction.modelInterfaces;
  * Date: 24.10.12
  */
 public interface IContestant {
-    ITeam getInternalteam();
+    ITeam getInternalTeam();
 
-    void setInternalteam(ITeam internalTeam);
+    void setInternalTeam(ITeam internalTeam);
 
     IExternalTeam getExternalTeam();
 

@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.ITeamType;
+import svm.persistence.abstraction.model.ITeamTypeEntity;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +12,10 @@ import svm.domain.abstraction.modelInterfaces.ITeamType;
  */
 public class TeamType implements ITeamType {
     ITeamTypeEntity teamTypeEntity;
+
+    public TeamType(ITeamTypeEntity teamTypeEntity) {
+        this.teamTypeEntity = teamTypeEntity;
+    }
 
     @Override
     public String getName() {

@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IMatchType;
+import svm.persistence.abstraction.model.IMatchTypeEntity;
 
 /**
  * Projectteam Team C

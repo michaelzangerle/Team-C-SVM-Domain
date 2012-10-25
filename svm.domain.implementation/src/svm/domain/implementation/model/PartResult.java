@@ -1,15 +1,17 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IContestant;
 import svm.domain.abstraction.modelInterfaces.IPartResult;
+import svm.persistence.abstraction.model.IPartResultEntity;
 
 /**
  * Projectteam
  * Date: 21.10.12
  */
 public class PartResult implements IPartResult {
-    IPartResult partResult;
+    IPartResultEntity partResult;
 
-    public PartResult(IPartResult partResult) {
+    public PartResult(IPartResultEntity partResult) {
         this.partResult = partResult;
     }
 
@@ -24,12 +26,12 @@ public class PartResult implements IPartResult {
     }
 
     @Override
-    public Contestant getContestant() {
+    public IContestant getContestant() {
         return partResult.contestant;
     }
 
     @Override
-    public void setContestant(Contestant contestant) {
+    public void setContestant(IContestant contestant) {
         this.partResult.contestant = contestant;
     }
 

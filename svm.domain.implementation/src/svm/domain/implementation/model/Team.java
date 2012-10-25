@@ -4,6 +4,7 @@ import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.domain.abstraction.modelInterfaces.ISport;
 import svm.domain.abstraction.modelInterfaces.ITeam;
 import svm.domain.abstraction.modelInterfaces.ITeamType;
+import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
 

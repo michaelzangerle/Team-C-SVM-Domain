@@ -1,13 +1,14 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
+import svm.persistence.abstraction.model.IContactDetailsEntity;
 
 /**
  * Projectteam
  * Date: 21.10.12
  */
 
-public class ContactDetails implements IContactDetails, IContactDetails {
+public class ContactDetails implements IContactDetails {
     IContactDetailsEntity contactDetailsEntity;
 
     public ContactDetails(IContactDetailsEntity contactDetailsEntity) {

@@ -2,6 +2,8 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContestant;
 import svm.domain.abstraction.modelInterfaces.IExternalTeam;
+import svm.domain.abstraction.modelInterfaces.ITeam;
+import svm.persistence.abstraction.model.IContestantEntity;
 
 /**
  * Projectteam
@@ -15,12 +17,12 @@ public class Contestant implements IContestant {
     }
 
     @Override
-    public Team getInternalteam() {
+    public Team getInternalTeam() {
         return contestantEntity.internalTeam;
     }
 
     @Override
-    public void setInternalteam(Team internalTeam) {
+    public void setInternalTeam(ITeam internalTeam) {
         this.contestantEntity.internalTeam = internalTeam;
     }
 

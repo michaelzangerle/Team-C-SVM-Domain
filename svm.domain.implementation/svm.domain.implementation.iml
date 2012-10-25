@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="svm.domain.abstraction" />
+    <orderEntry type="library" name="svm.persistence.abstraction" level="project" />
   </component>
 </module>
 

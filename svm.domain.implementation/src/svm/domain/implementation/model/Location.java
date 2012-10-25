@@ -2,6 +2,7 @@ package svm.domain.implementation.model;
 
 import sun.beans.editors.StringEditor;
 import svm.domain.abstraction.modelInterfaces.ILocation;
+import svm.persistence.abstraction.model.ILocationEntity;
 
 /**
  * Projectteam

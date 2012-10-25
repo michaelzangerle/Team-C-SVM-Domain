@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IUserPrivilege;
+import svm.persistence.abstraction.model.IUserPrivilegeEntity;
 
 /**
  * Projectteam
@@ -8,6 +9,10 @@ import svm.domain.abstraction.modelInterfaces.IUserPrivilege;
  */
 public class UserPrivilege implements IUserPrivilege {
     IUserPrivilegeEntity userPrivilegeEntity;
+
+    public UserPrivilege(IUserPrivilegeEntity userPrivilegeEntity) {
+        this.userPrivilegeEntity = userPrivilegeEntity;
+    }
 
     @Override
     public String getName() {
