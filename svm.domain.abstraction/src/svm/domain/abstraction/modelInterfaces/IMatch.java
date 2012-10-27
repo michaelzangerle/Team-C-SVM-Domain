@@ -6,7 +6,7 @@ import java.util.Date;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IMatch {
+public interface IMatch extends IModel {
     String getName();
 
     void setName(String name);

@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMatchType;
 import svm.persistence.abstraction.model.IMatchTypeEntity;
 
@@ -7,7 +8,7 @@ import svm.persistence.abstraction.model.IMatchTypeEntity;
  * Projectteam Team C
  * Date: 21.10.12
  */
-public class MatchType implements IMatchType {
+public class MatchType implements IMatchType,IHasEntity<IMatchTypeEntity> {
 
     IMatchTypeEntity matchTypeEntity;
 
@@ -17,51 +18,58 @@ public class MatchType implements IMatchType {
 
     @Override
     public String getName() {
-        return matchTypeEntity.name;
+        return matchTypeEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.matchTypeEntity.name = name;
+        this.matchTypeEntity.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return matchTypeEntity.description;
+        return matchTypeEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.matchTypeEntity.description = description;
+        this.matchTypeEntity.setDescription(description);
     }
 
     @Override
     public int getDraw() {
-        return matchTypeEntity.draw;
+        return matchTypeEntity.getDraw();
     }
 
     @Override
     public void setDraw(int draw) {
-        this.matchTypeEntity.draw = draw;
+        this.matchTypeEntity.setDraw(draw);
     }
 
     @Override
     public int getWin() {
-        return matchTypeEntity.win;
+        return matchTypeEntity.getWin();
     }
 
     @Override
     public void setWin(int win) {
-        this.matchTypeEntity.win = win;
+        this.matchTypeEntity.setWin(win);
     }
 
     @Override
     public int getLose() {
-        return matchTypeEntity.lose;
+        //TODO Persistence -> umbenennen getLoose() in getLose() weil nur 1 o = richtig
+        return matchTypeEntity.getLoose();
     }
 
     @Override
     public void setLose(int lose) {
-        this.matchTypeEntity.lose = lose;
+        //TODO Persistence -> umbenennen setLoose() in getLose() weil nur 1 o = richtig
+        this.matchTypeEntity.setLoose(lose);
+    }
+
+    @Override
+    public IMatchTypeEntity getEntity() {
+        return matchTypeEntity;
     }
 }

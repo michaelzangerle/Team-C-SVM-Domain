@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IUserPrivilege;
 import svm.persistence.abstraction.model.IUserPrivilegeEntity;
 
@@ -7,7 +8,7 @@ import svm.persistence.abstraction.model.IUserPrivilegeEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class UserPrivilege implements IUserPrivilege {
+public class UserPrivilege implements IUserPrivilege, IHasEntity<IUserPrivilegeEntity> {
     IUserPrivilegeEntity userPrivilegeEntity;
 
     public UserPrivilege(IUserPrivilegeEntity userPrivilegeEntity) {
@@ -16,21 +17,26 @@ public class UserPrivilege implements IUserPrivilege {
 
     @Override
     public String getName() {
-        return userPrivilegeEntity.name;
+        return userPrivilegeEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.userPrivilegeEntity.name = name;
+        this.userPrivilegeEntity.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return userPrivilegeEntity.description;
+        return userPrivilegeEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.userPrivilegeEntity.description = description;
+        this.userPrivilegeEntity.setDescription(description);
+    }
+
+    @Override
+    public IUserPrivilegeEntity getEntity() {
+        return userPrivilegeEntity;
     }
 }

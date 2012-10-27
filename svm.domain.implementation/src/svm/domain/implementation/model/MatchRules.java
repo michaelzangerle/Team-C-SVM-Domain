@@ -1,17 +1,15 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMatchRules;
 import svm.domain.abstraction.modelInterfaces.IMatchType;
 import svm.persistence.abstraction.model.IMatchRulesEntity;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Tobias
+ * Projectteam: Team C
  * Date: 24.10.12
- * Time: 14:33
- * To change this template use File | Settings | File Templates.
  */
-public class MatchRules implements IMatchRules {
+public class MatchRules implements IMatchRules,IHasEntity<IMatchRulesEntity> {
     IMatchRulesEntity matchRulesEntity;
 
     public MatchRules(IMatchRulesEntity matchRulesEntity) {
@@ -20,31 +18,39 @@ public class MatchRules implements IMatchRules {
 
     @Override
     public String getName() {
-        return matchRulesEntity.name;
+        return matchRulesEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.matchRulesEntity.name = name;
+        this.matchRulesEntity.setName(name);
     }
 
     @Override
     public IMatchType getMatchType() {
-        return matchRulesEntity.matchType;
+        //TODO getMatchType() Methode in matchRulesEntity?
+        return new MatchType(matchRulesEntity.getMatchType());
+
     }
 
     @Override
-    public void setMatchType(IMatchType IMatchType) {
-        this.matchRulesEntity.matchType = IMatchType;
+    public void setMatchType(IMatchType matchType) {
+        //TODO setMatchType() Methode in matchRulesEntity?
+        this.matchRulesEntity.setMatchType(((MatchType) matchType).getEntity());
     }
 
     @Override
     public String getDescription() {
-        return matchRulesEntity.description;
+        return matchRulesEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.matchRulesEntity.description = description;
+        this.matchRulesEntity.setDescription(description);
+    }
+
+    @Override
+    public IMatchRulesEntity getEntity() {
+        return matchRulesEntity;
     }
 }

@@ -1,18 +1,15 @@
 package svm.domain.implementation.model;
 
-import svm.domain.abstraction.modelInterfaces.IMember;
-import svm.domain.abstraction.modelInterfaces.ISport;
-import svm.domain.abstraction.modelInterfaces.ITeam;
-import svm.domain.abstraction.modelInterfaces.ITeamType;
+import svm.domain.abstraction.modelInterfaces.*;
 import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
 
 /**
- * Projectteam
- * Date: 21.10.12
+ * Projectteam: Team C
+ * Date: 24.10.12
  */
-public class Team implements ITeam {
+public class Team implements ITeam,IHasEntity<ITeamEntity> {
     ITeamEntity teamEntity;
 
     public Team(ITeamEntity teamEntity) {
@@ -21,61 +18,68 @@ public class Team implements ITeam {
 
     @Override
     public String getName() {
-        return teamEntity.name;
+        return teamEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.teamEntity.name = name;
+        this.teamEntity.setName(name);
     }
 
     @Override
     public String getAlias() {
-        return teamEntity.alias;
+        return teamEntity.getAlias();
     }
 
     @Override
     public void setAlias(String alias) {
-        this.teamEntity.alias = alias;
+        this.teamEntity.setAlias(alias);
     }
 
     @Override
     public Date getFounded() {
-        return teamEntity.founded;
+        return teamEntity.getFounded();
     }
 
     @Override
     public void setFounded(Date founded) {
-        this.teamEntity.founded = founded;
+        //TODO Check if conversion from util date to sql date is correct
+        this.teamEntity.setFounded(new java.sql.Date(founded.getTime()));
     }
 
     @Override
     public ISport getSport() {
-        return teamEntity.sport;
+        return new Sport(teamEntity.getSport());
     }
 
     @Override
-    public void setSport(ISport ISport) {
-        this.teamEntity.sport = ISport;
+    public void setSport(ISport sport) {
+        this.teamEntity.setSport(((Sport) sport).getEntity());
+
     }
 
     @Override
     public ITeamType getTeamType() {
-        return teamEntity.teamType;
+        return new TeamType(teamEntity.getTeamType());
     }
 
     @Override
-    public void setTeamType(ITeamType ITeamType) {
-        this.teamEntity.teamType = ITeamType;
+    public void setTeamType(ITeamType teamType) {
+        this.teamEntity.setTeamType(((TeamType) teamType).getEntity());
     }
 
     @Override
     public IMember getContactPerson() {
-        return teamEntity.contactPerson;
+        return new Member(teamEntity.getContactPerson());
     }
 
     @Override
     public void setContactPerson(IMember contactPerson) {
-        this.teamEntity.contactPerson = contactPerson;
+        this.teamEntity.setContactPerson(((Member) contactPerson).getEntity());
+    }
+
+    @Override
+    public ITeamEntity getEntity() {
+        return teamEntity;
     }
 }

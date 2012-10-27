@@ -2,13 +2,14 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.persistence.abstraction.model.IDepartmentEntity;
 
 /**
  * Projectteam
  * Date: 21.10.12
  */
-public class Department implements IDepartment {
+public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     IDepartmentEntity departmentEntity;
 
     public Department(IDepartmentEntity departmentEntity) {
@@ -17,41 +18,46 @@ public class Department implements IDepartment {
 
     @Override
     public String getName() {
-        return departmentEntity.name;
+        return departmentEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.departmentEntity.name = name;
+        this.departmentEntity.setName(name);
     }
 
     @Override
     public String getAlias() {
-        return departmentEntity.alias;
+        return departmentEntity.getAlias();
     }
 
     @Override
     public void setAlias(String alias) {
-        this.departmentEntity.alias = alias;
+        this.departmentEntity.setAlias(alias);
     }
 
     @Override
     public String getDescription() {
-        return departmentEntity.description;
+        return departmentEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.departmentEntity.description = description;
+        this.departmentEntity.setDescription(description);
     }
 
     @Override
     public IContactDetails getContactDetails() {
-        return departmentEntity.contactDetails;
+        return new ContactDetails(departmentEntity.getContactDetails());
     }
 
     @Override
-    public void setContactDetails(IContactDetails IContactDetails) {
-        this.departmentEntity.contactDetails = IContactDetails;
+    public void setContactDetails(IContactDetails contactDetails) {
+        this.departmentEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+    }
+
+    @Override
+    public IDepartmentEntity getEntity() {
+        return departmentEntity;
     }
 }

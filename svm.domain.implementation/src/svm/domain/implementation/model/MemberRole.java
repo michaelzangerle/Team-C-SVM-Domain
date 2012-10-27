@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMemberRole;
 import svm.persistence.abstraction.model.IMemberRoleEntity;
 
@@ -7,7 +8,7 @@ import svm.persistence.abstraction.model.IMemberRoleEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class MemberRole implements IMemberRole {
+public class MemberRole implements IMemberRole,IHasEntity<IMemberRoleEntity> {
 
     IMemberRoleEntity memberRoleEntity;
 
@@ -17,21 +18,26 @@ public class MemberRole implements IMemberRole {
 
     @Override
     public String getName() {
-        return memberRoleEntity.name;
+        return memberRoleEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.memberRoleEntity.name = name;
+        this.memberRoleEntity.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return memberRoleEntity.description;
+        return memberRoleEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.memberRoleEntity.description = description;
+        this.memberRoleEntity.setDescription(description);
+    }
+
+    @Override
+    public IMemberRoleEntity getEntity() {
+        return memberRoleEntity;
     }
 }

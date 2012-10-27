@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContestant;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IPartResult;
 import svm.persistence.abstraction.model.IPartResultEntity;
 
@@ -8,40 +9,46 @@ import svm.persistence.abstraction.model.IPartResultEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class PartResult implements IPartResult {
-    IPartResultEntity partResult;
+public class PartResult implements IPartResult,IHasEntity<IPartResultEntity> {
+    IPartResultEntity partResultEntity;
 
     public PartResult(IPartResultEntity partResult) {
-        this.partResult = partResult;
+        this.partResultEntity = partResult;
     }
 
     @Override
     public Float getResult() {
-        return partResult.result;
+        return partResultEntity.getResult();
     }
 
     @Override
     public void setResult(Float result) {
-        this.partResult.result = result;
+        this.partResultEntity.setResult(result);
     }
 
     @Override
     public IContestant getContestant() {
-        return partResult.contestant;
+        return new Contestant(partResultEntity.getContestant());
+
     }
 
     @Override
     public void setContestant(IContestant contestant) {
-        this.partResult.contestant = contestant;
+        this.partResultEntity.setContestant(((Contestant)contestant).getEntity());
     }
 
     @Override
     public String getComment() {
-        return partResult.comment;
+        return partResultEntity.getComment();
     }
 
     @Override
     public void setComment(String comment) {
-        this.partResult.comment = comment;
+        this.partResultEntity.setComment(comment);
+    }
+
+    @Override
+    public IPartResultEntity getEntity() {
+        return partResultEntity;
     }
 }

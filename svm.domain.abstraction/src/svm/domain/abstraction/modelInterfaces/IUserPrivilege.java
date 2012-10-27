@@ -4,7 +4,7 @@ package svm.domain.abstraction.modelInterfaces;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IUserPrivilege {
+public interface IUserPrivilege extends IModel {
     String getName();
 
     void setName(String name);

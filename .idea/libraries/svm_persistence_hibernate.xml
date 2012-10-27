@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="svm.persistence.hibernate">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/svm.domain.implementation/lib/svm.persistence.hibernate.jar!/" />
+      <root url="jar://$PROJECT_DIR$/svm.domain.implementation/lib/svm.persistence.abstraction.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

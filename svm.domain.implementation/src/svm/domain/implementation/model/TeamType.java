@@ -1,16 +1,14 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.ITeamType;
 import svm.persistence.abstraction.model.ITeamTypeEntity;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Tobias
+ * Projectteam: Team C
  * Date: 24.10.12
- * Time: 14:38
- * To change this template use File | Settings | File Templates.
  */
-public class TeamType implements ITeamType {
+public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     ITeamTypeEntity teamTypeEntity;
 
     public TeamType(ITeamTypeEntity teamTypeEntity) {
@@ -19,21 +17,26 @@ public class TeamType implements ITeamType {
 
     @Override
     public String getName() {
-        return teamTypeEntity.name;
+        return teamTypeEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.teamTypeEntity.name = name;
+        this.teamTypeEntity.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return teamTypeEntity.description;
+        return teamTypeEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.teamTypeEntity.description = description;
+        this.teamTypeEntity.setDescription(description);
+}
+
+    @Override
+    public ITeamTypeEntity getEntity() {
+        return teamTypeEntity;
     }
 }

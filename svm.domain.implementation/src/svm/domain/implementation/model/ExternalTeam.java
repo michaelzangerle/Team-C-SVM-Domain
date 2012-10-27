@@ -2,13 +2,14 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IExternalTeam;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.persistence.abstraction.model.IExternalTeamEntity;
 
 /**
  * Projectteam
  * Date: 21.10.12
  */
-public class ExternalTeam implements IExternalTeam {
+public class ExternalTeam implements IExternalTeam, IHasEntity<IExternalTeamEntity> {
     IExternalTeamEntity externalTeamEntity;
 
     public ExternalTeam(IExternalTeamEntity externalTeamEntity) {
@@ -17,31 +18,37 @@ public class ExternalTeam implements IExternalTeam {
 
     @Override
     public String getName() {
-        return externalTeamEntity.name;
+        return externalTeamEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.externalTeamEntity.name = name;
+        this.externalTeamEntity.setName(name);
     }
 
     @Override
     public String getAlias() {
-        return externalTeamEntity.alias;
+        return externalTeamEntity.getAlias();
     }
 
     @Override
     public void setAlias(String alias) {
-        this.externalTeamEntity.alias = alias;
+        this.externalTeamEntity.setAlias(alias);
     }
 
     @Override
     public IContactDetails getContactDetails() {
-        return externalTeamEntity.contactDetails;
+        return new ContactDetails(externalTeamEntity.getContactDetails());
+
     }
 
     @Override
-    public void setContactDetails(IContactDetails IContactDetails) {
-        this.externalTeamEntity.contactDetails = IContactDetails;
+    public void setContactDetails(IContactDetails contactDetails) {
+        this.externalTeamEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+    }
+
+    @Override
+    public IExternalTeamEntity getEntity() {
+       return externalTeamEntity;
     }
 }

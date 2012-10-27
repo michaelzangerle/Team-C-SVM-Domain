@@ -1,12 +1,10 @@
 package svm.domain.abstraction.modelInterfaces;
 
-import svm.domain.abstraction.modelInterfaces.IContestant;
-
 /**
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IPartResult {
+public interface IPartResult extends IModel {
     Float getResult();
 
     void setResult(Float result);

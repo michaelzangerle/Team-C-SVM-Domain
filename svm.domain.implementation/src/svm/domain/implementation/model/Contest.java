@@ -20,57 +20,54 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public String getName() {
-        return contestEntity.name;
+        return contestEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.contestEntity.name = name;
+        this.contestEntity.setName(name);
     }
 
     @Override
     public Date getStart() {
-        return contestEntity.start;
+        return contestEntity.getStart();
     }
 
     @Override
     public void setStart(Date start) {
-        this.contestEntity.start = start;
+        //TODO Check if conversion from util date to sql date is correct
+        this.contestEntity.setStart(new java.sql.Date(start.getTime()));
     }
 
     @Override
     public IContactDetails getContactDetails() {
-        return contestEntity.contactDetails;
-    }
+        return new ContactDetails(contestEntity.getContactDetails());
+}
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
-        this.contestEntity.contactDetails = contactDetails;
-    }
-
-    @Override
-    public void setContactDetails(IContactDetails IContactDetails) {
-        this.contestEntity.contactDetails = IContactDetails;
+        this.contestEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
     }
 
     @Override
     public Date getEnd() {
-        return contestEntity.end;
+        return contestEntity.getEnd();
     }
 
     @Override
     public void setEnd(Date end) {
-        this.contestEntity.end = end;
+        //TODO Check if conversion from util date to sql date is correct
+        this.contestEntity.setEnd(new java.sql.Date(end.getTime()));
     }
 
     @Override
     public Float getFee() {
-        return contestEntity.fee;
+        return contestEntity.getFee();
     }
 
     @Override
     public void setFee(Float fee) {
-        this.contestEntity.fee = fee;
+        this.contestEntity.setFee(fee);
     }
 
     @Override

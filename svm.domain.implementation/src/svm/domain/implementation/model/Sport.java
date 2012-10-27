@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IDepartment;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.ISport;
 import svm.persistence.abstraction.model.ISportEntity;
 
@@ -8,7 +9,7 @@ import svm.persistence.abstraction.model.ISportEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class Sport implements ISport {
+public class Sport implements ISport,IHasEntity<ISportEntity> {
 
     ISportEntity sportEntity;
 
@@ -18,42 +19,48 @@ public class Sport implements ISport {
 
     @Override
     public String getName() {
-        return sportEntity.name;
+        return sportEntity.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.sportEntity.name = name;
+        this.sportEntity.setName(name);
     }
 
     @Override
     public String getAlias() {
-        return sportEntity.alias;
+        return sportEntity.getAlias();
     }
 
     @Override
     public void setAlias(String alias) {
-        this.sportEntity.alias = alias;
+        this.sportEntity.setAlias(alias);
     }
 
     @Override
     public String getDescription() {
-        return sportEntity.description;
+        return sportEntity.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        this.sportEntity.description = description;
+        this.sportEntity.setDescription(description);
     }
 
     @Override
     public Department getDepartment() {
-        return sportEntity.department;
+        return new Department(sportEntity.getDepartment());
+
     }
 
     @Override
     public void setDepartment(IDepartment department) {
-        this.sportEntity.department = department;
+        this.sportEntity.setDepartment(((Department)department).getEntity());
+
     }
 
+    @Override
+    public ISportEntity getEntity() {
+        return sportEntity;
+    }
 }
