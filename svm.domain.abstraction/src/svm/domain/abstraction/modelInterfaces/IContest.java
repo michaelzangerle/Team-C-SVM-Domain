@@ -3,10 +3,10 @@ package svm.domain.abstraction.modelInterfaces;
 import java.util.Date;
 
 /**
- * Projectteam: Team C
+ * ProjectTeam: Team C
  * Date: 24.10.12
  */
-public interface IContest {
+public interface IContest extends IModel {
     String getName();
 
     void setName(String name);

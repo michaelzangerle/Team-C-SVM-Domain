@@ -2,15 +2,16 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IContest;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.persistence.abstraction.model.IContestEntity;
 
 import java.util.Date;
 
 /**
- * Projectteam
+ * ProjectTeam
  * Date: 21.10.12
  */
-public class Contest implements IContest {
+public class Contest implements IContest, IHasEntity<IContestEntity> {
     IContestEntity contestEntity;
 
     public Contest(IContestEntity contestEntity){
@@ -70,5 +71,10 @@ public class Contest implements IContest {
     @Override
     public void setFee(Float fee) {
         this.contestEntity.fee = fee;
+    }
+
+    @Override
+    public IContestEntity getEntity() {
+        return this.contestEntity;
     }
 }
