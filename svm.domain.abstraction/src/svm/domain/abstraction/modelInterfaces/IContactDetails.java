@@ -4,7 +4,7 @@ package svm.domain.abstraction.modelInterfaces;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IContactDetails {
+public interface IContactDetails extends IModel {
     String getPhone2();
 
     void setPhone2(String phone2);
@@ -29,17 +29,17 @@ public interface IContactDetails {
 
     void setStreetNumber(String streetNumber);
 
-    int getLocation();
+    ILocation getLocation();
 
-    void setLocation(int location);
+    void setLocation(ILocation location);
 
-    Long getCoordLat();
+    String getCoordLat();
 
-    void setCoordLat(Long coordLat);
+    void setCoordLat(String coordLat);
 
-    Long getCoordLong();
+    String getCoordLong();
 
-    void setCoordLong(Long coordLong);
+    void setCoordLong(String coordLong);
 
     String getPhone1();
 

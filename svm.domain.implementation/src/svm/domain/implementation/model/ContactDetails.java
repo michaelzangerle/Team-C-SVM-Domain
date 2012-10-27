@@ -1,6 +1,8 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.ILocation;
 import svm.persistence.abstraction.model.IContactDetailsEntity;
 
 /**
@@ -8,7 +10,7 @@ import svm.persistence.abstraction.model.IContactDetailsEntity;
  * Date: 21.10.12
  */
 
-public class ContactDetails implements IContactDetails {
+public class ContactDetails implements IContactDetails,IHasEntity<IContactDetailsEntity> {
     IContactDetailsEntity contactDetailsEntity;
 
     public ContactDetails(IContactDetailsEntity contactDetailsEntity) {
@@ -22,96 +24,101 @@ public class ContactDetails implements IContactDetails {
 
     @Override
     public void setPhone2(String phone2) {
-        this.contactDetailsEntity.phone2 = phone2;
+        this.contactDetailsEntity.setPhone2(phone2);
     }
 
     @Override
     public String getEmail1() {
-        return contactDetailsEntity.email1;
+        return contactDetailsEntity.getEmail1();
     }
 
     @Override
     public void setEmail1(String email1) {
-        this.contactDetailsEntity.email1 = email1;
+        this.contactDetailsEntity.setEmail1(email1);
     }
 
     @Override
     public String getEmail2() {
-        return contactDetailsEntity.email2;
+        return contactDetailsEntity.getEmail2();
     }
 
     @Override
     public void setEmail2(String email2) {
-        this.contactDetailsEntity.email2 = email2;
+        this.contactDetailsEntity.setEmail2(email2);
     }
 
     @Override
     public String getFax() {
-        return contactDetailsEntity.fax;
+        return contactDetailsEntity.getFax();
     }
 
     @Override
     public void setFax(String fax) {
-        this.contactDetailsEntity.fax = fax;
+        this.contactDetailsEntity.setFax(fax);
     }
 
     @Override
     public String getStreet() {
-        return contactDetailsEntity.street;
+        return contactDetailsEntity.getStreet();
     }
 
     @Override
     public void setStreet(String street) {
-        this.contactDetailsEntity.street = street;
+        this.contactDetailsEntity.setStreet(street);
     }
 
     @Override
     public String getStreetNumber() {
-        return contactDetailsEntity.streetNumber;
+        return contactDetailsEntity.getStreetNumber();
     }
 
     @Override
     public void setStreetNumber(String streetNumber) {
-        this.contactDetailsEntity.streetNumber = streetNumber;
+        this.contactDetailsEntity.setStreetNumber(streetNumber);
     }
 
     @Override
-    public int getLocation() {
-        return contactDetailsEntity.location;
+    public ILocation getLocation() {
+        return new Location(contactDetailsEntity.getLocationEntity());
     }
 
     @Override
-    public void setLocation(int location) {
-        this.contactDetailsEntity.location = location;
+    public void setLocation(ILocation location) {
+        this.contactDetailsEntity.setLocationEntity(((Location) location).getEntity());
     }
 
     @Override
-    public Long getCoordLat() {
-        return contactDetailsEntity.coordLat;
+    public String getCoordLat() {
+        return contactDetailsEntity.getCoordLat();
     }
 
     @Override
-    public void setCoordLat(Long coordLat) {
-        this.contactDetailsEntity.coordLat = coordLat;
+    public void setCoordLat(String coordLat) {
+        this.contactDetailsEntity.setCoordLat(coordLat);
     }
 
     @Override
-    public Long getCoordLong() {
-        return contactDetailsEntity.coordLong;
+    public String getCoordLong() {
+        return contactDetailsEntity.getCoordLong();
     }
 
     @Override
-    public void setCoordLong(Long coordLong) {
-        this.contactDetailsEntity.coordLong = coordLong;
+    public void setCoordLong(String coordLong) {
+        this.contactDetailsEntity.setCoordLong(coordLong);
     }
 
     @Override
     public String getPhone1() {
-        return contactDetailsEntity.phone1;
+        return contactDetailsEntity.getPhone1();
     }
 
     @Override
     public void setPhone1(String phone1) {
-        this.contactDetailsEntity.phone1 = phone1;
+        this.contactDetailsEntity.setPhone1(phone1);
+    }
+
+    @Override
+    public IContactDetailsEntity getEntity() {
+        return contactDetailsEntity;
     }
 }

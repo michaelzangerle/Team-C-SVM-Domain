@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.model.IMemberEntity;
 
@@ -10,7 +11,7 @@ import java.util.Date;
  * ProjectTeam: Team C
  * Date: 21.10.12
  */
-public class Member implements IMember {
+public class Member implements IMember,IHasEntity<IMemberEntity> {
 
     IMemberEntity memberEntity;
 
@@ -20,122 +21,129 @@ public class Member implements IMember {
 
     @Override
     public String getTitle() {
-        return memberEntitiy.title;
+        return memberEntity.getTitle();
     }
 
     @Override
     public void setTitle(String title) {
-        this.memberEntitiy.title = title;
+        this.memberEntity.setTitle(title);
     }
 
     @Override
     public String getFirstName() {
-        return memberEntitiy.firstName;
+        return memberEntity.getFirstName();
     }
 
     @Override
     public void setFirstName(String firstName) {
-        this.memberEntitiy.firstName = firstName;
+        this.memberEntity.setFirstName(firstName);
     }
 
     @Override
     public String getLastName() {
-        return memberEntitiy.lastName;
+        return memberEntity.getLastName();
+
     }
 
     @Override
     public void setLastName(String lastName) {
-        this.memberEntitiy.lastName = lastName;
+        this.memberEntity.setLastName(lastName);
     }
 
     @Override
     public String getSocialNumber() {
-        return memberEntitiy.socialNumber;
+        return memberEntity.getSocialNumber();
     }
 
     @Override
     public void setSocialNumber(String socialNumber) {
-        this.memberEntitiy.socialNumber = socialNumber;
+        this.memberEntity.setSocialNumber(socialNumber);
     }
 
     @Override
     public Date getBirthDate() {
-        return memberEntitiy.birthDate;
+        return memberEntity.getBirthDate();
     }
 
     @Override
     public void setBirthDate(Date birthDate) {
-        this.memberEntitiy.birthDate = birthDate;
+        //TODO Check if conversion from util date to sql date is correct
+        this.memberEntity.setBirthDate( new java.sql.Date(birthDate.getTime()));
     }
 
     @Override
-    public Character getGender() {
-        return memberEntitiy.gender;
+    public String getGender() {
+        return memberEntity.getGender();
     }
 
     @Override
-    public void setGender(Character gender) {
-        this.memberEntitiy.gender = gender;
+    public void setGender(String gender) {
+        this.memberEntity.setGender(gender);
     }
 
     @Override
     public Date getEntryDate() {
-        return memberEntitiy.entryDate;
+        return memberEntity.getEntryDate();
     }
 
     @Override
     public void setEntryDate(Date entryDate) {
-        this.memberEntitiy.entryDate = entryDate;
+        //TODO Check if conversion from util date to sql date is correct
+        this.memberEntity.setEntryDate(new java.sql.Date(entryDate.getTime()));
     }
 
     @Override
     public String getAvatar() {
-        return memberEntitiy.avatar;
+        return memberEntity.getAvatar();
     }
 
     @Override
     public void setAvatar(String avatar) {
-        this.memberEntitiy.avatar = avatar;
+        this.memberEntity.setAvatar(avatar);
     }
 
     @Override
     public String getUrl() {
-        return memberEntitiy.url;
+        return memberEntity.getUrl();
     }
 
     @Override
     public void setUrl(String url) {
-        this.memberEntitiy.url = url;
+        this.memberEntity.setUrl(url);
     }
 
     @Override
     public String getUserName() {
-        return memberEntitiy.userName;
+        return memberEntity.getUsername();
     }
 
     @Override
     public void setUserName(String userName) {
-        this.memberEntitiy.userName = userName;
+        this.memberEntity.setUsername(userName);
     }
 
     @Override
     public IContactDetails getContactDetails() {
-        return memberEntitiy.contactDetails;
+        return new ContactDetails(memberEntity.getContactDetails());
     }
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
-        this.memberEntitiy.contactDetails = contactDetails;
+        this.memberEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
     }
 
     @Override
     public Double getFee() {
-        return memberEntitiy.fee;
+        return memberEntity.getFee();
     }
 
     @Override
     public void setFee(Double fee) {
-        this.memberEntitiy.fee = fee;
+        this.memberEntity.setFee(fee);
     }
 
+    @Override
+    public IMemberEntity getEntity() {
+        return memberEntity;
+    }
 }

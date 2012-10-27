@@ -1,14 +1,12 @@
 package svm.domain.abstraction.modelInterfaces;
 
-import svm.domain.abstraction.modelInterfaces.IContactDetails;
-
 import java.util.Date;
 
 /**
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IMember {
+public interface IMember extends IModel {
     String getTitle();
 
     void setTitle(String title);
@@ -29,9 +27,9 @@ public interface IMember {
 
     void setBirthDate(Date birthDate);
 
-    Character getGender();
+    String getGender();
 
-    void setGender(Character gender);
+    void setGender(String gender);
 
     Date getEntryDate();
 
