@@ -9,7 +9,7 @@ import svm.persistence.abstraction.model.IMatchRulesEntity;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public class MatchRules implements IMatchRules,IHasEntity<IMatchRulesEntity> {
+public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     IMatchRulesEntity matchRulesEntity;
 
     public MatchRules(IMatchRulesEntity matchRulesEntity) {
@@ -28,14 +28,12 @@ public class MatchRules implements IMatchRules,IHasEntity<IMatchRulesEntity> {
 
     @Override
     public IMatchType getMatchType() {
-        //TODO getMatchType() Methode in matchRulesEntity?
         return new MatchType(matchRulesEntity.getMatchType());
 
     }
 
     @Override
     public void setMatchType(IMatchType matchType) {
-        //TODO setMatchType() Methode in matchRulesEntity?
         this.matchRulesEntity.setMatchType(((MatchType) matchType).getEntity());
     }
 

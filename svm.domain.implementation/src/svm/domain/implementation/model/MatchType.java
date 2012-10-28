@@ -8,7 +8,7 @@ import svm.persistence.abstraction.model.IMatchTypeEntity;
  * Projectteam Team C
  * Date: 21.10.12
  */
-public class MatchType implements IMatchType,IHasEntity<IMatchTypeEntity> {
+public class MatchType implements IMatchType, IHasEntity<IMatchTypeEntity> {
 
     IMatchTypeEntity matchTypeEntity;
 
@@ -58,14 +58,12 @@ public class MatchType implements IMatchType,IHasEntity<IMatchTypeEntity> {
 
     @Override
     public int getLose() {
-        //TODO Persistence -> umbenennen getLoose() in getLose() weil nur 1 o = richtig
-        return matchTypeEntity.getLoose();
+        return matchTypeEntity.getLose();
     }
 
     @Override
     public void setLose(int lose) {
-        //TODO Persistence -> umbenennen setLoose() in getLose() weil nur 1 o = richtig
-        this.matchTypeEntity.setLoose(lose);
+        this.matchTypeEntity.setLose(lose);
     }
 
     @Override

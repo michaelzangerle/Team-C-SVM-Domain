@@ -1,5 +1,6 @@
 package svm.domain.abstraction;
 
+import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
 import svm.domain.abstraction.modeldao.IContestModelDAO;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
@@ -95,12 +96,21 @@ public class DomainFacade {
     //region getModelDAOS
 
     /**
-     * Returns a ContactDetails DAO
+     * Returns a Contest ModelDAO
      *
-     * @return IContactDetailsDAO
+     * @return IContestModelDAO
      */
     public static IContestModelDAO getContestModelDAO() {
         return ModelDAOFactory.getInstance().getContestModelDAO();
+    }
+
+    /**
+     * Returns a ContactDetails ModelDAO
+     *
+     * @return IContactDetailsModelDAO
+     */
+    public static IContactDetailsModelDAO getContactDetailsModelDAO() {
+        return ModelDAOFactory.getInstance().getContactDetailsModelDAO();
     }
     //endregion
 }

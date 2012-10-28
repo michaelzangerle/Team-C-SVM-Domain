@@ -12,7 +12,7 @@ import java.util.Date;
  * Projectteam
  * Date: 21.10.12
  */
-public class Match implements IMatch,IHasEntity<IMatchEntity> {
+public class Match implements IMatch, IHasEntity<IMatchEntity> {
     IMatchEntity matchEntity;
 
     public Match(IMatchEntity matchEntity) {
@@ -36,7 +36,9 @@ public class Match implements IMatch,IHasEntity<IMatchEntity> {
 
     @Override
     public void setStart(Date start) {
-        //TODO Check if Timestamp is correct
+        // TODO Check if Timestamp is correct
+        // Schaut so aus als ob wir keine util.date aus der DB bekommen und sql.date kann keine Zeit.
+        // Versuchen wirs so.
         this.matchEntity.setStart(new Timestamp(start.getTime()));
     }
 
@@ -77,7 +79,7 @@ public class Match implements IMatch,IHasEntity<IMatchEntity> {
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
-        this.matchEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+        this.matchEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override

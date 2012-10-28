@@ -1,12 +1,10 @@
 package svm.domain.implementation;
 
+import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
 import svm.domain.abstraction.modeldao.IContestModelDAO;
 import svm.domain.abstraction.modeldao.IModelDAO;
+import svm.domain.implementation.modeldao.ContactDetailsModelDAO;
 import svm.domain.implementation.modeldao.ContestModelDAO;
-import svm.persistence.abstraction.dao.IContactDetailsDAO;
-import svm.persistence.abstraction.dao.IContestDAO;
-import svm.persistence.abstraction.dao.IDAO;
-import svm.persistence.hibernate.dao.ContactDetailsDAO;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -56,5 +54,14 @@ public class ModelDAOFactory {
      */
     public IContestModelDAO getContestModelDAO() {
         return (IContestModelDAO) getDAO(ContestModelDAO.class);
+    }
+
+    /**
+     * Returns a ContactDetails ModelDAO
+     *
+     * @return IContactDetailsModelDAO
+     */
+    public IContactDetailsModelDAO getContactDetailsModelDAO() {
+        return (IContactDetailsModelDAO) getDAO(ContactDetailsModelDAO.class);
     }
 }
