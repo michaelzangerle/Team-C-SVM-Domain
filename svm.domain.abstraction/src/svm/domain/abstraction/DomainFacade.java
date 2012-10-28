@@ -2,6 +2,7 @@ package svm.domain.abstraction;
 
 import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
 import svm.domain.abstraction.modeldao.IContestModelDAO;
+import svm.domain.abstraction.modeldao.ILocationModelDAO;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
@@ -111,6 +112,15 @@ public class DomainFacade {
      */
     public static IContactDetailsModelDAO getContactDetailsModelDAO() {
         return ModelDAOFactory.getInstance().getContactDetailsModelDAO();
+    }
+
+    /**
+     * Returns a Location ModelDAO
+     *
+     * @return ILocationModelDAO
+     */
+    public ILocationModelDAO getLocationModelDAO() {
+        return ModelDAOFactory.getInstance().getLocationModelDAO();
     }
     //endregion
 }

@@ -21,6 +21,10 @@ public abstract class AbstractModelDAO<T extends IModel, V extends IEntity> impl
         this.dao = dao;
     }
 
+    protected IDAO<V> getDAO() {
+        return dao;
+    }
+
     @Override
     public List<T> getAll(int sessionId) throws NoSessionFoundException {
         List<T> ret = new ArrayList<T>();

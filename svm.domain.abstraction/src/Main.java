@@ -13,8 +13,8 @@ public class Main {
         Integer sessionId = DomainFacade.generateSessionId();
 
         Long t1 = new Date().getTime();
-        for (IContactDetails c : DomainFacade.getContactDetailsModelDAO().getAll(sessionId)) {
-            System.out.println(c.getLocation().getPlaceName());
+        for (IContactDetails c : DomainFacade.getContactDetailsModelDAO().findByPlaceName(sessionId, "Ventotene")) {
+            System.out.println("Find");
         }
         Long t2 = new Date().getTime();
 
