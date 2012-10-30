@@ -1,6 +1,5 @@
 package svm.domain.abstraction.modeldao;
 
-import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
@@ -13,7 +12,7 @@ import java.util.List;
 public interface IModelDAO<T extends IModel> {
     List<T> getAll(int sessionId) throws NoSessionFoundException;
 
-    <U extends IModel & IHasEntity> void saveOrUpdate(int sessionId, U obj) throws NoSessionFoundException;
+    void saveOrUpdate(int sessionId, T obj) throws NoSessionFoundException;
 
-    T generateObject(int sessionId) throws InstantiationException, IllegalAccessException;
+    T generateObject() throws InstantiationException, IllegalAccessException;
 }
