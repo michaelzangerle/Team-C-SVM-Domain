@@ -1,5 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+
 /**
  * Projectteam: Team C
  * Date: 24.10.12
@@ -7,9 +9,9 @@ package svm.domain.abstraction.modelInterfaces;
 public interface IContestant extends IModel{
     ITeam getInternalTeam();
 
-    void setInternalTeam(ITeam internalTeam);
+    void setInternalTeam(ITeam internalTeam) throws DomainAttributeException;
 
     IExternalTeam getExternalTeam();
 
-    void setExternalTeam(IExternalTeam externalTeam);
+    void setExternalTeam(IExternalTeam externalTeam) throws DomainAttributeException;
 }
