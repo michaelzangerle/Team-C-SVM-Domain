@@ -1,5 +1,7 @@
 package svm.domain.abstraction;
 
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
 import svm.domain.abstraction.modeldao.IContestModelDAO;
 import svm.domain.abstraction.modeldao.ILocationModelDAO;
@@ -36,6 +38,16 @@ public class DomainFacade {
      */
     public static void closeSession(Integer sessionId) throws NoSessionFoundException {
         PersistenceFacade.closeSession(sessionId);
+    }
+
+    /**
+     * Reattach Object to a Session
+     *
+     * @param sessionId SessionID
+     * @param entity    Entity
+     */
+    public static void reattachObjectToSession(Integer sessionId, IModel entity) throws NoSessionFoundException {
+        PersistenceFacade.reattachObjectToSession(sessionId, ((IHasEntity) entity).getEntity());
     }
 
     /**
