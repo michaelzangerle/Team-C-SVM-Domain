@@ -40,23 +40,23 @@ public interface IMember extends IModel {
 
     String getAvatar();
 
-    void setAvatar(String avatar) throws DomainAttributeException;
+    void setAvatar(String avatar);
 
     String getUrl();
 
-    void setUrl(String url) throws DomainAttributeException;
+    void setUrl(String url);
 
     String getUserName();
 
-    void setUserName(String userName);
+    void setUserName(String userName) throws DomainAttributeException;
 
     IContactDetails getContactDetails();
 
-    void setContactDetails(IContactDetails contactDetails);
+    void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException;
 
     Double getFee();
 
-    void setFee(Double fee);
+    void setFee(Double fee) throws DomainAttributeException, DomainParameterCheckException;
 
     boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
 }

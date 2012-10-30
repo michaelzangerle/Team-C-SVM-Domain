@@ -122,9 +122,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setAvatar(String avatar) throws DomainAttributeException {
-        if(avatar.equals(new String()))
-            throw new DomainAttributeException("Gender is empty");
+    public void setAvatar(String avatar) {
         this.memberEntity.setAvatar(avatar);
     }
 
@@ -134,9 +132,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setUrl(String url) throws DomainAttributeException {
-        if(url.equals(new String()))
-            throw new DomainAttributeException("url is empty");
+    public void setUrl(String url) {
         this.memberEntity.setUrl(url);
     }
 
@@ -146,7 +142,9 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setUserName(String userName) {
+    public void setUserName(String userName) throws DomainAttributeException {
+        if(userName.equals(new String()))
+            throw new DomainAttributeException("Username is empty");
         this.memberEntity.setUsername(userName);
     }
 
@@ -156,7 +154,9 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setContactDetails(IContactDetails contactDetails) {
+    public void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException {
+        if(contactDetails==null)
+            throw new DomainAttributeException("ContactDetails is empty");
         this.memberEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
@@ -166,7 +166,11 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setFee(Double fee) {
+    public void setFee(Double fee) throws DomainAttributeException, DomainParameterCheckException {
+        if(fee==null)
+            throw new DomainAttributeException("ContactDetails is empty");
+        if(fee<0)
+            throw new DomainParameterCheckException("Fee must be greater or equal zero");
         this.memberEntity.setFee(fee);
     }
 
