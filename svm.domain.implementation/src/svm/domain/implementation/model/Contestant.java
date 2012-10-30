@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContestant;
 import svm.domain.abstraction.modelInterfaces.IExternalTeam;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
@@ -23,7 +24,9 @@ public class Contestant implements IContestant, IHasEntity<IContestantEntity> {
     }
 
     @Override
-    public void setInternalTeam(ITeam internalTeam) {
+    public void setInternalTeam(ITeam internalTeam) throws DomainAttributeException {
+        if(internalTeam==null)
+            throw new DomainAttributeException("internal Team is null");
         this.contestantEntity.setInternalTeam(((Team) internalTeam).getEntity());
     }
 
@@ -33,7 +36,9 @@ public class Contestant implements IContestant, IHasEntity<IContestantEntity> {
     }
 
     @Override
-    public void setExternalTeam(IExternalTeam externalTeam) {
+    public void setExternalTeam(IExternalTeam externalTeam) throws DomainAttributeException {
+        if(externalTeam==null)
+            throw new DomainAttributeException("extarnal Team is null");
         this.contestantEntity.setExternalTeam(((ExternalTeam) externalTeam).getEntity());
     }
 
@@ -41,4 +46,6 @@ public class Contestant implements IContestant, IHasEntity<IContestantEntity> {
     public IContestantEntity getEntity() {
         return this.contestantEntity;
     }
+
+
 }
