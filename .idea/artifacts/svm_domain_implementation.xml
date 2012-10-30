@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="svm.domain.implementation">
+    <output-path>$PROJECT_DIR$/out/artifacts/</output-path>
+    <root id="archive" name="svm.domain.implementation.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/svm.domain.abstraction/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="svm.domain.implementation" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/svm.domain.implementation/lib/svm.persistence.abstraction.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/svm.domain.implementation/lib/svm.persistence.hibernate.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
