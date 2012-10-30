@@ -1,6 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainParameterCheckException;
 
 import java.util.Date;
 
@@ -15,17 +16,17 @@ public interface IContest extends IModel {
 
     Date getStart();
 
-    void setStart(Date start);
+    void setStart(Date start) throws DomainParameterCheckException;
 
     IContactDetails getContactDetails();
 
-    void setContactDetails(IContactDetails contactDetails);
+    void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException;
 
     Date getEnd();
 
-    void setEnd(Date end);
+    void setEnd(Date end) throws DomainParameterCheckException;
 
     Float getFee();
 
-    void setFee(Float fee);
+    void setFee(Float fee) throws DomainParameterCheckException, DomainAttributeException;
 }
