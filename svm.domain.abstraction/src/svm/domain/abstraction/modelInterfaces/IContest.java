@@ -1,5 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+
 import java.util.Date;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Date;
 public interface IContest extends IModel {
     String getName();
 
-    void setName(String name);
+    void setName(String name) throws DomainAttributeException;
 
     Date getStart();
 

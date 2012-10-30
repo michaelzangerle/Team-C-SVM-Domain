@@ -5,10 +5,10 @@ import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMember;
+import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.IMemberFeeEntity;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -80,7 +80,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
-        if(!birthDate.after(getCalenderStartDate()))
+        if(!birthDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("Birthday before 1900"+birthDate.toString());
 
         //TODO Check if conversion from util date to sql date is correct
@@ -109,7 +109,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setEntryDate(Date entryDate) throws DomainParameterCheckException {
-        if(!entryDate.after(getCalenderStartDate()))
+        if(!entryDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("EntryDate before 1900"+entryDate.toString());
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setEntryDate(new java.sql.Date(entryDate.getTime()));
@@ -197,11 +197,5 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return false;
     }
 
-    private Date getCalenderStartDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.set(1900, 1, 1); //year is as expected, month is zero based, date is as expected
-        Date dt = cal.getTime();
-        return dt;
-    }
+
 }

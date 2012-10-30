@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IContest;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
@@ -24,7 +25,9 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name) throws DomainAttributeException {
+        if(name.equals(new String()))
+            throw new DomainAttributeException("contest name is empty");
         this.contestEntity.setName(name);
     }
 
