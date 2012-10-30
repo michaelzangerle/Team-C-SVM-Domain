@@ -4,6 +4,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IContest;
+import svm.domain.abstraction.modelInterfaces.IContestant;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.abstraction.model.IContestEntity;
@@ -89,4 +90,11 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     public IContestEntity getEntity() {
         return this.contestEntity;
     }
+
+    public void addTeam(IContestant contestant)
+    {
+
+    }
+
+
 }
