@@ -10,7 +10,7 @@ import svm.persistence.abstraction.model.IContactDetailsEntity;
  * Date: 21.10.12
  */
 
-public class ContactDetails implements IContactDetails,IHasEntity<IContactDetailsEntity> {
+public class ContactDetails implements IContactDetails, IHasEntity<IContactDetailsEntity> {
     IContactDetailsEntity contactDetailsEntity;
 
     public ContactDetails(IContactDetailsEntity contactDetailsEntity) {

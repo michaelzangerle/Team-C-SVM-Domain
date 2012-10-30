@@ -35,12 +35,12 @@ public abstract class AbstractModelDAO<T extends IModel, V extends IEntity> impl
     }
 
     @Override
-    public <U extends IModel & IHasEntity> void saveOrUpdate(int sessionId, U obj) throws NoSessionFoundException {
-        dao.saveOrUpdate(sessionId, (V) obj.getEntity());
+    public void saveOrUpdate(int sessionId, T obj) throws NoSessionFoundException {
+        dao.saveOrUpdate(sessionId, (V) ((IHasEntity) obj).getEntity());
     }
 
     @Override
-    public T generateObject(int sessionId) throws InstantiationException, IllegalAccessException {
+    public T generateObject() throws InstantiationException, IllegalAccessException {
         return wrapObject(dao.generateObject());
     }
 
