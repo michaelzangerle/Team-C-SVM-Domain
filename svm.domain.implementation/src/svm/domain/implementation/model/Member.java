@@ -1,17 +1,22 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.model.IMemberEntity;
+import svm.persistence.abstraction.model.IMemberFeeEntity;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * ProjectTeam: Team C
  * Date: 21.10.12
  */
-public class Member implements IMember,IHasEntity<IMemberEntity> {
+public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     IMemberEntity memberEntity;
 
@@ -25,7 +30,9 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setTitle(String title) {
+    public void setTitle(String title) throws DomainAttributeException {
+        if(title.equals(new String()))
+            throw new DomainAttributeException("Title is empty");
         this.memberEntity.setTitle(title);
     }
 
@@ -35,7 +42,9 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws DomainAttributeException {
+        if(firstName.equals(new String()))
+            throw new DomainAttributeException("Title is empty");
         this.memberEntity.setFirstName(firstName);
     }
 
@@ -46,7 +55,9 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws DomainAttributeException {
+        if(lastName.equals(new String()))
+            throw new DomainAttributeException("Title is empty");
         this.memberEntity.setLastName(lastName);
     }
 
@@ -56,7 +67,9 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setSocialNumber(String socialNumber) {
+    public void setSocialNumber(String socialNumber) throws DomainAttributeException {
+        if(socialNumber.equals(new String()))
+            throw new DomainAttributeException("Title is empty");
         this.memberEntity.setSocialNumber(socialNumber);
     }
 
@@ -66,9 +79,12 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
+        if(!birthDate.after(getCalenderStartDate()))
+            throw new DomainParameterCheckException("Birthday before 1900"+birthDate.toString());
+
         //TODO Check if conversion from util date to sql date is correct
-        this.memberEntity.setBirthDate( new java.sql.Date(birthDate.getTime()));
+        this.memberEntity.setBirthDate(new java.sql.Date(birthDate.getTime()));
     }
 
     @Override
@@ -77,7 +93,12 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setGender(String gender) {
+    public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
+        if(gender.equals(new String()))
+            throw new DomainAttributeException("Gender is empty");
+        String genderUpperCase=gender.toUpperCase();
+        if(!genderUpperCase.equals("F")||!genderUpperCase.equals("M"))
+            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: "+genderUpperCase);
         this.memberEntity.setGender(gender);
     }
 
@@ -87,18 +108,23 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(Date entryDate) throws DomainParameterCheckException {
+        if(!entryDate.after(getCalenderStartDate()))
+            throw new DomainParameterCheckException("EntryDate before 1900"+entryDate.toString());
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setEntryDate(new java.sql.Date(entryDate.getTime()));
     }
 
     @Override
     public String getAvatar() {
+
         return memberEntity.getAvatar();
     }
 
     @Override
-    public void setAvatar(String avatar) {
+    public void setAvatar(String avatar) throws DomainAttributeException {
+        if(avatar.equals(new String()))
+            throw new DomainAttributeException("Gender is empty");
         this.memberEntity.setAvatar(avatar);
     }
 
@@ -108,7 +134,9 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setUrl(String url) {
+    public void setUrl(String url) throws DomainAttributeException {
+        if(url.equals(new String()))
+            throw new DomainAttributeException("url is empty");
         this.memberEntity.setUrl(url);
     }
 
@@ -129,7 +157,7 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
-        this.memberEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+        this.memberEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override
@@ -145,5 +173,31 @@ public class Member implements IMember,IHasEntity<IMemberEntity> {
     @Override
     public IMemberEntity getEntity() {
         return memberEntity;
+    }
+
+    @Override
+    public boolean hasPaidFee(Integer year) throws DomainParameterCheckException {
+        if (year < 1900)
+            throw new DomainParameterCheckException("Year smaller than 1900 " + year);
+        Double paidYet = 0.0;
+        List<IMemberFeeEntity> fees = memberEntity.getFees();
+        for (IMemberFeeEntity fee : fees) {
+            Integer fee_year = fee.getDate().getYear();
+            if (fee_year.equals(year))
+                paidYet += fee.getAmount();
+
+        }
+        int i = Double.compare(paidYet, getFee());
+        if (i >= 0)
+            return true;
+        return false;
+    }
+
+    private Date getCalenderStartDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1900, 1, 1); //year is as expected, month is zero based, date is as expected
+        Date dt = cal.getTime();
+        return dt;
     }
 }

@@ -1,5 +1,8 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainParameterCheckException;
+
 import java.util.Date;
 
 /**
@@ -9,39 +12,39 @@ import java.util.Date;
 public interface IMember extends IModel {
     String getTitle();
 
-    void setTitle(String title);
+    void setTitle(String title) throws DomainAttributeException;
 
     String getFirstName();
 
-    void setFirstName(String firstName);
+    void setFirstName(String firstName) throws DomainAttributeException;
 
     String getLastName();
 
-    void setLastName(String lastName);
+    void setLastName(String lastName) throws DomainAttributeException;
 
     String getSocialNumber();
 
-    void setSocialNumber(String socialNumber);
+    void setSocialNumber(String socialNumber) throws DomainAttributeException;
 
     Date getBirthDate();
 
-    void setBirthDate(Date birthDate);
+    void setBirthDate(Date birthDate) throws DomainParameterCheckException;
 
     String getGender();
 
-    void setGender(String gender);
+    void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException;
 
     Date getEntryDate();
 
-    void setEntryDate(Date entryDate);
+    void setEntryDate(Date entryDate) throws DomainParameterCheckException;
 
     String getAvatar();
 
-    void setAvatar(String avatar);
+    void setAvatar(String avatar) throws DomainAttributeException;
 
     String getUrl();
 
-    void setUrl(String url);
+    void setUrl(String url) throws DomainAttributeException;
 
     String getUserName();
 
@@ -54,4 +57,6 @@ public interface IMember extends IModel {
     Double getFee();
 
     void setFee(Double fee);
+
+    boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
 }
