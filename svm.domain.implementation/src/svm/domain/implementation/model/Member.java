@@ -10,6 +10,7 @@ import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.IMemberFeeEntity;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -162,17 +163,13 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public Double getFee() {
-        return memberEntity.getFee();
+        //TODO Fee get from File
+        if(getAge()<=18)
+            return 20.0;
+         else
+            return 30.0;
     }
 
-    @Override
-    public void setFee(Double fee) throws DomainAttributeException, DomainParameterCheckException {
-        if(fee==null)
-            throw new DomainAttributeException("ContactDetails is empty");
-        if(fee<0)
-            throw new DomainParameterCheckException("Fee must be greater or equal zero");
-        this.memberEntity.setFee(fee);
-    }
 
     @Override
     public IMemberEntity getEntity() {
@@ -195,6 +192,21 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         if (i >= 0)
             return true;
         return false;
+    }
+
+    public Integer getAge()
+    {
+        GregorianCalendar cal = new GregorianCalendar();
+        int y, d, a;
+
+        y = cal.get(cal.YEAR);
+        d = cal.get(cal.DAY_OF_YEAR);
+        cal.setTime(getBirthDate());
+        a = y - cal.get(cal.YEAR);
+        if (d < cal.get(cal.DAY_OF_YEAR)) {
+            --a;
+        }
+        return (a);
     }
 
 

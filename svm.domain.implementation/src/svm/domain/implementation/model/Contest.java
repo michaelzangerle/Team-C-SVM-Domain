@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
@@ -8,8 +9,10 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.model.IContestEntity;
 import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
+import svm.persistence.abstraction.model.IMatchEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * ProjectTeam
@@ -91,7 +94,8 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         return this.contestEntity;
     }
 
-    public void addExternalTeam(IExternalTeam team) throws DomainAttributeException, DomainParameterCheckException {
+    @Override
+    public void addExternalTeam(IExternalTeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
@@ -103,17 +107,56 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         }
 
-        IContestsHasExternalTeamsEntity c = PersistenceFacade.getContestsHasExternalTeamsDAO().generateObject();
+        IContestsHasExternalTeamsEntity c = null;
+        try {
+            c = PersistenceFacade.getContestHasExternalTeamsDAO().generateObject();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        }
         c.setPaid(0f);
         c.setContest(getEntity());
-        c.setExternalTeam(((ExternalTeam)team).getEntity());
+        c.setExternalTeam(((ExternalTeam) team).getEntity());
 
 
         contestEntity.getContestsHasExternalTeams().add(c);
     }
 
+    @Override
+    public void removeExternalTeam(IExternalTeam team) throws DomainException {
+        if (team == null)
+            throw new DomainAttributeException("team is null");
 
-    public void addInternalTeam(ITeam team) throws DomainAttributeException, DomainParameterCheckException {
+        for(IContestsHasExternalTeamsEntity entity:contestEntity.getContestsHasExternalTeams())
+        {
+            if(entity.getExternalTeam().equals(((ExternalTeam)team).getEntity()))
+                contestEntity.getContestsHasExternalTeams().remove(entity);
+
+
+        }
+        throw new DomainParameterCheckException("Team could not be found");
+
+    }
+
+    @Override
+    public void removeInternalTeam(ITeam team) throws DomainException {
+        if (team == null)
+            throw new DomainAttributeException("team is null");
+
+        for(IContestsHasTeamsEntity entity:contestEntity.getContestsHasTeams())
+        {
+            if(entity.getTeam().equals(((Team) team).getEntity()))
+                contestEntity.getContestsHasTeams().remove(entity);
+        }
+        throw new DomainParameterCheckException("Team could not be found");
+
+    }
+
+    @Override
+    public void addInternalTeam(ITeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
@@ -126,7 +169,16 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         }
 
-        IContestsHasTeamsEntity c = PersistenceFacade.getContestsHasTeamsDAO().generateObject();
+        IContestsHasTeamsEntity c = null;
+        try {
+            c = PersistenceFacade.getContestHasTeamsDAO().generateObject();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        }
         c.setPaid(false);
         c.setContest(getEntity());
         c.setTeam(((Team)team).getEntity());
@@ -135,6 +187,31 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         contestEntity.getContestsHasTeams().add(c);
     }
 
+
+    public void addMatch(IMatch match) throws DomainException {
+        if(match==null)
+            throw new DomainAttributeException("match ist null");
+
+        List<IMatchEntity> matches=contestEntity.getMatches();
+        if(matches.contains(((Match)match).getEntity()))
+            throw new DomainParameterCheckException("match already added");
+
+        contestEntity.getMatches.add(((Match)match).getEntity());
+
+    }
+
+    public void removeMatch(IMatch match) throws DomainException {
+        if(match==null)
+            throw new DomainAttributeException("match ist null");
+
+        List<IMatchEntity> matches=contestEntity.getMatches();
+        if(matches.contains(((Match)match).getEntity()))
+            contestEntity.getMatches.remove(((Match) match).getEntity());
+        else
+            throw new DomainParameterCheckException("match not found");
+
+
+    }
 
 
 

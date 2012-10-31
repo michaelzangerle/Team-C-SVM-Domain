@@ -56,7 +56,5 @@ public interface IMember extends IModel {
 
     Double getFee();
 
-    void setFee(Double fee) throws DomainAttributeException, DomainParameterCheckException;
-
     boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
 }
