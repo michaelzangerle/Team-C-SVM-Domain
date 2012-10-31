@@ -95,7 +95,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
-        for(IContestsHasExternalTeamsEntity entity:contestEntity.getContestHasExternalTeams())
+        for(IContestsHasExternalTeamsEntity entity:contestEntity.getContestsHasExternalTeams())
         {
             if(entity.getExternalTeam().equals(((ExternalTeam)team).getEntity()))
                 throw new DomainParameterCheckException("Team all already added");
@@ -121,7 +121,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         for(IContestsHasTeamsEntity entity:contestEntity.getContestsHasTeams())
         {
             if(entity.getTeam().equals(((Team)team).getEntity()))
-            throw new DomainParameterCheckException("Team all already ...");
+            throw new DomainParameterCheckException("Team all already added");
 
 
         }

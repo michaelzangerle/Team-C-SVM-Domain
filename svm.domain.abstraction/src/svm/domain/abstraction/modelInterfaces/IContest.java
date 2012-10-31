@@ -29,4 +29,8 @@ public interface IContest extends IModel {
     Float getFee();
 
     void setFee(Float fee) throws DomainParameterCheckException, DomainAttributeException;
+
+    public void addInternalTeam(ITeam team) throws DomainAttributeException, DomainParameterCheckException;
+
+    public void addExternalTeam(IExternalTeam team) throws DomainAttributeException, DomainParameterCheckException;
 }
