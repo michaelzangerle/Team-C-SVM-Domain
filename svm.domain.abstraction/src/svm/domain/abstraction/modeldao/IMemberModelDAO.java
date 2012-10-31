@@ -4,6 +4,7 @@ import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,4 +13,6 @@ import java.util.List;
  */
 public interface IMemberModelDAO extends IModelDAO<IMember> {
     List<IMember> get(Integer sessionId, String firstName, String lastName, IDepartment department) throws NoSessionFoundException;
+
+    List<IMember> get(Integer sessionId, Date birthDateFrom, Date birthDateTo) throws NoSessionFoundException;
 }

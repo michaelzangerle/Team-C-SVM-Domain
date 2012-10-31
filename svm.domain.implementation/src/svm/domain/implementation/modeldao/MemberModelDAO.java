@@ -11,6 +11,8 @@ import svm.persistence.abstraction.dao.FindQualifiers;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IMemberEntity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +39,19 @@ public class MemberModelDAO extends AbstractModelDAO<IMember, IMemberEntity> imp
 
         List<IMember> result = new LinkedList<IMember>();
         for (IMemberEntity member : getDAO().find(sessionId, compares)) {
+            result.add(wrapObject(member));
+        }
+        return result;
+    }
+
+    @Override
+    public List<IMember> get(Integer sessionId, Date birthDateFrom, Date birthDateTo) throws NoSessionFoundException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        CompareObject compare = new CompareObject("firstName", FindQualifiers.BETWEEN, format.format(birthDateFrom) + " AND " + format.format(birthDateTo));
+
+        List<IMember> result = new LinkedList<IMember>();
+        for (IMemberEntity member : getDAO().find(sessionId, compare)) {
             result.add(wrapObject(member));
         }
         return result;
