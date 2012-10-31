@@ -196,7 +196,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         if(matches.contains(((Match)match).getEntity()))
             throw new DomainParameterCheckException("match already added");
 
-        contestEntity.getMatches.add(((Match)match).getEntity());
+        contestEntity.getMatches().add(((Match)match).getEntity());
 
     }
 
@@ -206,11 +206,9 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         List<IMatchEntity> matches=contestEntity.getMatches();
         if(matches.contains(((Match)match).getEntity()))
-            contestEntity.getMatches.remove(((Match) match).getEntity());
+            contestEntity.getMatches().remove(((Match) match).getEntity());
         else
             throw new DomainParameterCheckException("match not found");
-
-
     }
 
 
