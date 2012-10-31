@@ -1,6 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 
 import java.util.Date;
@@ -30,7 +31,7 @@ public interface IContest extends IModel {
 
     void setFee(Float fee) throws DomainParameterCheckException, DomainAttributeException;
 
-    public void addInternalTeam(ITeam team) throws DomainAttributeException, DomainParameterCheckException;
+    public void addInternalTeam(ITeam team) throws DomainException;
 
-    public void addExternalTeam(IExternalTeam team) throws DomainAttributeException, DomainParameterCheckException;
+    public void addExternalTeam(IExternalTeam team) throws DomainException;
 }

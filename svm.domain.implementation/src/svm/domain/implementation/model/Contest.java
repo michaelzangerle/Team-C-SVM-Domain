@@ -1,6 +1,7 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
@@ -91,7 +92,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         return this.contestEntity;
     }
 
-    public void addExternalTeam(IExternalTeam team) throws DomainAttributeException, DomainParameterCheckException {
+    public void addExternalTeam(IExternalTeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
@@ -103,17 +104,26 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         }
 
-        IContestsHasExternalTeamsEntity c = PersistenceFacade.getContestsHasExternalTeamsDAO().generateObject();
+        IContestsHasExternalTeamsEntity c = null;
+        try {
+            c = PersistenceFacade.getContestHasExternalTeamsDAO().generateObject();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        }
         c.setPaid(0f);
         c.setContest(getEntity());
-        c.setExternalTeam(((ExternalTeam)team).getEntity());
+        c.setExternalTeam(((ExternalTeam) team).getEntity());
 
 
         contestEntity.getContestsHasExternalTeams().add(c);
     }
 
 
-    public void addInternalTeam(ITeam team) throws DomainAttributeException, DomainParameterCheckException {
+    public void addInternalTeam(ITeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
@@ -126,7 +136,16 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         }
 
-        IContestsHasTeamsEntity c = PersistenceFacade.getContestsHasTeamsDAO().generateObject();
+        IContestsHasTeamsEntity c = null;
+        try {
+            c = PersistenceFacade.getContestHasTeamsDAO().generateObject();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        }
         c.setPaid(false);
         c.setContest(getEntity());
         c.setTeam(((Team)team).getEntity());
