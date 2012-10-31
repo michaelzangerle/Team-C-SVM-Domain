@@ -1,6 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Projectteam: Team C
@@ -30,4 +31,6 @@ public interface ITeam extends IModel {
     IMember getContactPerson();
 
     void setContactPerson(IMember contactPerson);
+
+    public List<IContestHasTeam> getContest();
 }

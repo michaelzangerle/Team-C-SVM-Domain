@@ -2,15 +2,15 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
-import svm.domain.abstraction.modelInterfaces.IContactDetails;
-import svm.domain.abstraction.modelInterfaces.IHasEntity;
-import svm.domain.abstraction.modelInterfaces.IMember;
+import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.IMemberFeeEntity;
+import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -209,5 +209,17 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return (a);
     }
 
+    public List<IContest> getNotConfirmedContests()
+    {
+        List<IContest> allNotConfirmedContest=new LinkedList<IContest>();
+         List<ITeamEntity> teams= memberEntity.getTeamsForContactPerson();
+         for(ITeamEntity team:teams)
+         {
+             ITeam t = new Team(team);
+            List<IContest> notConfirmedContest= t.getNotConfirmedContest();
+             allNotConfirmedContest.addAll(notConfirmedContest);
+         }
 
+        return allNotConfirmedContest;
+    }
 }

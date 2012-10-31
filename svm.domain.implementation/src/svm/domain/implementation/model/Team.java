@@ -1,9 +1,12 @@
 package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.*;
+import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Projectteam: Team C
@@ -76,6 +79,20 @@ public class Team implements ITeam,IHasEntity<ITeamEntity> {
     @Override
     public void setContactPerson(IMember contactPerson) {
         this.teamEntity.setContactPerson(((Member) contactPerson).getEntity());
+    }
+
+    @Override
+    public List<IContestHasTeam> getContest() {
+        List<IContestHasTeam> contests=new LinkedList<IContestHasTeam>();
+        List<IContestsHasTeamsEntity> contestEntities= teamEntity.getContestsHasTeams();
+        for(IContestsHasTeamsEntity contestEntity: contestEntities)
+        {
+            //TODO Look after isConfirmed NullPointer ?
+            if(!contestEntity.isConfirmed())
+                contests.add((new ContestHasTeam(contestEntity)));
+        }
+
+        return  contests;
     }
 
     @Override
