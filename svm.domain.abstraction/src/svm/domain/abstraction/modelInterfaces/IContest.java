@@ -38,4 +38,8 @@ public interface IContest extends IModel {
     public void removeInternalTeam(ITeam team) throws DomainException;
 
     public void removeExternalTeam(IExternalTeam team) throws DomainException;
+
+    public void addMatch(IMatch match) throws DomainException;
+
+    public void removeMatch(IMatch match) throws DomainException;
 }
