@@ -9,8 +9,10 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.model.IContestEntity;
 import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
+import svm.persistence.abstraction.model.IMatchEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * ProjectTeam
@@ -92,6 +94,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         return this.contestEntity;
     }
 
+    @Override
     public void addExternalTeam(IExternalTeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
@@ -122,7 +125,37 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         contestEntity.getContestsHasExternalTeams().add(c);
     }
 
+    @Override
+    public void removeExternalTeam(IExternalTeam team) throws DomainException {
+        if (team == null)
+            throw new DomainAttributeException("team is null");
 
+        for(IContestsHasExternalTeamsEntity entity:contestEntity.getContestsHasExternalTeams())
+        {
+            if(entity.getExternalTeam().equals(((ExternalTeam)team).getEntity()))
+                contestEntity.getContestsHasExternalTeams().remove(entity);
+
+
+        }
+        throw new DomainParameterCheckException("Team could not be found");
+
+    }
+
+    @Override
+    public void removeInternalTeam(ITeam team) throws DomainException {
+        if (team == null)
+            throw new DomainAttributeException("team is null");
+
+        for(IContestsHasTeamsEntity entity:contestEntity.getContestsHasTeams())
+        {
+            if(entity.getTeam().equals(((Team) team).getEntity()))
+                contestEntity.getContestsHasTeams().remove(entity);
+        }
+        throw new DomainParameterCheckException("Team could not be found");
+
+    }
+
+    @Override
     public void addInternalTeam(ITeam team) throws DomainException {
         if (team == null)
             throw new DomainAttributeException("team is null");
@@ -154,6 +187,31 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         contestEntity.getContestsHasTeams().add(c);
     }
 
+
+    public void addMatch(IMatch match) throws DomainException {
+        if(match==null)
+            throw new DomainAttributeException("match ist null");
+
+        List<IMatchEntity> matches=contestEntity.getMatches();
+        if(matches.contains(((Match)match).getEntity()))
+            throw new DomainParameterCheckException("match already added");
+
+        contestEntity.getMatches.add(((Match)match).getEntity());
+
+    }
+
+    public void removeMatch(IMatch match) throws DomainException {
+        if(match==null)
+            throw new DomainAttributeException("match ist null");
+
+        List<IMatchEntity> matches=contestEntity.getMatches();
+        if(matches.contains(((Match)match).getEntity()))
+            contestEntity.getMatches.remove(((Match) match).getEntity());
+        else
+            throw new DomainParameterCheckException("match not found");
+
+
+    }
 
 
 
