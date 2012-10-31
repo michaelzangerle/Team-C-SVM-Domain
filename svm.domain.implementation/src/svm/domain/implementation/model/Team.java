@@ -90,7 +90,6 @@ public class Team implements ITeam,IHasEntity<ITeamEntity> {
             if(contestEntity.getContest().getStart().after(new Date())||contestEntity.getContest().getStart().equals(new Date()))
                 contests.add((new ContestHasTeam(contestEntity)));
         }
-
         return  contests;
     }
 
