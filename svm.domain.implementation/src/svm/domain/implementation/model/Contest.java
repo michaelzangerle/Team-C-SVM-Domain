@@ -210,7 +210,6 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         else
             throw new DomainParameterCheckException("match not found");
 
-
     }
 
 
