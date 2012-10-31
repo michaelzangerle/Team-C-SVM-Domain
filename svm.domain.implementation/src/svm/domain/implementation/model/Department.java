@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
@@ -22,7 +23,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name) throws DomainAttributeException {
+        if(name.equals(new String()))
+            throw new DomainAttributeException("name is empty");
         this.departmentEntity.setName(name);
     }
 
@@ -32,7 +35,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setAlias(String alias) {
+    public void setAlias(String alias) throws DomainAttributeException {
+        if(alias.equals(new String()))
+            throw new DomainAttributeException("alias is empty");
         this.departmentEntity.setAlias(alias);
     }
 
@@ -42,7 +47,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws DomainAttributeException {
+        if(description.equals(new String()))
+            throw new DomainAttributeException("description is empty");
         this.departmentEntity.setDescription(description);
     }
 
@@ -52,7 +59,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setContactDetails(IContactDetails contactDetails) {
+    public void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException {
+        if(contactDetails==null)
+            throw new DomainAttributeException("contact detail is null");
         this.departmentEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
     }
 
