@@ -14,5 +14,5 @@ public interface IModelDAO<T extends IModel> {
 
     void saveOrUpdate(int sessionId, T obj) throws NoSessionFoundException;
 
-    T generateObject() throws InstantiationException, IllegalAccessException;
+    T generateObject() throws InstantiationException, IllegalAccessException, NoSessionFoundException;
 }

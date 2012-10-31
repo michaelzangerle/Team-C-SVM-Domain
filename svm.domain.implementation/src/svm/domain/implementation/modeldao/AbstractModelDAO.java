@@ -40,7 +40,7 @@ public abstract class AbstractModelDAO<T extends IModel, V extends IEntity> impl
     }
 
     @Override
-    public T generateObject() throws InstantiationException, IllegalAccessException {
+    public T generateObject() throws InstantiationException, IllegalAccessException, NoSessionFoundException {
         return wrapObject(dao.generateObject());
     }
 
