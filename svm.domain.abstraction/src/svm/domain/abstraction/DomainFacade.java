@@ -147,7 +147,7 @@ public class DomainFacade {
      *
      * @return IDepartmentModelDAO
      */
-    public IDepartmentModelDAO getDepartmentModelDAO() {
+    public static IDepartmentModelDAO getDepartmentModelDAO() {
         return ModelDAOFactory.getInstance().getDepartmentModelDAO();
     }
     //endregion
