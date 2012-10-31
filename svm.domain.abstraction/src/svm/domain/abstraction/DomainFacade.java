@@ -2,10 +2,7 @@ package svm.domain.abstraction;
 
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IModel;
-import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
-import svm.domain.abstraction.modeldao.IContestModelDAO;
-import svm.domain.abstraction.modeldao.ILocationModelDAO;
-import svm.domain.abstraction.modeldao.IMemberModelDAO;
+import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
@@ -143,6 +140,15 @@ public class DomainFacade {
      */
     public static IMemberModelDAO getMemberModelDAO() {
         return ModelDAOFactory.getInstance().getMemberModelDAO();
+    }
+
+    /**
+     * Returns a Department ModelDAO
+     *
+     * @return IDepartmentModelDAO
+     */
+    public IDepartmentModelDAO getDepartmentModelDAO() {
+        return ModelDAOFactory.getInstance().getDepartmentModelDAO();
     }
     //endregion
 }

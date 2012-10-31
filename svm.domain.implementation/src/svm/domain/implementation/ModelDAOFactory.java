@@ -1,10 +1,7 @@
 package svm.domain.implementation;
 
 import svm.domain.abstraction.modeldao.*;
-import svm.domain.implementation.modeldao.ContactDetailsModelDAO;
-import svm.domain.implementation.modeldao.ContestModelDAO;
-import svm.domain.implementation.modeldao.LocationModelDAO;
-import svm.domain.implementation.modeldao.MemberModelDAO;
+import svm.domain.implementation.modeldao.*;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -81,5 +78,14 @@ public class ModelDAOFactory {
      */
     public IMemberModelDAO getMemberModelDAO() {
         return (IMemberModelDAO) getDAO(MemberModelDAO.class);
+    }
+
+    /**
+     * Returns a Department ModelDAO
+     *
+     * @return IDepartmentModelDAO
+     */
+    public IDepartmentModelDAO getDepartmentModelDAO() {
+        return (IDepartmentModelDAO) getDAO(DepartmentModelDAO.class);
     }
 }
