@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.ISport;
@@ -23,7 +24,9 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name) throws DomainAttributeException {
+        if(name.equals(new String()))
+            throw new DomainAttributeException("name is empty");
         this.sportEntity.setName(name);
     }
 
@@ -33,7 +36,9 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
     }
 
     @Override
-    public void setAlias(String alias) {
+    public void setAlias(String alias) throws DomainAttributeException {
+        if(alias.equals(new String()))
+            throw new DomainAttributeException("alias is empty");
         this.sportEntity.setAlias(alias);
     }
 
@@ -43,7 +48,9 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws DomainAttributeException {
+        if(description.equals(new String()))
+            throw new DomainAttributeException("description is empty");
         this.sportEntity.setDescription(description);
     }
 
@@ -54,7 +61,9 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
     }
 
     @Override
-    public void setDepartment(IDepartment department) {
+    public void setDepartment(IDepartment department) throws DomainAttributeException {
+        if(department==null)
+                throw new DomainAttributeException("department is null");
         this.sportEntity.setDepartment(((Department)department).getEntity());
 
     }
