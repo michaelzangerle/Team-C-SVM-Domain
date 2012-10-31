@@ -209,6 +209,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             contestEntity.getMatches().remove(((Match) match).getEntity());
         else
             throw new DomainParameterCheckException("match not found");
+
     }
 
 
