@@ -209,7 +209,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return (a);
     }
 
-    public List<IContestHasTeam> getContestsForPerson()
+    public List<IContestHasTeam> getContestsHasTeamsForPerson()
     {
         List<IContestHasTeam> allNotConfirmedContest=new LinkedList<IContestHasTeam>();
          List<ITeamEntity> teams= memberEntity.getTeamForContactPerson();

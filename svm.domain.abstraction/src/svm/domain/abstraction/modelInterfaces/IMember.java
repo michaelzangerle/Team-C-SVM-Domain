@@ -59,5 +59,6 @@ public interface IMember extends IModel {
 
     boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
 
-    public List<IContestHasTeam> getContestsForPerson();
+    public List<IContestHasTeam> getContestsHasTeamsForPerson();
+
 }
