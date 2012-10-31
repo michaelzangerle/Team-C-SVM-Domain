@@ -87,8 +87,7 @@ public class Team implements ITeam,IHasEntity<ITeamEntity> {
         List<IContestsHasTeamsEntity> contestEntities= teamEntity.getContestsHasTeams();
         for(IContestsHasTeamsEntity contestEntity: contestEntities)
         {
-            //TODO Look after isConfirmed NullPointer ?
-            if(!contestEntity.isConfirmed())
+            if(contestEntity.getContest().getStart().after(new Date())||contestEntity.getContest().getStart().equals(new Date()))
                 contests.add((new ContestHasTeam(contestEntity)));
         }
 

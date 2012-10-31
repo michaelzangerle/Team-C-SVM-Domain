@@ -4,6 +4,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Projectteam: Team C
@@ -57,4 +58,6 @@ public interface IMember extends IModel {
     Double getFee();
 
     boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
+
+    public List<IContestHasTeam> getContestsForPerson();
 }

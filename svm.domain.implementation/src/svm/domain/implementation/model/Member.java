@@ -209,14 +209,14 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return (a);
     }
 
-    public List<IContest> getNotConfirmedContests()
+    public List<IContestHasTeam> getContestsForPerson()
     {
-        List<IContest> allNotConfirmedContest=new LinkedList<IContest>();
-         List<ITeamEntity> teams= memberEntity.getTeamsForContactPerson();
+        List<IContestHasTeam> allNotConfirmedContest=new LinkedList<IContestHasTeam>();
+         List<ITeamEntity> teams= memberEntity.getTeamForContactPerson();
          for(ITeamEntity team:teams)
          {
              ITeam t = new Team(team);
-            List<IContest> notConfirmedContest= t.getNotConfirmedContest();
+            List<IContestHasTeam> notConfirmedContest= t.getContest();
              allNotConfirmedContest.addAll(notConfirmedContest);
          }
 
