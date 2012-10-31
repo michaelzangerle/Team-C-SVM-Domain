@@ -6,6 +6,7 @@ import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IContestEntity;
 import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
@@ -116,6 +117,8 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             throw new DomainException(e.getMessage(),e);
+        }  catch (NoSessionFoundException e) {
+            throw new DomainException(e.getMessage(),e);
         }
         c.setPaid(0f);
         c.setContest(getEntity());
@@ -177,6 +180,8 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             throw new DomainException(e.getMessage(),e);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            throw new DomainException(e.getMessage(),e);
+        } catch (NoSessionFoundException e) {
             throw new DomainException(e.getMessage(),e);
         }
         c.setPaid(false);
