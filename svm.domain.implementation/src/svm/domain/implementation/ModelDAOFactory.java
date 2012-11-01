@@ -88,4 +88,22 @@ public class ModelDAOFactory {
     public IDepartmentModelDAO getDepartmentModelDAO() {
         return (IDepartmentModelDAO) getDAO(DepartmentModelDAO.class);
     }
+
+    /**
+     * Returns a SubTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public ISubTeamModelDAO getSubTeamModelDAO() {
+        return (ISubTeamModelDAO) getDAO(SubTeamModelDAO.class);
+    }
+
+    /**
+     * Returns a SubTeamsHasMembers ModelDAO
+     *
+     * @return ISubTeamsHasMembersModelDAO
+     */
+    public ISubTeamsHasMembersModelDAO getSubTeamsHasMembersModelDAO() {
+        return (ISubTeamsHasMembersModelDAO) getDAO(SubTeamsHasMembersModelDAO.class);
+    }
 }

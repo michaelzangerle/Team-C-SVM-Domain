@@ -150,5 +150,14 @@ public class DomainFacade {
     public static IDepartmentModelDAO getDepartmentModelDAO() {
         return ModelDAOFactory.getInstance().getDepartmentModelDAO();
     }
+
+    /**
+     * Returns a SubTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public static ISubTeamModelDAO getSubTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getSubTeamModelDAO();
+    }
     //endregion
 }

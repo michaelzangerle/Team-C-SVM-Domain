@@ -36,4 +36,6 @@ public interface ITeam extends IModel {
     void setContactPerson(IMember contactPerson) throws DomainAttributeException;
 
     public List<IContestHasTeam> getContest();
+
+    Boolean isMember(IMember member);
 }
