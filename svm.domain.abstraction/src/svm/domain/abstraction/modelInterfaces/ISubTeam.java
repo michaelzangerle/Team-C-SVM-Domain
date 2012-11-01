@@ -1,5 +1,8 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+
 import java.util.List;
 
 /**
@@ -18,4 +21,8 @@ public interface ISubTeam extends IModel {
     void setTeam(ITeam contest);
 
     List<ISubTeamsHasMembers> getSubTeamMembers();
+
+    void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+
+    void removeMember(IMember member);
 }
