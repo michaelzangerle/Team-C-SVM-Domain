@@ -100,6 +100,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         String genderUpperCase=gender.toUpperCase();
         if(!genderUpperCase.equals("F")||!genderUpperCase.equals("M"))
             throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: "+genderUpperCase);
+        //TODO Look if Database can handle String gender
         this.memberEntity.setGender(gender);
     }
 
