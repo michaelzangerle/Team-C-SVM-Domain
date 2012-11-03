@@ -61,4 +61,6 @@ public interface IMember extends IModel {
 
     public List<IContestHasTeam> getContestsHasTeamsForPerson();
 
+    public List<ISubTeamsHasMembers> getContestsHasSubTeamsForPerson();
+
 }

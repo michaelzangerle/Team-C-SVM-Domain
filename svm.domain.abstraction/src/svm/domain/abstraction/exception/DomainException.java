@@ -1,12 +1,13 @@
 package svm.domain.abstraction.exception;
 
 import java.io.Serializable;
+import java.rmi.Remote;
 
 /**
  * Projectteam : Team C
  * Date: 30.10.12
  */
-public  class DomainException extends Exception implements Serializable {
+public  class DomainException extends Exception implements Serializable, Remote {
 
     public DomainException() {
     }
