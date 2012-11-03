@@ -1,10 +1,12 @@
 package svm.domain.abstraction.exception;
 
+import java.rmi.Remote;
+
 /**
  * Projectteam : Team C
  * Date: 30.10.12
  */
-public class DomainAttributeException extends DomainException {
+public class DomainAttributeException extends DomainException implements Remote {
 
     public DomainAttributeException() {
     }
