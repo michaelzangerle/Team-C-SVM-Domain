@@ -167,7 +167,7 @@ public class DomainFacade {
      *
      * @return ISubTeamModelDAO
      */
-    public static IContestsHasTeamsDAO getContestsHasTeamsDAO(){
+    public static IContestsHasTeamsModelDao getContestsHasTeamsDAO(){
         return ModelDAOFactory.getInstance().getContestHasTeamsModelDao();
     }
     //endregion
