@@ -60,8 +60,8 @@ public class ModelDAOFactory {
      *
      * @return IContestModelDAO
      */
-    public IContestsHasTeamsDAO getContestHasTeamsModelDao(){
-        return (IContestsHasTeamsDAO) getDAO(ContestHasTeamsDAO.class);
+    public IContestsHasTeamsModelDao getContestHasTeamsModelDao(){
+        return (IContestsHasTeamsModelDao) getDAO(ContestHasTeamsModelDAO.class);
     }
 
 
