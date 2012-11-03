@@ -1,10 +1,12 @@
 package svm.domain.abstraction.exception;
 
+import java.io.Serializable;
+
 /**
  * Projectteam : Team C
  * Date: 30.10.12
  */
-public  class DomainException extends Exception {
+public  class DomainException extends Exception implements Serializable {
 
     public DomainException() {
     }
