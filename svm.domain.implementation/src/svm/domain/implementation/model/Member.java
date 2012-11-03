@@ -196,6 +196,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return false;
     }
 
+    @Override
     public Integer getAge()
     {
         GregorianCalendar cal = new GregorianCalendar();
@@ -211,6 +212,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return (a);
     }
 
+    @Override
     public List<IContestHasTeam> getContestsHasTeamsForPerson()
     {
         List<IContestHasTeam> allcontestsHasTeams=new LinkedList<IContestHasTeam>();
@@ -225,7 +227,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return allcontestsHasTeams;
     }
 
-    public List<ISubTeamsHasMembers> getContestsHasSubTeamsForPerson()
+    @Override
+    public List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson()
     {
         List<ISubTeamsHasMembers> allSubTeamsOfMember=new LinkedList<ISubTeamsHasMembers>();
 

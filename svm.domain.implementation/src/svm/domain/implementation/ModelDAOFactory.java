@@ -2,6 +2,8 @@ package svm.domain.implementation;
 
 import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.modeldao.*;
+import svm.persistence.abstraction.dao.IContestsHasTeamsDAO;
+import svm.persistence.hibernate.dao.ContestHasTeamsDAO;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -52,6 +54,16 @@ public class ModelDAOFactory {
     public IContestModelDAO getContestModelDAO() {
         return (IContestModelDAO) getDAO(ContestModelDAO.class);
     }
+
+    /**
+     * Returns a ContestHasTeams ModelDAO
+     *
+     * @return IContestModelDAO
+     */
+    public IContestsHasTeamsDAO getContestHasTeamsModelDao(){
+        return (IContestsHasTeamsDAO) getDAO(ContestHasTeamsDAO.class);
+    }
+
 
     /**
      * Returns a ContactDetails ModelDAO

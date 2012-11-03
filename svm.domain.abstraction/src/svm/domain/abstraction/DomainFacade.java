@@ -1,10 +1,12 @@
 package svm.domain.abstraction;
 
+import svm.domain.abstraction.modelInterfaces.IContestHasTeam;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.dao.IContestsHasTeamsDAO;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
@@ -158,6 +160,15 @@ public class DomainFacade {
      */
     public static ISubTeamModelDAO getSubTeamModelDAO() {
         return ModelDAOFactory.getInstance().getSubTeamModelDAO();
+    }
+
+    /**
+     * Returns a ContestHasTeams ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public static IContestsHasTeamsDAO getContestsHasTeamsDAO(){
+        return ModelDAOFactory.getInstance().getContestHasTeamsModelDao();
     }
     //endregion
 }
