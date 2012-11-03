@@ -38,4 +38,5 @@ public interface ITeam extends IModel {
     public List<IContestHasTeam> getContest();
 
     Boolean isMember(IMember member);
+
 }

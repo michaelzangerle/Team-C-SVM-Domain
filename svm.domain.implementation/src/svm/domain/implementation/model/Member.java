@@ -6,6 +6,7 @@ import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.IMemberFeeEntity;
+import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
@@ -222,5 +223,16 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
          }
 
         return allcontestsHasTeams;
+    }
+
+    public List<ISubTeamsHasMembers> getContestsHasSubTeamsForPerson()
+    {
+        List<ISubTeamsHasMembers> allSubTeamsOfMember=new LinkedList<ISubTeamsHasMembers>();
+
+        for(ISubTeamsHasMembersEntity entity:memberEntity.getSubTeamHasMember())
+        {
+            allSubTeamsOfMember.add(new SubTeamsHasMembers(entity));
+        }
+        return allSubTeamsOfMember;
     }
 }
