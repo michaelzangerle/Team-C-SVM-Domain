@@ -61,4 +61,9 @@ public interface IMember extends IModel {
 
     public List<IContestHasTeam> getContestsHasTeamsForPerson();
 
+    List<IDepartmentsHasMembers> getDepartmentsHasMembers();
+
+    Boolean isIn(IDepartment department);
+
+    Integer getAge();
 }

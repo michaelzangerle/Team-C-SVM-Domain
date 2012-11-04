@@ -12,6 +12,8 @@ import java.util.List;
  * Date: 30.10.12
  */
 public interface IMemberModelDAO extends IModelDAO<IMember> {
+    List<IMember> get(Integer sessionId, String firstName, String lastName) throws NoSessionFoundException;
+
     List<IMember> get(Integer sessionId, String firstName, String lastName, IDepartment department) throws NoSessionFoundException;
 
     List<IMember> get(Integer sessionId, Date birthDateFrom, Date birthDateTo) throws NoSessionFoundException;

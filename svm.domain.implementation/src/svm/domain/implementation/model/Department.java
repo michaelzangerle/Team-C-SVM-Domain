@@ -24,7 +24,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name.equals(new String()))
+        if (name.equals(new String()))
             throw new DomainAttributeException("name is empty");
         this.departmentEntity.setName(name);
     }
@@ -36,7 +36,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setAlias(String alias) throws DomainAttributeException {
-        if(alias.equals(new String()))
+        if (alias.equals(new String()))
             throw new DomainAttributeException("alias is empty");
         this.departmentEntity.setAlias(alias);
     }
@@ -48,7 +48,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setDescription(String description) throws DomainAttributeException {
-        if(description.equals(new String()))
+        if (description.equals(new String()))
             throw new DomainAttributeException("description is empty");
         this.departmentEntity.setDescription(description);
     }
@@ -60,13 +60,17 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException {
-        if(contactDetails==null)
+        if (contactDetails == null)
             throw new DomainAttributeException("contact detail is null");
-        this.departmentEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+        this.departmentEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override
     public IDepartmentEntity getEntity() {
         return departmentEntity;
+    }
+
+    public Boolean equals(IDepartment obj) {
+        return obj.equals(obj);
     }
 }

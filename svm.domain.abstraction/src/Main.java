@@ -20,7 +20,7 @@ public class Main {
         // Get ModelDAO for Members
         IMemberModelDAO dao = DomainFacade.getMemberModelDAO();
         // Get a list of all Members
-        List<IMember> members = dao.getAll(sessionId);
+        List<IMember> members = dao.get(sessionId, "Georgi", "F");
         // Iterate over all Members
         for (IMember entity : members) {
             // Get FirstName of Member
@@ -30,7 +30,7 @@ public class Main {
 
             System.out.println(firstName + " " + lastName);
         }
-
+        /*
         // Generate a new Member Object
         IMember newMember = dao.generateObject();
         newMember.setFirstName("Thomas");
@@ -43,7 +43,7 @@ public class Main {
         dao.saveOrUpdate(sessionId, newMember);
         // Commit the Transaction for this Session
         DomainFacade.commitTransaction(sessionId);
-
+          */
         // Close Session
         DomainFacade.closeSession(sessionId);
     }
