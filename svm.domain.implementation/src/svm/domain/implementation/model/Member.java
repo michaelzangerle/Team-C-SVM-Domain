@@ -7,6 +7,7 @@ import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.abstraction.model.IDepartmentsHasMembersEntity;
 import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.IMemberFeeEntity;
+import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.util.Date;
@@ -82,8 +83,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
-        if (!birthDate.after(CalendarStartDate.getCalenderStartDate()))
-            throw new DomainParameterCheckException("Birthday before 1900" + birthDate.toString());
+        if(!birthDate.after(CalendarStartDate.getCalenderStartDate()))
+            throw new DomainParameterCheckException("Birthday before 1900"+birthDate.toString());
 
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setBirthDate(new java.sql.Date(birthDate.getTime()));
@@ -96,11 +97,12 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
-        if (gender.equals(new String()))
+        if(gender.equals(new String()))
             throw new DomainAttributeException("Gender is empty");
-        String genderUpperCase = gender.toUpperCase();
-        if (!genderUpperCase.equals("F") || !genderUpperCase.equals("M"))
-            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: " + genderUpperCase);
+        String genderUpperCase=gender.toUpperCase();
+        if(!genderUpperCase.equals("F")||!genderUpperCase.equals("M"))
+            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: "+genderUpperCase);
+        //TODO Look if Database can handle String gender
         this.memberEntity.setGender(gender);
     }
 
@@ -196,7 +198,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public Integer getAge() {
+    public Integer getAge()
+    {
         GregorianCalendar cal = new GregorianCalendar();
         int y, d, a;
 

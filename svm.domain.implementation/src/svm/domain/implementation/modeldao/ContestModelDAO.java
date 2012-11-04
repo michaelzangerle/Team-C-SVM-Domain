@@ -11,6 +11,7 @@ import svm.persistence.abstraction.model.IContestEntity;
  * Date: 25.10.12
  */
 public class ContestModelDAO extends AbstractModelDAO<IContest, IContestEntity> implements IContestModelDAO {
+
     public ContestModelDAO() {
         super(PersistenceFacade.getContestDAO());
     }
