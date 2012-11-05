@@ -36,6 +36,21 @@ public class MemberModelDAO extends AbstractModelDAO<IMember, IMemberEntity> imp
         return getDAO().find(sessionId, compares);
     }
 
+    public List<IMemberEntity> getEntities(Integer sessionId, String userName) throws NoSessionFoundException {
+        CompareObject[] compares = new CompareObject[1];
+        compares[0] = new CompareObject("userName", FindQualifiers.EQUALS, userName);
+        return getDAO().find(sessionId, compares);
+    }
+
+    @Override
+    public List<IMember> get(Integer sessionId, String userName) throws NoSessionFoundException {
+        List<IMember> result = new LinkedList<IMember>();
+        for (IMemberEntity member : getEntities(sessionId, userName)) {
+            result.add(wrapObject(member));
+        }
+        return result;
+    }
+
     @Override
     public List<IMember> get(Integer sessionId, String firstName, String lastName) throws NoSessionFoundException {
         List<IMember> result = new LinkedList<IMember>();
