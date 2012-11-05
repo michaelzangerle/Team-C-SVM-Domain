@@ -4,11 +4,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
-import svm.persistence.abstraction.model.IDepartmentsHasMembersEntity;
-import svm.persistence.abstraction.model.IMemberEntity;
-import svm.persistence.abstraction.model.IMemberFeeEntity;
-import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
-import svm.persistence.abstraction.model.ITeamEntity;
+import svm.persistence.abstraction.model.*;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -83,8 +79,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
-        if(!birthDate.after(CalendarStartDate.getCalenderStartDate()))
-            throw new DomainParameterCheckException("Birthday before 1900"+birthDate.toString());
+        if (!birthDate.after(CalendarStartDate.getCalenderStartDate()))
+            throw new DomainParameterCheckException("Birthday before 1900" + birthDate.toString());
 
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setBirthDate(new java.sql.Date(birthDate.getTime()));
@@ -97,11 +93,11 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
-        if(gender.equals(new String()))
+        if (gender.equals(new String()))
             throw new DomainAttributeException("Gender is empty");
-        String genderUpperCase=gender.toUpperCase();
-        if(!genderUpperCase.equals("F")||!genderUpperCase.equals("M"))
-            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: "+genderUpperCase);
+        String genderUpperCase = gender.toUpperCase();
+        if (!genderUpperCase.equals("F") || !genderUpperCase.equals("M"))
+            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: " + genderUpperCase);
         //TODO Look if Database can handle String gender
         this.memberEntity.setGender(gender);
     }
@@ -198,8 +194,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public Integer getAge()
-    {
+    public Integer getAge() {
         GregorianCalendar cal = new GregorianCalendar();
         int y, d, a;
 
@@ -233,6 +228,17 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         }
 
         return allContestsHasTeams;
+    }
+
+
+    @Override
+    public List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson() {
+        List<ISubTeamsHasMembers> allSubTeamsOfMember = new LinkedList<ISubTeamsHasMembers>();
+
+        for (ISubTeamsHasMembersEntity entity : memberEntity.getSubTeamHasMember()) {
+            allSubTeamsOfMember.add(new SubTeamsHasMembers(entity));
+        }
+        return allSubTeamsOfMember;
     }
 
     @Override

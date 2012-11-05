@@ -66,4 +66,6 @@ public interface IMember extends IModel {
     Boolean isIn(IDepartment department);
 
     Integer getAge();
+
+    List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson();
 }
