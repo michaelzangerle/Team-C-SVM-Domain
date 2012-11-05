@@ -4,6 +4,8 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
+import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.*;
 
 import java.util.Date;
@@ -169,6 +171,14 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
             return 30.0;
     }
 
+    @Override
+    public void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException {
+        IMemberFeeEntity enity = PersistenceFacade.getMemberFeeDAO().generateObject();
+        enity.setAmount(Float.valueOf(String.valueOf(getFee())));
+        enity.setMember(memberEntity);
+        enity.setDate(new java.sql.Date(new Date().getTime()));
+       memberEntity.getFees().add(enity);
+    }
 
     @Override
     public IMemberEntity getEntity() {

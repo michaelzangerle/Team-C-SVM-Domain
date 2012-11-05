@@ -2,6 +2,7 @@ package svm.domain.abstraction.modelInterfaces;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
 import java.util.Date;
 import java.util.List;
@@ -68,4 +69,6 @@ public interface IMember extends IModel {
     Integer getAge();
 
     List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson();
+
+    void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException;
 }
