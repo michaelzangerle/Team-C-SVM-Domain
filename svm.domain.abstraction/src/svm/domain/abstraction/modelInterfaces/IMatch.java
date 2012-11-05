@@ -1,5 +1,8 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.model.IMatchTypeEntity;
+
 import java.util.Date;
 
 /**
@@ -30,4 +33,20 @@ public interface IMatch extends IModel {
     IContactDetails getContactDetails();
 
     void setContactDetails(IContactDetails IContactDetails);
+
+    String getDescription();
+
+    void setDescription(String description);
+
+    void setMatchType(IMatchType matchType);
+
+    IMatchTypeEntity getMatchType();
+
+    void setContestants(ITeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
+
+    void setContestants(IExternalTeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
+
+    void setContestants(ITeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
+
+    void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 }

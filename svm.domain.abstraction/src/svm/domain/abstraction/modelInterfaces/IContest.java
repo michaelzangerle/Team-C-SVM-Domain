@@ -3,8 +3,10 @@ package svm.domain.abstraction.modelInterfaces;
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * ProjectTeam: Team C
@@ -33,7 +35,7 @@ public interface IContest extends IModel {
 
     public void addInternalTeam(ITeam team) throws DomainException;
 
-    public void addExternalTeam(IExternalTeam team) throws DomainException;
+    public void addExternalTeam(IExternalTeam team) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException;
 
     public void removeInternalTeam(ITeam team) throws DomainException;
 
@@ -42,4 +44,10 @@ public interface IContest extends IModel {
     public void addMatch(IMatch match) throws DomainException;
 
     public void removeMatch(IMatch match) throws DomainException;
+
+    List<IMatch> getMatches();
+
+    List<ITeam> getTeams();
+
+    List<IExternalTeam> getExternalTeams();
 }
