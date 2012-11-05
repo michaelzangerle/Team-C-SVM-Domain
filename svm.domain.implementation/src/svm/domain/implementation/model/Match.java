@@ -156,6 +156,7 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
         matchEntity.getContestants().add(e2);
     }
 
+    @Override
     public void addResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException {
         List<IContestantEntity> contestants = this.matchEntity.getContestants();
         if (contestants.size() != 2) throw new DomainException("No Contestants added");

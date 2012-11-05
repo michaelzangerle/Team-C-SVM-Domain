@@ -1,5 +1,6 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IMatchTypeEntity;
 
@@ -49,4 +50,6 @@ public interface IMatch extends IModel {
     void setContestants(ITeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
     void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
+
+    void addResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
 }
