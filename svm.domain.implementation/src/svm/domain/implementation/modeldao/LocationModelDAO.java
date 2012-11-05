@@ -31,6 +31,19 @@ public class LocationModelDAO extends AbstractModelDAO<ILocation, ILocationEntit
     }
 
     @Override
+    public List<ILocation> get(int sessionId, String country, String district) throws NoSessionFoundException {
+        CompareObject[] compares = new CompareObject[2];
+        compares[0] = new CompareObject("countryCode", FindQualifiers.EQUALS, country);
+        compares[1] = new CompareObject("district", FindQualifiers.EQUALS, district);
+
+        List<ILocation> ret = new ArrayList<ILocation>();
+        for (ILocationEntity obj : getDAO().find(sessionId, compares)) {
+            ret.add(wrapObject(obj));
+        }
+        return ret;
+    }
+
+    @Override
     protected ILocation wrapObject(ILocationEntity Entity) {
         return new Location(Entity);
     }

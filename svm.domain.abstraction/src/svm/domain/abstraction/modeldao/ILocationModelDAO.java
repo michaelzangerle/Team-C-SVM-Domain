@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface ILocationModelDAO extends IModelDAO<ILocation> {
     List<ILocation> findByName(int sessionId, String placeName) throws NoSessionFoundException;
+
+    List<ILocation> get(int sessionId, String country, String district) throws NoSessionFoundException;
 }
