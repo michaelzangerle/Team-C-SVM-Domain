@@ -177,5 +177,24 @@ public class DomainFacade {
     public static IMatchModelDAO getMatchModelDAO() {
         return ModelDAOFactory.getInstance().getMatchModelDAO();
     }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public static ITeamModelDAO getTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getTeamModelDAO();
+    }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public static IExternalTeamModelDAO getExternalTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getExternalTeamModelDAO();
+    }
+
     //endregion
 }

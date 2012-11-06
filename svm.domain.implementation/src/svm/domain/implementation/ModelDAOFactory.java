@@ -125,4 +125,22 @@ public class ModelDAOFactory {
     public IMatchModelDAO getMatchModelDAO() {
         return (IMatchModelDAO) getDAO(MatchModelDAO.class);
     }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public ITeamModelDAO getTeamModelDAO() {
+        return (ITeamModelDAO) getDAO(TeamModelDAO.class);
+    }
+
+    /**
+     * Returns a ExternalTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public IExternalTeamModelDAO getExternalTeamModelDAO() {
+        return (IExternalTeamModelDAO) getDAO(ExternalTeamModelDAO.class);
+    }
 }
