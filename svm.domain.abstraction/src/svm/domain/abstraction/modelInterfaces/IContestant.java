@@ -12,4 +12,6 @@ public interface IContestant extends IModel{
     IExternalTeam getExternalTeam();
 
     void setExternalTeam(IExternalTeam externalTeam);
+
+    Float getResult();
 }

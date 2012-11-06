@@ -8,6 +8,7 @@ import svm.persistence.abstraction.model.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -95,8 +96,19 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
-    public IMatchTypeEntity getMatchType() {
-        return this.matchEntity.getMatchType();
+    public IMatchType getMatchType() {
+        return new MatchType(this.matchEntity.getMatchType());
+    }
+
+    @Override
+    public List<IContestant> getContestants() {
+        List<IContestant> contestants = new LinkedList<IContestant>();
+
+        for (IContestantEntity ce : this.matchEntity.getContestants()) {
+            contestants.add(new Contestant(ce));
+        }
+
+        return contestants;
     }
 
     @Override
@@ -157,7 +169,7 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
-    public void addResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException {
+    public void addResult(Float home, Float away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException {
         List<IContestantEntity> contestants = this.matchEntity.getContestants();
         if (contestants.size() != 2) throw new DomainException("No Contestants added");
         IContestantEntity homeContestant = contestants.get(0);

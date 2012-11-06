@@ -5,6 +5,7 @@ import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IMatchTypeEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Projectteam: Team C
@@ -41,7 +42,9 @@ public interface IMatch extends IModel {
 
     void setMatchType(IMatchType matchType);
 
-    IMatchTypeEntity getMatchType();
+    IMatchType getMatchType();
+
+    List<IContestant> getContestants();
 
     void setContestants(ITeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
@@ -51,5 +54,5 @@ public interface IMatch extends IModel {
 
     void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
-    void addResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+    void addResult(Float home, Float away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
 }
