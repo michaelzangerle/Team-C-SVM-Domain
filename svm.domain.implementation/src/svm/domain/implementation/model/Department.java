@@ -47,9 +47,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setDescription(String description) throws DomainAttributeException {
-        if (description.equals(new String()))
-            throw new DomainAttributeException("description is empty");
+    public void setDescription(String description){
         this.departmentEntity.setDescription(description);
     }
 

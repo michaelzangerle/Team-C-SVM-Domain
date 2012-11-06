@@ -13,5 +13,5 @@ public interface ITeamType extends IModel {
 
     String getDescription();
 
-    void setDescription(String description) throws DomainAttributeException;
+    void setDescription(String description);
 }

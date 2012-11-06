@@ -34,9 +34,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setEmail1(String email1) throws DomainAttributeException {
-        if(email1.equals(new String()))
-            throw new DomainAttributeException("Email 1 is empty");
+    public void setEmail1(String email1) {
         this.contactDetailsEntity.setEmail1(email1);
     }
 
@@ -46,9 +44,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setEmail2(String email2) throws DomainAttributeException {
-        if(email2.equals(new String()))
-            throw new DomainAttributeException("Email 2 is empty");
+    public void setEmail2(String email2) {
         this.contactDetailsEntity.setEmail2(email2);
     }
 
@@ -58,9 +54,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setFax(String fax) throws DomainAttributeException {
-        if(fax.equals(new String()))
-            throw new DomainAttributeException("Fax is empty");
+    public void setFax(String fax) {
         this.contactDetailsEntity.setFax(fax);
     }
 
@@ -70,9 +64,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setStreet(String street) throws DomainAttributeException {
-        if(street.equals(new String()))
-            throw new DomainAttributeException("street is empty");
+    public void setStreet(String street)  {
         this.contactDetailsEntity.setStreet(street);
     }
 
@@ -82,9 +74,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setStreetNumber(String streetNumber) throws DomainAttributeException {
-        if(streetNumber.equals(new String()))
-            throw new DomainAttributeException("street number is empty");
+    public void setStreetNumber(String streetNumber){
         this.contactDetailsEntity.setStreetNumber(streetNumber);
     }
 
@@ -106,9 +96,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setCoordLat(String coordLat) throws DomainAttributeException {
-        if(coordLat.equals(new String()))
-            throw new DomainAttributeException("Coord Lat is empty");
+    public void setCoordLat(String coordLat) {
         this.contactDetailsEntity.setCoordLat(coordLat);
     }
 
@@ -118,9 +106,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setCoordLong(String coordLong) throws DomainAttributeException {
-        if(coordLong.equals(new String()))
-            throw new DomainAttributeException("Coord Long is empty");
+    public void setCoordLong(String coordLong) {
         this.contactDetailsEntity.setCoordLong(coordLong);
     }
 
@@ -130,9 +116,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setPhone1(String phone1) throws DomainAttributeException {
-        if(phone1.equals(new String()))
-            throw new DomainAttributeException("phone 1 is empty");
+    public void setPhone1(String phone1)  {
         this.contactDetailsEntity.setPhone1(phone1);
     }
 

@@ -48,9 +48,7 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
     }
 
     @Override
-    public void setDescription(String description) throws DomainAttributeException {
-        if(description.equals(new String()))
-            throw new DomainAttributeException("description is empty");
+    public void setDescription(String description){
         this.sportEntity.setDescription(description);
     }
 

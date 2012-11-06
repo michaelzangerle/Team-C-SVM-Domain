@@ -17,7 +17,7 @@ public interface ISport extends IModel{
 
     String getDescription();
 
-    void setDescription(String description) throws DomainAttributeException;
+    void setDescription(String description);
 
     IDepartment getDepartment();
 

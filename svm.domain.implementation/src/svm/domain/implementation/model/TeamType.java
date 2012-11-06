@@ -34,9 +34,7 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     }
 
     @Override
-    public void setDescription(String description) throws DomainAttributeException {
-        if(description.equals(new String()))
-            throw new DomainAttributeException("name is empty");
+    public void setDescription(String description) {
         this.teamTypeEntity.setDescription(description);
 }
 

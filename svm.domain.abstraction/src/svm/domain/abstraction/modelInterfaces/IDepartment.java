@@ -17,7 +17,7 @@ public interface IDepartment extends IModel{
 
     String getDescription();
 
-    void setDescription(String description) throws DomainAttributeException;
+    void setDescription(String description);
 
     IContactDetails getContactDetails();
 
