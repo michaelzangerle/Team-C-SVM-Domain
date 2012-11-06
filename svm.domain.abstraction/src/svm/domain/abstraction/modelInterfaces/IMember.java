@@ -14,7 +14,7 @@ import java.util.List;
 public interface IMember extends IModel {
     String getTitle();
 
-    void setTitle(String title) throws DomainAttributeException;
+    void setTitle(String title);
 
     String getFirstName();
 

@@ -31,9 +31,10 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setTitle(String title) throws DomainAttributeException {
-        if (title.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+    public void setTitle(String title) {
+        if(title==null || title.isEmpty())
+        title="";
+
         this.memberEntity.setTitle(title);
     }
 
@@ -44,8 +45,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setFirstName(String firstName) throws DomainAttributeException {
-        if (firstName.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if(firstName==null || firstName.isEmpty())
+            throw new DomainAttributeException("First Name is empty");
         this.memberEntity.setFirstName(firstName);
     }
 
@@ -57,8 +58,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setLastName(String lastName) throws DomainAttributeException {
-        if (lastName.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if(lastName==null || lastName.isEmpty())
+            throw new DomainAttributeException("LastName is empty");
         this.memberEntity.setLastName(lastName);
     }
 
@@ -69,8 +70,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setSocialNumber(String socialNumber) throws DomainAttributeException {
-        if (socialNumber.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if(socialNumber==null || socialNumber.isEmpty())
+            throw new DomainAttributeException("FirstName is empty");
         this.memberEntity.setSocialNumber(socialNumber);
     }
 
@@ -81,6 +82,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
+        if(birthDate==null)
+            throw new DomainParameterCheckException("Birthday is null");
         if (!birthDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("Birthday before 1900" + birthDate.toString());
 
@@ -95,7 +98,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
-        if (gender.equals(new String()))
+        if(gender==null || gender.isEmpty())
             throw new DomainAttributeException("Gender is empty");
         String genderUpperCase = gender.toUpperCase();
         if (!genderUpperCase.equals("F") && !genderUpperCase.equals("M"))
@@ -111,6 +114,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setEntryDate(Date entryDate) throws DomainParameterCheckException {
+        if(entryDate==null)
+            throw new DomainParameterCheckException("EntryDate is null");
         if (!entryDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("EntryDate before 1900" + entryDate.toString());
         //TODO Check if conversion from util date to sql date is correct
@@ -145,7 +150,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setUserName(String userName) throws DomainAttributeException {
-        if (userName.equals(new String()))
+        if(userName==null || userName.isEmpty())
             throw new DomainAttributeException("Username is empty");
         this.memberEntity.setUsername(userName);
     }
