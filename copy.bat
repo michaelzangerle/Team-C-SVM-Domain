@@ -1,0 +1,1 @@
+robocopy out\artifacts ..\Team-C-SVM-Logic\svm.logic.implementation\lib
