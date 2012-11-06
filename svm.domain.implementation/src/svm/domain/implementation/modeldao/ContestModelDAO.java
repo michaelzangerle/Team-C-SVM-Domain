@@ -17,7 +17,7 @@ public class ContestModelDAO extends AbstractModelDAO<IContest, IContestEntity> 
     }
 
     @Override
-    protected Contest wrapObject(IContestEntity Entity) {
+    protected IContest wrapObject(IContestEntity Entity) {
         return new Contest(Entity);
     }
 }
