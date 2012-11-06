@@ -156,11 +156,16 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             throw new DomainAttributeException("team is null");
 
         IContestsHasTeamsEntity toRemove = null;
+
         for (IContestsHasTeamsEntity entity : contestEntity.getContestsHasTeams()) {
             if (entity.getTeam().getName().equals(((Team) team).getEntity().getName()))
                 toRemove = entity;
+
         }
-        if (toRemove != null) contestEntity.getContestsHasTeams().remove(toRemove);
+        if (toRemove != null) {
+            contestEntity.getContestsHasTeams().remove(toRemove);
+            System.out.println("Team to remove: " + toRemove.getTeam().getName());
+        }
 
         //throw new DomainParameterCheckException("Team could not be found");
 

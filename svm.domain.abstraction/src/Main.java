@@ -60,11 +60,26 @@ public class Main {
 
 
         IContest contest = DomainFacade.getContestModelDAO().getAll(sessionId).get(0);
+
+
         ITeam team = contest.getTeams().get(0);
-        contest.removeInternalTeam(team);
+
+        System.out.println("--------------------");
+        for (ITeam t : contest.getTeams()){
+            System.out.println(t.getName());
+        }
+        //contest.removeInternalTeam(team);
         DomainFacade.startTransaction(sessionId);
         DomainFacade.getContestModelDAO().saveOrUpdate(sessionId, contest);
         DomainFacade.commitTransaction(sessionId);
+
+        System.out.println("--------------------");
+        for (ITeam t : contest.getTeams()){
+            System.out.println(t.getName());
+        }
+
+
+
         DomainFacade.closeSession(sessionId);
     }
 }
