@@ -34,7 +34,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if (name.equals(new String()))
+        if(name==null || name.isEmpty())
             throw new DomainAttributeException("contest name is empty");
         this.contestEntity.setName(name);
     }
@@ -46,8 +46,10 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setStart(Date start) throws DomainParameterCheckException {
+        if(start==null)
+            throw new DomainParameterCheckException("start is null");
         if (!start.after(CalendarStartDate.getCalenderStartDate()))
-            throw new DomainParameterCheckException("EntryDate before 1900" + start.toString());
+            throw new DomainParameterCheckException("start before 1900" + start.toString());
         //TODO Check if conversion from util date to sql date is correct
         this.contestEntity.setStart(new java.sql.Date(start.getTime()));
     }
@@ -71,8 +73,10 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setEnd(Date end) throws DomainParameterCheckException {
+        if(end==null)
+            throw new DomainParameterCheckException("End is null");
         if (!end.after(CalendarStartDate.getCalenderStartDate()))
-            throw new DomainParameterCheckException("EntryDate before 1900" + end.toString());
+            throw new DomainParameterCheckException("End before 1900" + end.toString());
         //TODO Check if conversion from util date to sql date is correct
         this.contestEntity.setEnd(new java.sql.Date(end.getTime()));
     }
