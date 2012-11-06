@@ -189,6 +189,30 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
+    public void setResult(Float home, Float away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException {
+        List<IContestantEntity> contestants = this.matchEntity.getContestants();
+        if (contestants.size() != 2) throw new DomainException("No Contestants added");
+        IContestantEntity homeContestant = contestants.get(0);
+        IContestantEntity awayContestant = contestants.get(1);
+
+        homeContestant.setPartResults(new LinkedList<IPartResultEntity>());
+        awayContestant.setPartResults(new LinkedList<IPartResultEntity>());
+
+        IPartResultEntity e1 = PersistenceFacade.getPartResultDAO().generateObject();
+        e1.setResult(home);
+        e1.setComment("");
+        e1.setContestant(homeContestant);
+        homeContestant.getPartResults().add(e1);
+
+        IPartResultEntity e2 = PersistenceFacade.getPartResultDAO().generateObject();
+        e2.setResult(away);
+        e2.setComment("");
+        e2.setContestant(awayContestant);
+        awayContestant.getPartResults().add(e2);
+
+    }
+
+    @Override
     public IMatchEntity getEntity() {
         return matchEntity;
     }

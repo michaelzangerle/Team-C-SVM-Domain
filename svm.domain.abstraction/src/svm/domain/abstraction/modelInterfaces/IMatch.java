@@ -55,4 +55,7 @@ public interface IMatch extends IModel {
     void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
     void addResult(Float home, Float away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+
+    void setResult(Float home, Float away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException;
+
 }
