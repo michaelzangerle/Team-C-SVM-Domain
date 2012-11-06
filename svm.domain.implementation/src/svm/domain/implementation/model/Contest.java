@@ -46,10 +46,13 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setStart(Date start) throws DomainParameterCheckException {
+
         if(start==null)
             throw new DomainParameterCheckException("start is null");
+
         if (!start.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("start before 1900" + start.toString());
+
         //TODO Check if conversion from util date to sql date is correct
         this.contestEntity.setStart(new java.sql.Date(start.getTime()));
     }
@@ -143,7 +146,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
 
         }
-        throw new DomainParameterCheckException("Team could not be found");
+        //throw new DomainParameterCheckException("Team could not be found");
 
     }
 
@@ -156,12 +159,14 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             if (entity.getTeam().equals(((Team) team).getEntity()))
                 contestEntity.getContestsHasTeams().remove(entity);
         }
-        throw new DomainParameterCheckException("Team could not be found");
+
+        //throw new DomainParameterCheckException("Team could not be found");
 
     }
 
     @Override
     public void addInternalTeam(ITeam team) throws DomainException {
+
         if (team == null)
             throw new DomainAttributeException("team is null");
 
@@ -169,8 +174,6 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         for (IContestsHasTeamsEntity entity : contestEntity.getContestsHasTeams()) {
             if (entity.getTeam().equals(((Team) team).getEntity()))
                 throw new DomainParameterCheckException("Team all already added");
-
-
         }
 
         IContestsHasTeamsEntity c = null;

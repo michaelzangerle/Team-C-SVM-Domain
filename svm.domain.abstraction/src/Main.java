@@ -1,13 +1,18 @@
 import svm.domain.abstraction.DomainFacade;
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.domain.abstraction.modelInterfaces.IContest;
 import svm.domain.abstraction.modelInterfaces.IMember;
+import svm.domain.abstraction.modeldao.IContestModelDAO;
 import svm.domain.abstraction.modeldao.IMemberModelDAO;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
 
+import java.util.Date;
 import java.util.List;
+
+import static svm.domain.abstraction.DomainFacade.startTransaction;
 
 /**
  * ProjectTeam: Team C
@@ -33,6 +38,16 @@ public class Main {
         }
 
         System.out.println(members.get(0).hasPaidFee(2012));
+
+        IContestModelDAO dao2 = DomainFacade.getContestModelDAO();
+        startTransaction(sessionId);
+
+        List<IContest> contests = dao2.getAll(sessionId);
+
+        contests.get(1).setStart(new Date());
+        dao2.saveOrUpdate(sessionId,contests.get(1 ));
+
+        DomainFacade.commitTransaction(sessionId);
 
         /*
         // Generate a new Member Object
