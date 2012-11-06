@@ -263,7 +263,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     @Override
     public Boolean isIn(IDepartment department) {
         for (IDepartmentsHasMembers d : getDepartmentsHasMembers()) {
-            if (d.getDepartment().equals(d)) return true;
+            if (d.getDepartment().getName().equals(department.getName())) return true;
         }
         return false;
     }
