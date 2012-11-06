@@ -13,7 +13,7 @@ import svm.persistence.abstraction.model.IExternalTeamEntity;
  */
 public class ExternalTeamModelDAO extends AbstractModelDAO<IExternalTeam, IExternalTeamEntity> implements IExternalTeamModelDAO {
 
-    public ExternalTeamModelDAO(IDAO<IExternalTeamEntity> dao) {
+    public ExternalTeamModelDAO() {
         super(PersistenceFacade.getExternalTeamDAO());
     }
 
