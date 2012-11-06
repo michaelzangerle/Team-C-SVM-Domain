@@ -8,10 +8,7 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.*;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * ProjectTeam: Team C
@@ -32,8 +29,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setTitle(String title) {
-        if(title==null || title.isEmpty())
-        title="";
+        if (title == null || title.isEmpty())
+            title = "";
 
         this.memberEntity.setTitle(title);
     }
@@ -45,7 +42,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setFirstName(String firstName) throws DomainAttributeException {
-        if(firstName==null || firstName.isEmpty())
+        if (firstName == null || firstName.isEmpty())
             throw new DomainAttributeException("First Name is empty");
         this.memberEntity.setFirstName(firstName);
     }
@@ -58,7 +55,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setLastName(String lastName) throws DomainAttributeException {
-        if(lastName==null || lastName.isEmpty())
+        if (lastName == null || lastName.isEmpty())
             throw new DomainAttributeException("LastName is empty");
         this.memberEntity.setLastName(lastName);
     }
@@ -70,7 +67,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setSocialNumber(String socialNumber) throws DomainAttributeException {
-        if(socialNumber==null || socialNumber.isEmpty())
+        if (socialNumber == null || socialNumber.isEmpty())
             throw new DomainAttributeException("FirstName is empty");
         this.memberEntity.setSocialNumber(socialNumber);
     }
@@ -82,7 +79,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
-        if(birthDate==null)
+        if (birthDate == null)
             throw new DomainParameterCheckException("Birthday is null");
         if (!birthDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("Birthday before 1900" + birthDate.toString());
@@ -98,7 +95,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
-        if(gender==null || gender.isEmpty())
+        if (gender == null || gender.isEmpty())
             throw new DomainAttributeException("Gender is empty");
         String genderUpperCase = gender.toUpperCase();
         if (!genderUpperCase.equals("F") && !genderUpperCase.equals("M"))
@@ -114,7 +111,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setEntryDate(Date entryDate) throws DomainParameterCheckException {
-        if(entryDate==null)
+        if (entryDate == null)
             throw new DomainParameterCheckException("EntryDate is null");
         if (!entryDate.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("EntryDate before 1900" + entryDate.toString());
@@ -150,7 +147,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setUserName(String userName) throws DomainAttributeException {
-        if(userName==null || userName.isEmpty())
+        if (userName == null || userName.isEmpty())
             throw new DomainAttributeException("Username is empty");
         this.memberEntity.setUsername(userName);
     }
@@ -182,7 +179,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         enity.setAmount(Float.valueOf(String.valueOf(getFee())));
         enity.setMember(memberEntity);
         enity.setDate(new java.sql.Date(new Date().getTime()));
-       memberEntity.getFees().add(enity);
+        memberEntity.getFees().add(enity);
     }
 
     @Override
@@ -192,12 +189,19 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public boolean hasPaidFee(Integer year) throws DomainParameterCheckException {
+
         if (year < 1900)
             throw new DomainParameterCheckException("Year smaller than 1900 " + year);
+
         Double paidYet = 0.0;
+
         List<IMemberFeeEntity> fees = memberEntity.getFees();
         for (IMemberFeeEntity fee : fees) {
-            Integer fee_year = fee.getDate().getYear();
+
+            Calendar tmp = Calendar.getInstance();
+            tmp.setTime(fee.getDate());
+            Integer fee_year = tmp.get(Calendar.YEAR);
+
             if (fee_year.equals(year))
                 paidYet += fee.getAmount();
 
