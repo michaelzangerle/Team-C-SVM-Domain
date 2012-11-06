@@ -9,27 +9,27 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 public interface IContactDetails extends IModel {
     String getPhone2();
 
-    void setPhone2(String phone2) throws DomainAttributeException;
+    void setPhone2(String phone2);
 
     String getEmail1();
 
-    void setEmail1(String email1) throws DomainAttributeException;
+    void setEmail1(String email1);
 
     String getEmail2();
 
-    void setEmail2(String email2) throws DomainAttributeException;
+    void setEmail2(String email2);
 
     String getFax();
 
-    void setFax(String fax) throws DomainAttributeException;
+    void setFax(String fax);
 
     String getStreet();
 
-    void setStreet(String street) throws DomainAttributeException;
+    void setStreet(String street);
 
     String getStreetNumber();
 
-    void setStreetNumber(String streetNumber) throws DomainAttributeException;
+    void setStreetNumber(String streetNumber);
 
     ILocation getLocation();
 
@@ -37,13 +37,13 @@ public interface IContactDetails extends IModel {
 
     String getCoordLat();
 
-    void setCoordLat(String coordLat) throws DomainAttributeException;
+    void setCoordLat(String coordLat);
 
     String getCoordLong();
 
-    void setCoordLong(String coordLong) throws DomainAttributeException;
+    void setCoordLong(String coordLong);
 
     String getPhone1();
 
-    void setPhone1(String phone1) throws DomainAttributeException;
+    void setPhone1(String phone1);
 }

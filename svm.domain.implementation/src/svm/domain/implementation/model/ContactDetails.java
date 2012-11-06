@@ -24,9 +24,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setPhone2(String phone2) throws DomainAttributeException {
-        if(phone2.equals(new String()))
-            throw new DomainAttributeException("Phone number 2 is empty");
+    public void setPhone2(String phone2)  {
         this.contactDetailsEntity.setPhone2(phone2);
     }
 
