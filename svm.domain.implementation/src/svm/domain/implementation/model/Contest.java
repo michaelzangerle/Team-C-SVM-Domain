@@ -34,7 +34,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name==null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new DomainAttributeException("contest name is empty");
         this.contestEntity.setName(name);
     }
@@ -47,7 +47,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     @Override
     public void setStart(Date start) throws DomainParameterCheckException {
 
-        if(start==null)
+        if (start == null)
             throw new DomainParameterCheckException("start is null");
 
         if (!start.after(CalendarStartDate.getCalenderStartDate()))
@@ -76,7 +76,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
     @Override
     public void setEnd(Date end) throws DomainParameterCheckException {
-        if(end==null)
+        if (end == null)
             throw new DomainParameterCheckException("End is null");
         if (!end.after(CalendarStartDate.getCalenderStartDate()))
             throw new DomainParameterCheckException("End before 1900" + end.toString());
@@ -155,10 +155,12 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         if (team == null)
             throw new DomainAttributeException("team is null");
 
+        IContestsHasTeamsEntity toRemove = null;
         for (IContestsHasTeamsEntity entity : contestEntity.getContestsHasTeams()) {
-            if (entity.getTeam().equals(((Team) team).getEntity()))
-                contestEntity.getContestsHasTeams().remove(entity);
+            if (entity.getTeam().getName().equals(((Team) team).getEntity().getName()))
+                toRemove = entity;
         }
+        if (toRemove != null) contestEntity.getContestsHasTeams().remove(toRemove);
 
         //throw new DomainParameterCheckException("Team could not be found");
 
