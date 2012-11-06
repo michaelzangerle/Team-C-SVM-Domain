@@ -25,7 +25,7 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name.equals(new String()))
+        if(name==null || name.isEmpty())
             throw new DomainAttributeException("name is empty");
         this.sportEntity.setName(name);
     }
@@ -37,7 +37,7 @@ public class Sport implements ISport,IHasEntity<ISportEntity> {
 
     @Override
     public void setAlias(String alias) throws DomainAttributeException {
-        if(alias.equals(new String()))
+        if(alias==null || alias.isEmpty())
             throw new DomainAttributeException("alias is empty");
         this.sportEntity.setAlias(alias);
     }

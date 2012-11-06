@@ -23,7 +23,7 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name.equals(new String()))
+        if(name==null || name.isEmpty())
             throw new DomainAttributeException("name is empty");
         this.teamTypeEntity.setName(name);
     }
