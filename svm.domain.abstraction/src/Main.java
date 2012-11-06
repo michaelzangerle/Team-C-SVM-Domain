@@ -1,8 +1,7 @@
 import svm.domain.abstraction.DomainFacade;
 import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
-import svm.domain.abstraction.modelInterfaces.IContest;
-import svm.domain.abstraction.modelInterfaces.ITeam;
+import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
@@ -59,12 +58,17 @@ public class Main {
         // Close Session
 
 
-        IContest contest = DomainFacade.getContestModelDAO().getAll(sessionId).get(0);
-        ITeam team = contest.getTeams().get(0);
-        contest.removeInternalTeam(team);
-        DomainFacade.startTransaction(sessionId);
-        DomainFacade.getContestModelDAO().saveOrUpdate(sessionId, contest);
-        DomainFacade.commitTransaction(sessionId);
+//        IContest contest = DomainFacade.getContestModelDAO().getAll(sessionId).get(0);
+//        ITeam team = contest.getTeams().get(0);
+//        contest.removeInternalTeam(team);
+//        DomainFacade.startTransaction(sessionId);
+//        DomainFacade.getContestModelDAO().saveOrUpdate(sessionId, contest);
+//        DomainFacade.commitTransaction(sessionId);
+//
+        for (IMember member : DomainFacade.getMemberModelDAO().get(sessionId, "", "", DomainFacade.getDepartmentModelDAO().getAll(sessionId).get(1))) {
+            System.out.println(member.getFirstName());
+        }
+
         DomainFacade.closeSession(sessionId);
     }
 }
