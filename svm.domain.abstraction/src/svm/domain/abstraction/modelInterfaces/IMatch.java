@@ -68,4 +68,7 @@ public interface IMatch extends IModel {
 
     void setAwayResult(Integer value);
 
+    IContest getContest();
+
+    void setContest(IContest contest);
 }

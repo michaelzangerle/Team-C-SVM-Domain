@@ -3,10 +3,7 @@ package svm.domain.implementation.model;
 import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
-import svm.persistence.abstraction.model.IExternalTeamEntity;
-import svm.persistence.abstraction.model.IMatchEntity;
-import svm.persistence.abstraction.model.IMatchTypeEntity;
-import svm.persistence.abstraction.model.ITeamEntity;
+import svm.persistence.abstraction.model.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -179,5 +176,15 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     @Override
     public IMatchEntity getEntity() {
         return matchEntity;
+    }
+
+    @Override
+    public IContest getContest() {
+        return new Contest(matchEntity.getContest());
+    }
+
+    @Override
+    public void setContest(IContest contest) {
+        matchEntity.setContest(((IHasEntity<IContestEntity>) contest).getEntity());
     }
 }
