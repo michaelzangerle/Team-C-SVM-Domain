@@ -279,4 +279,23 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         }
         return false;
     }
+
+    public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
+        if(privilege==null)
+            throw new DomainParameterCheckException("privilege is null");
+       if(memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
+           throw  new DomainAttributeException("privilege already added");
+
+        memberEntity.getPrivileges().add(((UserPrivilege)privilege).getEntity());
+
+    }
+
+    public void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException {
+        if(privilege==null)
+            throw new DomainParameterCheckException("privilege is null");
+        if(!memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
+            throw  new DomainAttributeException("privilege not exist");
+
+        memberEntity.getPrivileges().remove(((UserPrivilege)privilege).getEntity());
+    }
 }
