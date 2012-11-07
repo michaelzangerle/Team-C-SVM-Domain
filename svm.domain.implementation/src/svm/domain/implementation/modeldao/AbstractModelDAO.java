@@ -7,6 +7,7 @@ import svm.persistence.abstraction.dao.IDAO;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IEntity;
 
+import javax.transaction.NotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +41,13 @@ public abstract class AbstractModelDAO<T extends IModel, V extends IEntity> impl
     }
 
     @Override
-    public T generateObject() throws InstantiationException, IllegalAccessException, NoSessionFoundException {
+    public T generateObject() throws InstantiationException, IllegalAccessException, NoSessionFoundException, NotSupportedException {
         return wrapObject(dao.generateObject());
+    }
+
+    @Override
+    public T generateObject(Integer sessionId) throws InstantiationException, IllegalAccessException, NoSessionFoundException, NotSupportedException {
+        return wrapObject(dao.generateObject(sessionId));
     }
 
     protected abstract T wrapObject(V Entity);
