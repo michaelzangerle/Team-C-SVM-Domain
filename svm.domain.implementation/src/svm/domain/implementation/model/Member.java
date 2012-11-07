@@ -279,7 +279,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         }
         return false;
     }
-
+    @Override
     public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
         if(privilege==null)
             throw new DomainParameterCheckException("privilege is null");
@@ -289,7 +289,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         memberEntity.getPrivileges().add(((UserPrivilege)privilege).getEntity());
 
     }
-
+    @Override
     public void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException {
         if(privilege==null)
             throw new DomainParameterCheckException("privilege is null");

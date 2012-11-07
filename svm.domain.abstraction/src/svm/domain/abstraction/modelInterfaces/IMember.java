@@ -73,4 +73,8 @@ public interface IMember extends IModel {
     void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException;
 
     Boolean isIn(IUserPrivilege.Privileges privilege);
+
+    void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException;
+
+    void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException;
 }
