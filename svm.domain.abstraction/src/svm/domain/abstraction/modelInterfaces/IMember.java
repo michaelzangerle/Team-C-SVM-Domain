@@ -4,6 +4,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
+import javax.transaction.NotSupportedException;
 import java.util.Date;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public interface IMember extends IModel {
 
     List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson();
 
-    void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException;
+    void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException, NotSupportedException;
 
     Boolean isIn(IUserPrivilege.Privileges privilege);
 

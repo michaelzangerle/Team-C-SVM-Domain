@@ -6,6 +6,7 @@ import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
 
+import javax.transaction.NotSupportedException;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class MemberMain {
 
-    public static void main(String[] args) throws NoSessionFoundException, ExistingTransactionException, NoTransactionException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws NoSessionFoundException, ExistingTransactionException, NoTransactionException, InstantiationException, IllegalAccessException, NotSupportedException {
         // Generate a session
         Integer sessionId = DomainFacade.generateSessionId();
 

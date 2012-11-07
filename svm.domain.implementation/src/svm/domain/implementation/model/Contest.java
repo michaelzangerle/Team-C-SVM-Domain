@@ -12,6 +12,7 @@ import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
 import svm.persistence.abstraction.model.IMatchEntity;
 
+import javax.transaction.NotSupportedException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -126,6 +127,9 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             throw new DomainException(e.getMessage(), e);
         } catch (NoSessionFoundException e) {
             throw new DomainException(e.getMessage(), e);
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+            throw new DomainException(e.getMessage(), e);
         }
         c.setPaid(0f);
         c.setContest(getEntity());
@@ -193,6 +197,9 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
             e.printStackTrace();
             throw new DomainException(e.getMessage(), e);
         } catch (NoSessionFoundException e) {
+            throw new DomainException(e.getMessage(), e);
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
             throw new DomainException(e.getMessage(), e);
         }
         c.setPaid(false);
