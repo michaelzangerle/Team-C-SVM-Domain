@@ -9,7 +9,7 @@ import svm.persistence.abstraction.model.ILocationEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class Location implements ILocation,IHasEntity<ILocationEntity> {
+public class Location implements ILocation, IHasEntity<ILocationEntity> {
     ILocationEntity locationEntity;
 
     public Location(ILocationEntity LocationEntity) {
@@ -23,7 +23,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setCountryCode(String countryCode) throws DomainAttributeException {
-        if(countryCode==null || countryCode.isEmpty())
+        if (countryCode == null || countryCode.isEmpty())
             throw new DomainAttributeException("Country Code is empty");
         this.locationEntity.setCountryCode(countryCode);
     }
@@ -35,7 +35,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setPostalCode(String postalCode) throws DomainAttributeException {
-        if(postalCode==null || postalCode.isEmpty())
+        if (postalCode == null || postalCode.isEmpty())
             throw new DomainAttributeException("postal code is empty");
         this.locationEntity.setPostalCode(postalCode);
     }
@@ -47,7 +47,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setPlaceName(String placeName) throws DomainAttributeException {
-        if(placeName==null || placeName.isEmpty())
+        if (placeName == null || placeName.isEmpty())
             throw new DomainAttributeException("place name is empty");
         this.locationEntity.setPlaceName(placeName);
     }
@@ -59,7 +59,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setDistrict(String district) throws DomainAttributeException {
-        if(district==null || district.isEmpty())
+        if (district == null || district.isEmpty())
             throw new DomainAttributeException("district is empty");
         this.locationEntity.setDistrict(district);
     }
@@ -71,7 +71,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setDistrictID(String districtID) throws DomainAttributeException {
-        if(districtID==null || districtID.isEmpty())
+        if (districtID == null || districtID.isEmpty())
             throw new DomainAttributeException("district ID is empty");
         this.locationEntity.setDistrictId(districtID);
     }
@@ -83,7 +83,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setProvince(String province) throws DomainAttributeException {
-        if(province==null || province.isEmpty())
+        if (province == null || province.isEmpty())
             throw new DomainAttributeException("province is empty");
         this.locationEntity.setProvince(province);
     }
@@ -95,7 +95,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setProvinceID(String provinceID) throws DomainAttributeException {
-        if(provinceID==null || provinceID.isEmpty())
+        if (provinceID == null || provinceID.isEmpty())
             throw new DomainAttributeException("province ID is empty");
         this.locationEntity.setProvinceId(provinceID);
     }
@@ -107,7 +107,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setCommunity(String community) throws DomainAttributeException {
-        if(community==null || community.isEmpty())
+        if (community == null || community.isEmpty())
             throw new DomainAttributeException("community is empty");
         this.locationEntity.setCommunity(community);
     }
@@ -119,7 +119,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setCommunityID(String communityID) throws DomainAttributeException {
-        if(communityID==null || communityID.isEmpty())
+        if (communityID == null || communityID.isEmpty())
             throw new DomainAttributeException("community ID is empty");
         this.locationEntity.setCommunityId(communityID);
     }
@@ -131,7 +131,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setLatitude(String latitude) throws DomainAttributeException {
-        if(latitude==null || latitude.isEmpty())
+        if (latitude == null || latitude.isEmpty())
             throw new DomainAttributeException("latitude is empty");
         this.locationEntity.setLatitude(latitude);
     }
@@ -143,7 +143,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setLongitude(String longitude) throws DomainAttributeException {
-        if(longitude==null || longitude.isEmpty())
+        if (longitude == null || longitude.isEmpty())
             throw new DomainAttributeException("longitude is empty");
         this.locationEntity.setLongitude(longitude);
     }
@@ -155,7 +155,7 @@ public class Location implements ILocation,IHasEntity<ILocationEntity> {
 
     @Override
     public void setAccuracy(String accuracy) throws DomainAttributeException {
-        if(accuracy==null || accuracy.isEmpty())
+        if (accuracy == null || accuracy.isEmpty())
             throw new DomainAttributeException("accuracy is empty");
         this.locationEntity.setAccuracy(accuracy);
     }

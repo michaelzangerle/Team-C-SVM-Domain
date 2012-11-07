@@ -24,7 +24,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setPhone2(String phone2)  {
+    public void setPhone2(String phone2) {
         this.contactDetailsEntity.setPhone2(phone2);
     }
 
@@ -64,7 +64,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setStreet(String street)  {
+    public void setStreet(String street) {
         this.contactDetailsEntity.setStreet(street);
     }
 
@@ -74,7 +74,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setStreetNumber(String streetNumber){
+    public void setStreetNumber(String streetNumber) {
         this.contactDetailsEntity.setStreetNumber(streetNumber);
     }
 
@@ -85,7 +85,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
 
     @Override
     public void setLocation(ILocation location) throws DomainAttributeException {
-        if(location==null)
+        if (location == null)
             throw new DomainAttributeException("Location is empty");
         this.contactDetailsEntity.setLocationEntity(((Location) location).getEntity());
     }
@@ -116,7 +116,7 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setPhone1(String phone1)  {
+    public void setPhone1(String phone1) {
         this.contactDetailsEntity.setPhone1(phone1);
     }
 

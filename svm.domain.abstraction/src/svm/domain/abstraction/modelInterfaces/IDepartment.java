@@ -6,7 +6,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface IDepartment extends IModel{
+public interface IDepartment extends IModel {
     String getName();
 
     void setName(String name) throws DomainAttributeException;

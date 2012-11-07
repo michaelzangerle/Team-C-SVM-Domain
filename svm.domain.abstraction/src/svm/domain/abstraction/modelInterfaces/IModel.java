@@ -7,5 +7,5 @@ import java.rmi.Remote;
  * ProjectTeam: Team C
  * Date: 25.10.12
  */
-public interface IModel extends Serializable,Remote {
+public interface IModel extends Serializable, Remote {
 }

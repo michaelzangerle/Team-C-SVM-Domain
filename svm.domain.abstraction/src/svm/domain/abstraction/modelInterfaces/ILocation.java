@@ -6,7 +6,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
  * Projectteam: Team C
  * Date: 24.10.12
  */
-public interface ILocation extends IModel{
+public interface ILocation extends IModel {
     String getCountryCode();
 
     void setCountryCode(String countryCode) throws DomainAttributeException;

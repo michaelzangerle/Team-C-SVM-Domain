@@ -11,7 +11,7 @@ import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
  * Projectteam : Team C
  * Date: 31.10.12
  */
-public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasTeamsEntity>{
+public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasTeamsEntity> {
 
     IContestsHasTeamsEntity contestsHasTeamsEntity;
 
@@ -26,21 +26,21 @@ public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasT
 
     @Override
     public void setTeam(ITeam team) throws DomainAttributeException {
-        if(team==null)
+        if (team == null)
             throw new DomainAttributeException("Team is null");
-        contestsHasTeamsEntity.setTeam(((Team)team).getEntity());
+        contestsHasTeamsEntity.setTeam(((Team) team).getEntity());
     }
 
     @Override
     public IContest getContest() {
-       return  new Contest(contestsHasTeamsEntity.getContest());
+        return new Contest(contestsHasTeamsEntity.getContest());
     }
 
     @Override
     public void setContest(IContest contest) throws DomainAttributeException {
-        if(contest==null)
+        if (contest == null)
             throw new DomainAttributeException("Team is null");
-        contestsHasTeamsEntity.setContest(((Contest)contest).getEntity());
+        contestsHasTeamsEntity.setContest(((Contest) contest).getEntity());
     }
 
     @Override

@@ -4,7 +4,6 @@ import svm.domain.abstraction.modelInterfaces.IExternalTeam;
 import svm.domain.abstraction.modeldao.IExternalTeamModelDAO;
 import svm.domain.implementation.model.ExternalTeam;
 import svm.persistence.PersistenceFacade;
-import svm.persistence.abstraction.dao.IDAO;
 import svm.persistence.abstraction.model.IExternalTeamEntity;
 
 /**

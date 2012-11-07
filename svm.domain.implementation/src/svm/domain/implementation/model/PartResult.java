@@ -9,7 +9,7 @@ import svm.persistence.abstraction.model.IPartResultEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class PartResult implements IPartResult,IHasEntity<IPartResultEntity> {
+public class PartResult implements IPartResult, IHasEntity<IPartResultEntity> {
     IPartResultEntity partResultEntity;
 
     public PartResult(IPartResultEntity partResult) {
@@ -34,7 +34,7 @@ public class PartResult implements IPartResult,IHasEntity<IPartResultEntity> {
 
     @Override
     public void setContestant(IContestant contestant) {
-        this.partResultEntity.setContestant(((Contestant)contestant).getEntity());
+        this.partResultEntity.setContestant(((Contestant) contestant).getEntity());
     }
 
     @Override

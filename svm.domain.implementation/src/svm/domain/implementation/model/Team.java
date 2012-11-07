@@ -29,7 +29,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name==null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new DomainAttributeException("name is empty");
         this.teamEntity.setName(name);
     }
@@ -41,7 +41,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
 
     @Override
     public void setAlias(String alias) throws DomainAttributeException {
-        if(alias==null || alias.isEmpty())
+        if (alias == null || alias.isEmpty())
             throw new DomainAttributeException("alias is empty");
         this.teamEntity.setAlias(alias);
     }
@@ -53,7 +53,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
 
     @Override
     public void setFounded(Date founded) throws DomainParameterCheckException {
-        if(founded==null)
+        if (founded == null)
             throw new DomainParameterCheckException("Year is null");
         if (founded.getYear() < 1500)
             throw new DomainParameterCheckException("Year smaller than 1500 " + founded.getYear());

@@ -9,8 +9,7 @@ import java.util.Date;
  */
 public class CalendarStartDate {
 
-    public static Date getCalenderStartDate()
-    {
+    public static Date getCalenderStartDate() {
         Calendar cal = Calendar.getInstance();
         cal.set(1900, 1, 1); //year is as expected, month is zero based, date is as expected
         Date dt = cal.getTime();

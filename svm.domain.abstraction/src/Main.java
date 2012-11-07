@@ -65,7 +65,7 @@ public class Main {
         ITeam team = contest.getTeams().get(0);
 
         System.out.println("--------------------");
-        for (ITeam t : contest.getTeams()){
+        for (ITeam t : contest.getTeams()) {
             System.out.println(t.getName());
         }
         //contest.removeInternalTeam(team);
@@ -74,10 +74,9 @@ public class Main {
         DomainFacade.commitTransaction(sessionId);
 
         System.out.println("--------------------");
-        for (ITeam t : contest.getTeams()){
+        for (ITeam t : contest.getTeams()) {
             System.out.println(t.getName());
         }
-
 
 
         DomainFacade.closeSession(sessionId);

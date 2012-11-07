@@ -8,7 +8,7 @@ import svm.persistence.abstraction.model.IMemberRoleEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class MemberRole implements IMemberRole,IHasEntity<IMemberRoleEntity> {
+public class MemberRole implements IMemberRole, IHasEntity<IMemberRoleEntity> {
 
     IMemberRoleEntity memberRoleEntity;
 

@@ -24,7 +24,7 @@ public class Contestant implements IContestant, IHasEntity<IContestantEntity> {
     }
 
     @Override
-    public void setInternalTeam(ITeam internalTeam){
+    public void setInternalTeam(ITeam internalTeam) {
         this.contestantEntity.setInternalTeam(((Team) internalTeam).getEntity());
     }
 

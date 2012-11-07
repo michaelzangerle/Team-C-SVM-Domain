@@ -24,7 +24,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setName(String name) throws DomainAttributeException {
-        if(name==null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new DomainAttributeException("name is empty");
         this.departmentEntity.setName(name);
     }
@@ -36,7 +36,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
 
     @Override
     public void setAlias(String alias) throws DomainAttributeException {
-        if(alias==null || alias.isEmpty())
+        if (alias == null || alias.isEmpty())
             throw new DomainAttributeException("alias is empty");
         this.departmentEntity.setAlias(alias);
     }
@@ -47,7 +47,7 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.departmentEntity.setDescription(description);
     }
 

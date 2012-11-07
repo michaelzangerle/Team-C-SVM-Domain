@@ -8,6 +8,6 @@ import java.rmi.Remote;
  * ProjectTeam: Team C
  * Date: 25.10.12
  */
-public interface IHasEntity<T extends IEntity>  extends Remote{
+public interface IHasEntity<T extends IEntity> extends Remote {
     T getEntity();
 }

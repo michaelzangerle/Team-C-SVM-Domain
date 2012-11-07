@@ -44,11 +44,11 @@ public class ExternalTeam implements IExternalTeam, IHasEntity<IExternalTeamEnti
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
-        this.externalTeamEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+        this.externalTeamEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override
     public IExternalTeamEntity getEntity() {
-       return externalTeamEntity;
+        return externalTeamEntity;
     }
 }
