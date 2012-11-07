@@ -45,4 +45,8 @@ public class UserPrivilege implements IUserPrivilege, IHasEntity<IUserPrivilegeE
         return userPrivilegeEntity;
     }
 
+    @Override
+    public boolean isNull() {
+        return userPrivilegeEntity == null;
+    }
 }

@@ -261,4 +261,9 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         }
         return result;
     }
+
+    @Override
+    public boolean isNull() {
+        return this.contestEntity == null;
+    }
 }

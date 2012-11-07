@@ -51,4 +51,9 @@ public class ExternalTeam implements IExternalTeam, IHasEntity<IExternalTeamEnti
     public IExternalTeamEntity getEntity() {
         return externalTeamEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return externalTeamEntity == null;
+    }
 }

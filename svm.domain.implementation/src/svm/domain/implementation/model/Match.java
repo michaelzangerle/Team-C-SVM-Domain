@@ -187,4 +187,9 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     public void setContest(IContest contest) {
         matchEntity.setContest(((IHasEntity<IContestEntity>) contest).getEntity());
     }
+
+    @Override
+    public boolean isNull() {
+        return matchEntity == null;
+    }
 }

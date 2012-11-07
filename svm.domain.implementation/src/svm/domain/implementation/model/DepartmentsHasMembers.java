@@ -27,4 +27,9 @@ public class DepartmentsHasMembers implements IHasEntity<IDepartmentsHasMembersE
     public IDepartmentsHasMembersEntity getEntity() {
         return entity;
     }
+
+    @Override
+    public boolean isNull() {
+        return entity == null;
+    }
 }

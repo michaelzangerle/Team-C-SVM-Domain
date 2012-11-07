@@ -40,4 +40,9 @@ public class MemberRole implements IMemberRole, IHasEntity<IMemberRoleEntity> {
     public IMemberRoleEntity getEntity() {
         return memberRoleEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return memberRoleEntity == null;
+    }
 }

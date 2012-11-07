@@ -42,4 +42,9 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     public ITeamTypeEntity getEntity() {
         return teamTypeEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return teamTypeEntity == null;
+    }
 }

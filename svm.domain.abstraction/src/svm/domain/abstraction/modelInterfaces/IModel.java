@@ -8,4 +8,5 @@ import java.rmi.Remote;
  * Date: 25.10.12
  */
 public interface IModel extends Serializable, Remote {
+    boolean isNull();
 }

@@ -66,4 +66,9 @@ public class SubTeamsHasMembers implements IHasEntity<ISubTeamsHasMembersEntity>
     public ISubTeamsHasMembersEntity getEntity() {
         return entity;
     }
+
+    @Override
+    public boolean isNull() {
+        return entity == null;
+    }
 }

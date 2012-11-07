@@ -124,4 +124,9 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     public IContactDetailsEntity getEntity() {
         return contactDetailsEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return this.contactDetailsEntity == null;
+    }
 }

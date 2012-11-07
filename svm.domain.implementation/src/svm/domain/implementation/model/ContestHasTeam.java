@@ -77,4 +77,9 @@ public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasT
     public IContestsHasTeamsEntity getEntity() {
         return contestsHasTeamsEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return this.contestsHasTeamsEntity == null;
+    }
 }

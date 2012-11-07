@@ -71,4 +71,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     public Boolean equals(IDepartment obj) {
         return obj.equals(obj);
     }
+
+    @Override
+    public boolean isNull() {
+        return departmentEntity == null;
+    }
 }

@@ -70,4 +70,9 @@ public class Sport implements ISport, IHasEntity<ISportEntity> {
     public ISportEntity getEntity() {
         return sportEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return sportEntity == null;
+    }
 }

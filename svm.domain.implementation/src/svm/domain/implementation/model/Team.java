@@ -121,4 +121,9 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     public ITeamEntity getEntity() {
         return teamEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return teamEntity == null;
+    }
 }

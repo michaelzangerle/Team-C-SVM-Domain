@@ -70,4 +70,9 @@ public class MatchType implements IMatchType, IHasEntity<IMatchTypeEntity> {
     public IMatchTypeEntity getEntity() {
         return matchTypeEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return matchTypeEntity == null;
+    }
 }

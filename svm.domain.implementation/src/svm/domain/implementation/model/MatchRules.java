@@ -2,7 +2,6 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMatchRules;
-import svm.domain.abstraction.modelInterfaces.IMatchType;
 import svm.persistence.abstraction.model.IMatchRulesEntity;
 
 /**
@@ -39,5 +38,10 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     @Override
     public IMatchRulesEntity getEntity() {
         return matchRulesEntity;
+    }
+
+    @Override
+    public boolean isNull() {
+        return matchRulesEntity == null;
     }
 }

@@ -3,6 +3,7 @@ package svm.domain.abstraction.modelInterfaces;
 import svm.domain.abstraction.exception.DomainException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
+import javax.transaction.NotSupportedException;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public interface ISubTeam extends IModel {
 
     List<ISubTeamsHasMembers> getSubTeamMembers();
 
-    void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+    void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException, NotSupportedException;
 
     void removeMember(IMember member);
 }

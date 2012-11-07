@@ -165,4 +165,9 @@ public class Location implements ILocation, IHasEntity<ILocationEntity> {
     public ILocationEntity getEntity() {
         return locationEntity;
     }
+
+    @Override
+    public boolean isNull() {
+        return locationEntity == null;
+    }
 }
