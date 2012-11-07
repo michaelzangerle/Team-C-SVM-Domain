@@ -179,7 +179,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         IMemberFeeEntity enity = PersistenceFacade.getMemberFeeDAO().generateObject();
         enity.setAmount(Float.valueOf(String.valueOf(getFee())));
 
-        // TODO enity.setMember(memberEntity);
+        enity.setMember(memberEntity);
 
         enity.setDate(new java.sql.Date(new Date().getTime()));
         memberEntity.getFees().add(enity);
