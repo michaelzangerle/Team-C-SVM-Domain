@@ -6,9 +6,9 @@ import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.*;
 
-import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.*;
 
 /**
@@ -301,5 +301,10 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
             throw new DomainAttributeException("privilege not exist");
 
         memberEntity.getPrivileges().remove(((UserPrivilege) privilege).getEntity());
+    }
+
+    @Override
+    public boolean isNull() {
+        return memberEntity == null;
     }
 }

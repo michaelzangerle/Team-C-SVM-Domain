@@ -4,12 +4,12 @@ import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.IContestEntity;
 import svm.persistence.abstraction.model.ISubTeamEntity;
 import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 
-import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -95,5 +95,10 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
     @Override
     public ISubTeamEntity getEntity() {
         return subTeam;
+    }
+
+    @Override
+    public boolean isNull() {
+        return subTeam == null;
     }
 }
