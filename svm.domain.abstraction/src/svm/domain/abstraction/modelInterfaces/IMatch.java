@@ -4,7 +4,6 @@ import svm.domain.abstraction.exception.DomainException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Projectteam: Team C
@@ -43,8 +42,6 @@ public interface IMatch extends IModel {
 
     IMatchType getMatchType();
 
-    List<IContestant> getContestants();
-
     void setContestants(ITeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
     void setContestants(IExternalTeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
@@ -53,8 +50,22 @@ public interface IMatch extends IModel {
 
     void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException;
 
-    void addResult(Float home, Float away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+    void setResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException;
 
-    void setResult(Float home, Float away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException;
+    ITeam getHomeInternal();
+
+    IExternalTeam getHomeExternal();
+
+    ITeam getAwayInternal();
+
+    IExternalTeam getAwayExternal();
+
+    Integer getHomeResult();
+
+    Integer getAwayResult();
+
+    void setHomeResult(Integer value);
+
+    void setAwayResult(Integer value);
 
 }

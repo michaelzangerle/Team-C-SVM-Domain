@@ -2,14 +2,14 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.exception.DomainException;
 import svm.domain.abstraction.modelInterfaces.*;
-import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
-import svm.persistence.abstraction.model.*;
+import svm.persistence.abstraction.model.IExternalTeamEntity;
+import svm.persistence.abstraction.model.IMatchEntity;
+import svm.persistence.abstraction.model.IMatchTypeEntity;
+import svm.persistence.abstraction.model.ITeamEntity;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Projectteam
@@ -100,16 +100,6 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
         return new MatchType(this.matchEntity.getMatchType());
     }
 
-    @Override
-    public List<IContestant> getContestants() {
-        List<IContestant> contestants = new LinkedList<IContestant>();
-
-        for (IContestantEntity ce : this.matchEntity.getContestants()) {
-            contestants.add(new Contestant(ce));
-        }
-
-        return contestants;
-    }
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
@@ -118,98 +108,72 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
 
     @Override
     public void setContestants(ITeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
-        IContestantEntity e1 = PersistenceFacade.getContestantDAO().generateObject();
-        e1.setInternalTeam(((IHasEntity<ITeamEntity>) home).getEntity());
-        e1.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e1);
-
-        IContestantEntity e2 = PersistenceFacade.getContestantDAO().generateObject();
-        e2.setInternalTeam(((IHasEntity<ITeamEntity>) away).getEntity());
-        e2.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e2);
+        this.matchEntity.setHomeInternal(((IHasEntity<ITeamEntity>) home).getEntity());
+        this.matchEntity.setAwayInternal(((IHasEntity<ITeamEntity>) away).getEntity());
     }
 
     @Override
     public void setContestants(IExternalTeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
-        IContestantEntity e1 = PersistenceFacade.getContestantDAO().generateObject();
-        e1.setExternalTeam(((IHasEntity<IExternalTeamEntity>) home).getEntity());
-        e1.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e1);
-
-        IContestantEntity e2 = PersistenceFacade.getContestantDAO().generateObject();
-        e2.setInternalTeam(((IHasEntity<ITeamEntity>) away).getEntity());
-        e2.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e2);
+        this.matchEntity.setHomeExternal(((IHasEntity<IExternalTeamEntity>) home).getEntity());
+        this.matchEntity.setAwayInternal(((IHasEntity<ITeamEntity>) away).getEntity());
     }
 
     @Override
     public void setContestants(ITeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
-        IContestantEntity e1 = PersistenceFacade.getContestantDAO().generateObject();
-        e1.setInternalTeam(((IHasEntity<ITeamEntity>) home).getEntity());
-        e1.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e1);
-
-        IContestantEntity e2 = PersistenceFacade.getContestantDAO().generateObject();
-        e2.setExternalTeam(((IHasEntity<IExternalTeamEntity>) away).getEntity());
-        e2.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e2);
+        this.matchEntity.setHomeInternal(((IHasEntity<ITeamEntity>) home).getEntity());
+        this.matchEntity.setAwayExternal(((IHasEntity<IExternalTeamEntity>) away).getEntity());
     }
 
     @Override
     public void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
-        IContestantEntity e1 = PersistenceFacade.getContestantDAO().generateObject();
-        e1.setExternalTeam(((IHasEntity<IExternalTeamEntity>) home).getEntity());
-        e1.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e1);
-
-        IContestantEntity e2 = PersistenceFacade.getContestantDAO().generateObject();
-        e2.setExternalTeam(((IHasEntity<IExternalTeamEntity>) away).getEntity());
-        e2.getMatches().add(this.getEntity());
-        matchEntity.getContestants().add(e2);
+        this.matchEntity.setHomeExternal(((IHasEntity<IExternalTeamEntity>) home).getEntity());
+        this.matchEntity.setAwayExternal(((IHasEntity<IExternalTeamEntity>) away).getEntity());
     }
 
     @Override
-    public void addResult(Float home, Float away) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException {
-        List<IContestantEntity> contestants = this.matchEntity.getContestants();
-        if (contestants.size() != 2) throw new DomainException("No Contestants added");
-        IContestantEntity homeContestant = contestants.get(0);
-        IContestantEntity awayContestant = contestants.get(1);
-
-        IPartResultEntity e1 = PersistenceFacade.getPartResultDAO().generateObject();
-        e1.setResult(home);
-        e1.setComment("");
-        e1.setContestant(homeContestant);
-        homeContestant.getPartResults().add(e1);
-
-        IPartResultEntity e2 = PersistenceFacade.getPartResultDAO().generateObject();
-        e2.setResult(away);
-        e2.setComment("");
-        e2.setContestant(awayContestant);
-        awayContestant.getPartResults().add(e2);
+    public void setResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeResult(home);
+        this.matchEntity.setAwayResult(away);
     }
 
     @Override
-    public void setResult(Float home, Float away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException {
-        List<IContestantEntity> contestants = this.matchEntity.getContestants();
-        if (contestants.size() != 2) throw new DomainException("No Contestants added");
-        IContestantEntity homeContestant = contestants.get(0);
-        IContestantEntity awayContestant = contestants.get(1);
+    public ITeam getHomeInternal() {
+        return new Team(this.matchEntity.getHomeInternal());
+    }
 
-        homeContestant.setPartResults(new LinkedList<IPartResultEntity>());
-        awayContestant.setPartResults(new LinkedList<IPartResultEntity>());
+    @Override
+    public IExternalTeam getHomeExternal() {
+        return new ExternalTeam(this.matchEntity.getHomeExternal());
+    }
 
-        IPartResultEntity e1 = PersistenceFacade.getPartResultDAO().generateObject();
-        e1.setResult(home);
-        e1.setComment("");
-        e1.setContestant(homeContestant);
-        homeContestant.getPartResults().add(e1);
+    @Override
+    public ITeam getAwayInternal() {
+        return new Team(this.matchEntity.getAwayInternal());
+    }
 
-        IPartResultEntity e2 = PersistenceFacade.getPartResultDAO().generateObject();
-        e2.setResult(away);
-        e2.setComment("");
-        e2.setContestant(awayContestant);
-        awayContestant.getPartResults().add(e2);
+    @Override
+    public IExternalTeam getAwayExternal() {
+        return new ExternalTeam(this.matchEntity.getAwayExternal());
+    }
 
+    @Override
+    public Integer getHomeResult() {
+        return this.matchEntity.getHomeResult();
+    }
+
+    @Override
+    public Integer getAwayResult() {
+        return this.matchEntity.getAwayResult();
+    }
+
+    @Override
+    public void setHomeResult(Integer value) {
+        this.matchEntity.setHomeResult(value);
+    }
+
+    @Override
+    public void setAwayResult(Integer value) {
+        this.matchEntity.setAwayResult(value);
     }
 
     @Override

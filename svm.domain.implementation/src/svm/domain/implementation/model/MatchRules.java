@@ -27,17 +27,6 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     }
 
     @Override
-    public IMatchType getMatchType() {
-        return new MatchType(matchRulesEntity.getMatchType());
-
-    }
-
-    @Override
-    public void setMatchType(IMatchType matchType) {
-        this.matchRulesEntity.setMatchType(((MatchType) matchType).getEntity());
-    }
-
-    @Override
     public String getDescription() {
         return matchRulesEntity.getDescription();
     }

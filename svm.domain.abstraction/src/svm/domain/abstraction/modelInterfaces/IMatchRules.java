@@ -9,10 +9,6 @@ public interface IMatchRules extends IModel {
 
     void setName(String name);
 
-    IMatchType getMatchType();
-
-    void setMatchType(IMatchType matchType);
-
     String getDescription();
 
     void setDescription(String description);
