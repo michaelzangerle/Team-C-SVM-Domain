@@ -179,7 +179,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         IMemberFeeEntity enity = PersistenceFacade.getMemberFeeDAO().generateObject();
         enity.setAmount(Float.valueOf(String.valueOf(getFee())));
 
-        // TODO enity.setMember(memberEntity);
+        enity.setMember(memberEntity);
 
         enity.setDate(new java.sql.Date(new Date().getTime()));
         memberEntity.getFees().add(enity);
@@ -278,5 +278,24 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
             if (privilege.equals(IUserPrivilege.Privileges.get(d.getAlias()))) return true;
         }
         return false;
+    }
+    @Override
+    public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
+        if(privilege==null)
+            throw new DomainParameterCheckException("privilege is null");
+       if(memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
+           throw  new DomainAttributeException("privilege already added");
+
+        memberEntity.getPrivileges().add(((UserPrivilege)privilege).getEntity());
+
+    }
+    @Override
+    public void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException {
+        if(privilege==null)
+            throw new DomainParameterCheckException("privilege is null");
+        if(!memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
+            throw  new DomainAttributeException("privilege not exist");
+
+        memberEntity.getPrivileges().remove(((UserPrivilege)privilege).getEntity());
     }
 }

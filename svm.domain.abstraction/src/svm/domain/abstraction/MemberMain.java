@@ -21,7 +21,7 @@ public class MemberMain {
         // Get ModelDAO for Members
         IMemberModelDAO dao = DomainFacade.getMemberModelDAO();
         // Get a list of all Members
-        List<IMember> members = dao.get(sessionId, "Patrik", "Jost");
+        List<IMember> members = dao.get(sessionId, "Patrick", "Jost");
         // Iterate over all Members
         for (IMember entity : members) {
             // Get FirstName of Member
