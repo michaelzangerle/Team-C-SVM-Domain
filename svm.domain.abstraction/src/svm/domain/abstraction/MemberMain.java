@@ -5,8 +5,9 @@ import svm.domain.abstraction.modeldao.IMemberModelDAO;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 
-import javax.transaction.NotSupportedException;
+
 import java.util.List;
 
 /**

@@ -8,7 +8,7 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.*;
 
-import javax.transaction.NotSupportedException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.*;
 
 /**

@@ -5,9 +5,10 @@ import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.domain.abstraction.modeldao.IModelDAO;
 import svm.persistence.abstraction.dao.IDAO;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.IEntity;
 
-import javax.transaction.NotSupportedException;
+
 import java.util.ArrayList;
 import java.util.List;
 

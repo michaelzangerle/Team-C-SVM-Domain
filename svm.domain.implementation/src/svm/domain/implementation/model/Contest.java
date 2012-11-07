@@ -12,7 +12,7 @@ import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
 import svm.persistence.abstraction.model.IMatchEntity;
 
-import javax.transaction.NotSupportedException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
