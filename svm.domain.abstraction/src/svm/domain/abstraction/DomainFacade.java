@@ -196,7 +196,7 @@ public class DomainFacade {
         return ModelDAOFactory.getInstance().getExternalTeamModelDAO();
     }
 
-    public static IUserPrivilegeModelDAO UserPrivilegeDAO() {
+    public static IUserPrivilegeModelDAO getUserPrivilegeDAO() {
         return ModelDAOFactory.getInstance().getUserPrivilegeDAO();
     }
 
