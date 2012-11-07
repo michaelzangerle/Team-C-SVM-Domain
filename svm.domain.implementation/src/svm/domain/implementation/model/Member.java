@@ -271,4 +271,12 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         }
         return false;
     }
+
+    @Override
+    public Boolean isIn(IUserPrivilege.Privileges privilege) {
+        for (IUserPrivilegeEntity d : memberEntity.getPrivileges()) {
+            if (privilege.equals(IUserPrivilege.Privileges.get(d.getAlias()))) return true;
+        }
+        return false;
+    }
 }

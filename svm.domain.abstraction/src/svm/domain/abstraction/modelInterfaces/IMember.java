@@ -71,4 +71,6 @@ public interface IMember extends IModel {
     List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson();
 
     void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException;
+
+    Boolean isIn(IUserPrivilege.Privileges privilege);
 }

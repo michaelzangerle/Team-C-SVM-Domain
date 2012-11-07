@@ -36,7 +36,13 @@ public class UserPrivilege implements IUserPrivilege, IHasEntity<IUserPrivilegeE
     }
 
     @Override
+    public Privileges getAlias() {
+        return Privileges.get(this.userPrivilegeEntity.getAlias());
+    }
+
+    @Override
     public IUserPrivilegeEntity getEntity() {
         return userPrivilegeEntity;
     }
+
 }
