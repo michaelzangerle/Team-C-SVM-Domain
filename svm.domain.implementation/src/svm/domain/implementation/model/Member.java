@@ -201,6 +201,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         Double paidYet = 0.0;
 
         List<IMemberFeeEntity> fees = memberEntity.getFees();
+        if (fees == null) return false;
         for (IMemberFeeEntity fee : fees) {
 
             Calendar tmp = Calendar.getInstance();
@@ -280,23 +281,25 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         }
         return false;
     }
+
     @Override
     public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
-        if(privilege==null)
+        if (privilege == null)
             throw new DomainParameterCheckException("privilege is null");
-       if(memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
-           throw  new DomainAttributeException("privilege already added");
+        if (memberEntity.getPrivileges().contains(((UserPrivilege) privilege).getEntity()))
+            throw new DomainAttributeException("privilege already added");
 
-        memberEntity.getPrivileges().add(((UserPrivilege)privilege).getEntity());
+        memberEntity.getPrivileges().add(((UserPrivilege) privilege).getEntity());
 
     }
+
     @Override
     public void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException {
-        if(privilege==null)
+        if (privilege == null)
             throw new DomainParameterCheckException("privilege is null");
-        if(!memberEntity.getPrivileges().contains(((UserPrivilege)privilege).getEntity()))
-            throw  new DomainAttributeException("privilege not exist");
+        if (!memberEntity.getPrivileges().contains(((UserPrivilege) privilege).getEntity()))
+            throw new DomainAttributeException("privilege not exist");
 
-        memberEntity.getPrivileges().remove(((UserPrivilege)privilege).getEntity());
+        memberEntity.getPrivileges().remove(((UserPrivilege) privilege).getEntity());
     }
 }
