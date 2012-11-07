@@ -5,6 +5,7 @@ import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.dao.IUserPrivilegeDAO;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NoTransactionException;
@@ -194,6 +195,10 @@ public class DomainFacade {
      */
     public static IExternalTeamModelDAO getExternalTeamModelDAO() {
         return ModelDAOFactory.getInstance().getExternalTeamModelDAO();
+    }
+
+    public static IUserPrivilegeDAO UserPrivilegeDAO() {
+        return ModelDAOFactory.getInstance().getUserPrivilegeDAO();
     }
 
     //endregion

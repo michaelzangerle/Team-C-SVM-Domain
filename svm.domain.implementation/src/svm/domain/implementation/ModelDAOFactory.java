@@ -2,6 +2,8 @@ package svm.domain.implementation;
 
 import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.modeldao.*;
+import svm.persistence.abstraction.dao.IUserPrivilegeDAO;
+import svm.persistence.hibernate.dao.UserPrivilegeDAO;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -142,5 +144,9 @@ public class ModelDAOFactory {
      */
     public IExternalTeamModelDAO getExternalTeamModelDAO() {
         return (IExternalTeamModelDAO) getDAO(ExternalTeamModelDAO.class);
+    }
+
+    public IUserPrivilegeDAO getUserPrivilegeDAO() {
+        return (IUserPrivilegeDAO) getDAO(UserPrivilegeDAO.class);
     }
 }
