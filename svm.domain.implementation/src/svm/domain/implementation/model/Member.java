@@ -8,7 +8,7 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.*;
 
-import javax.transaction.NotSupportedException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.*;
 
 /**
@@ -201,6 +201,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         Double paidYet = 0.0;
 
         List<IMemberFeeEntity> fees = memberEntity.getFees();
+        if (fees == null) return false;
         for (IMemberFeeEntity fee : fees) {
 
             Calendar tmp = Calendar.getInstance();
@@ -300,10 +301,5 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
             throw new DomainAttributeException("privilege not exist");
 
         memberEntity.getPrivileges().remove(((UserPrivilege) privilege).getEntity());
-    }
-
-    @Override
-    public boolean isNull() {
-        return memberEntity == null;
     }
 }

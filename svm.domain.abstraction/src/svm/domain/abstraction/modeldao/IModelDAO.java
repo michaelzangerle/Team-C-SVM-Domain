@@ -3,7 +3,7 @@ package svm.domain.abstraction.modeldao;
 import svm.domain.abstraction.modelInterfaces.IModel;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 
-import javax.transaction.NotSupportedException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.List;
 
 /**

@@ -9,7 +9,7 @@ import svm.persistence.abstraction.model.ISubTeamEntity;
 import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 
-import javax.transaction.NotSupportedException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         subTeam.setTeam(((IHasEntity<ITeamEntity>) contest).getEntity());
     }
 
-    public void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException, NotSupportedException {
+    public void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException, svm.persistence.abstraction.exceptions.NotSupportedException, NotSupportedException {
         // Check if Member is in Team
         if (getTeam().isMember(member)) {
             // Generate new Connection between Member and SubTeam
@@ -95,10 +95,5 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
     @Override
     public ISubTeamEntity getEntity() {
         return subTeam;
-    }
-
-    @Override
-    public boolean isNull() {
-        return subTeam == null;
     }
 }
