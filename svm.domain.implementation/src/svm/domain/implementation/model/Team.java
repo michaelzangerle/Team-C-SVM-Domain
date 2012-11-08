@@ -112,7 +112,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     @Override
     public Boolean isMember(IMember member) {
         for (ITeamsHasMembersEntity entity : teamEntity.getTeamsHasMembers()) {
-            if (entity.getMember().equals(member)) return true;
+            if (entity.getMember().getId() == ((IHasEntity) member).getEntity().getId()) return true;
         }
         return false;
     }
