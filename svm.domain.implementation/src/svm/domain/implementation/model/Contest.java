@@ -7,12 +7,12 @@ import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.IContestEntity;
 import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
 import svm.persistence.abstraction.model.IMatchEntity;
 
-import svm.persistence.abstraction.exceptions.NotSupportedException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -265,5 +265,23 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     @Override
     public boolean isNull() {
         return this.contestEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Contest contest = (Contest) o;
+
+        if (contestEntity != null ? !contestEntity.equals(contest.contestEntity) : contest.contestEntity != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return contestEntity != null ? contestEntity.hashCode() : 0;
     }
 }

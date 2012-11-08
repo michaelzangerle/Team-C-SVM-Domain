@@ -104,4 +104,21 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
     public boolean isNull() {
         return subTeam == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SubTeam subTeam1 = (SubTeam) o;
+
+        if (subTeam != null ? !subTeam.equals(subTeam1.subTeam) : subTeam1.subTeam != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return subTeam != null ? subTeam.hashCode() : 0;
+    }
 }

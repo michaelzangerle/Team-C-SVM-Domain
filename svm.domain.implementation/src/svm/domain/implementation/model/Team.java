@@ -135,4 +135,21 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     public boolean isNull() {
         return teamEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Team team = (Team) o;
+
+        if (teamEntity != null ? !teamEntity.equals(team.teamEntity) : team.teamEntity != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return teamEntity != null ? teamEntity.hashCode() : 0;
+    }
 }
