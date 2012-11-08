@@ -118,6 +118,15 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     }
 
     @Override
+    public List<IMember> getMembers() {
+        List<IMember> members = new LinkedList<IMember>();
+        for (ITeamsHasMembersEntity entity : teamEntity.getTeamsHasMembers()) {
+            members.add(new Member(entity.getMember()));
+        }
+        return members;
+    }
+
+    @Override
     public ITeamEntity getEntity() {
         return teamEntity;
     }

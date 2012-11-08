@@ -37,6 +37,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         subTeam.setName(name);
     }
 
+    @Override
     public IContest getContest() {
         return new Contest(subTeam.getContest());
     }
@@ -56,6 +57,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         subTeam.setTeam(((IHasEntity<ITeamEntity>) contest).getEntity());
     }
 
+    @Override
     public void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException, svm.persistence.abstraction.exceptions.NotSupportedException, NotSupportedException {
         // Check if Member is in Team
         if (getTeam().isMember(member)) {
@@ -70,6 +72,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         }
     }
 
+    @Override
     public void removeMember(IMember member) {
         ISubTeamsHasMembersEntity toRemove = null;
         // Search for member in List
