@@ -17,7 +17,7 @@ public class ExternalTeamModelDAO extends AbstractModelDAO<IExternalTeam, IExter
     }
 
     @Override
-    protected IExternalTeam wrapObject(IExternalTeamEntity Entity) {
-        return new ExternalTeam(Entity);
+    protected IExternalTeam wrapObject(IExternalTeamEntity entity) {
+        return new ExternalTeam(entity);
     }
 }

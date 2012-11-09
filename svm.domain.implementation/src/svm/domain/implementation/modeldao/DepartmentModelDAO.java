@@ -5,6 +5,9 @@ import svm.domain.abstraction.modeldao.IDepartmentModelDAO;
 import svm.domain.implementation.model.Department;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.model.IDepartmentEntity;
+import svm.persistence.abstraction.model.ISportEntity;
+
+import java.util.LinkedList;
 
 /**
  * ProjectTeam: Team C
@@ -16,7 +19,10 @@ public class DepartmentModelDAO extends AbstractModelDAO<IDepartment, IDepartmen
     }
 
     @Override
-    protected IDepartment wrapObject(IDepartmentEntity Entity) {
-        return new Department(Entity);
+    protected IDepartment wrapObject(IDepartmentEntity entity) {
+        if (entity.getSports() == null) {
+            entity.setSports(new LinkedList<ISportEntity>());
+        }
+        return new Department(entity);
     }
 }

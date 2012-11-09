@@ -13,7 +13,9 @@ import svm.persistence.abstraction.dao.FindQualifiers;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.ISubTeamEntity;
+import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -50,7 +52,10 @@ public class SubTeamModelDAO extends AbstractModelDAO<ISubTeam, ISubTeamEntity> 
 
 
     @Override
-    protected ISubTeam wrapObject(ISubTeamEntity Entity) {
-        return new SubTeam(Entity);
+    protected ISubTeam wrapObject(ISubTeamEntity entity) {
+        if (entity.getSubTeamsHasMembers() == null) {
+            entity.setSubTeamsHasMembers(new LinkedList<ISubTeamsHasMembersEntity>());
+        }
+        return new SubTeam(entity);
     }
 }

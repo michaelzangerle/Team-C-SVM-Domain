@@ -8,7 +8,7 @@ import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.dao.CompareObject;
 import svm.persistence.abstraction.dao.FindQualifiers;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
-import svm.persistence.abstraction.model.IMemberEntity;
+import svm.persistence.abstraction.model.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,8 +25,23 @@ public class MemberModelDAO extends AbstractModelDAO<IMember, IMemberEntity> imp
     }
 
     @Override
-    protected IMember wrapObject(IMemberEntity Entity) {
-        return new Member(Entity);
+    protected IMember wrapObject(IMemberEntity entity) {
+        if (entity.getDepartmentHasMembers() == null) {
+            entity.setDepartmentHasMembers(new LinkedList<IDepartmentsHasMembersEntity>());
+        }
+        if (entity.getFees() == null) {
+            entity.setFees(new LinkedList<IMemberFeeEntity>());
+        }
+        if (entity.getSubTeamHasMember() == null) {
+            entity.setSubTeamHasMember(new LinkedList<ISubTeamsHasMembersEntity>());
+        }
+        if (entity.getTeamForContactPerson() == null) {
+            entity.setTeamForContactPerson(new LinkedList<ITeamEntity>());
+        }
+        if (entity.getTeamsHasMembers() == null) {
+            entity.setTeamsHasMembers(new LinkedList<ITeamsHasMembersEntity>());
+        }
+        return new Member(entity);
     }
 
     public List<IMemberEntity> getEntities(Integer sessionId, String firstName, String lastName) throws NoSessionFoundException {
