@@ -10,9 +10,9 @@ public interface IUserPrivilege extends IModel {
         MANAGER(2),
         MEMBER_MANAGER(3),
         CONTEST_MANAGER(4),
-        VIEW_ONLY(5),
+        VIEW_ONLY(7),
         CONTEST_TEAM_MANAGER(6),
-        CONTEST_MATCH_MANAGER(7);
+        CONTEST_MATCH_MANAGER(5);
 
         private int alias;
 
@@ -34,11 +34,11 @@ public interface IUserPrivilege extends IModel {
                     return MEMBER_MANAGER;
                 case 4:
                     return CONTEST_MANAGER;
-                case 5:
+                case 7:
                     return VIEW_ONLY;
                 case 6:
                     return CONTEST_TEAM_MANAGER;
-                case 7:
+                case 5:
                     return CONTEST_MATCH_MANAGER;
             }
             return null;
