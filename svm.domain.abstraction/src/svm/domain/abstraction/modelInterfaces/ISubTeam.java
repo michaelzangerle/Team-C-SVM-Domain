@@ -28,4 +28,6 @@ public interface ISubTeam extends IModel {
     void removeMember(IMember member);
 
     IContest getContest();
+
+    Boolean isMember(IMember member);
 }

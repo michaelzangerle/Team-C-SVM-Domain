@@ -5,10 +5,7 @@ import svm.domain.abstraction.modelInterfaces.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NotSupportedException;
-import svm.persistence.abstraction.model.IContestEntity;
-import svm.persistence.abstraction.model.ISubTeamEntity;
-import svm.persistence.abstraction.model.ISubTeamsHasMembersEntity;
-import svm.persistence.abstraction.model.ITeamEntity;
+import svm.persistence.abstraction.model.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,15 +58,27 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
     public void addMember(IMember member) throws DomainException, NoSessionFoundException, IllegalAccessException, InstantiationException, svm.persistence.abstraction.exceptions.NotSupportedException, NotSupportedException {
         // Check if Member is in Team
         if (getTeam().isMember(member)) {
-            // Generate new Connection between Member and SubTeam
-            ISubTeamsHasMembers tmp = ModelDAOFactory.getInstance().getSubTeamsHasMembersModelDAO().generateObject();
-            tmp.setMember(member);
-            tmp.setSubTeam(this);
-            // Add this Connection
-            this.getSubTeamMembers().add(tmp);
+            if (!isMember(member)) {
+                // Generate new Connection between Member and SubTeam
+                ISubTeamsHasMembersEntity tmp = (ISubTeamsHasMembersEntity) ((IHasEntity) ModelDAOFactory.getInstance().getSubTeamsHasMembersModelDAO().generateObject()).getEntity();
+                tmp.setMember((IMemberEntity) ((IHasEntity) member).getEntity());
+                tmp.setSubTeam(this.getEntity());
+                // Add this Connection
+                this.subTeam.getSubTeamsHasMembers().add(tmp);
+            } else {
+                throw new DomainException("Person is already a Member of SubTeam");
+            }
         } else {
             throw new DomainException("Person is not a Member of Team");
         }
+    }
+
+    @Override
+    public Boolean isMember(IMember member) {
+        for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
+            if (entity.getMember().getId() == ((IHasEntity) member).getEntity().getId()) return true;
+        }
+        return false;
     }
 
     @Override
