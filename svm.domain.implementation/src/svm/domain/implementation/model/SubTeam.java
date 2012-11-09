@@ -64,6 +64,9 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
                 tmp.setMember((IMemberEntity) ((IHasEntity) member).getEntity());
                 tmp.setSubTeam(this.getEntity());
                 // Add this Connection
+                if (subTeam.getSubTeamsHasMembers() == null) {
+                    subTeam.setSubTeamsHasMembers(new LinkedList<ISubTeamsHasMembersEntity>());
+                }
                 this.subTeam.getSubTeamsHasMembers().add(tmp);
             } else {
                 throw new DomainException("Person is already a Member of SubTeam");
@@ -75,6 +78,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
 
     @Override
     public Boolean isMember(IMember member) {
+        if (subTeam.getSubTeamsHasMembers() == null) return false;
         for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
             if (entity.getMember().getId() == ((IHasEntity) member).getEntity().getId()) return true;
         }
