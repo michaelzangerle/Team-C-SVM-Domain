@@ -283,6 +283,15 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
+    public List<IUserPrivilege> getPrivileges() {
+        List<IUserPrivilege> result = new LinkedList<IUserPrivilege>();
+        for (IUserPrivilegeEntity entity : memberEntity.getPrivileges()) {
+            result.add(new UserPrivilege(entity));
+        }
+        return result;
+    }
+
+    @Override
     public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
         if (privilege == null)
             throw new DomainParameterCheckException("privilege is null");

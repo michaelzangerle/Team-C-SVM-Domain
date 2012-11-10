@@ -3,8 +3,8 @@ package svm.domain.abstraction.modelInterfaces;
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
-
 import svm.persistence.abstraction.exceptions.NotSupportedException;
+
 import java.util.Date;
 import java.util.List;
 
@@ -78,4 +78,6 @@ public interface IMember extends IModel {
     void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException;
 
     void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+
+    List<IUserPrivilege> getPrivileges();
 }
