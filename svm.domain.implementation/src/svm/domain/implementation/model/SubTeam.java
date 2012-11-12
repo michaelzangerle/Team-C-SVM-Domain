@@ -68,6 +68,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
                     subTeam.setSubTeamsHasMembers(new LinkedList<ISubTeamsHasMembersEntity>());
                 }
                 this.subTeam.getSubTeamsHasMembers().add(tmp);
+                ((IMemberEntity) ((IHasEntity) member).getEntity()).getSubTeamHasMember().add(tmp);
             } else {
                 throw new DomainException("Person is already a Member of SubTeam");
             }
@@ -125,7 +126,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
 
         SubTeam that = (SubTeam) o;
 
-        if(this.getEntity().getId() == that.getEntity().getId())
+        if (this.getEntity().getId() == that.getEntity().getId())
             return true;
 
         return false;
