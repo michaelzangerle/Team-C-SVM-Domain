@@ -75,4 +75,22 @@ public class MatchType implements IMatchType, IHasEntity<IMatchTypeEntity> {
     public boolean isNull() {
         return matchTypeEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MatchType that = (MatchType) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

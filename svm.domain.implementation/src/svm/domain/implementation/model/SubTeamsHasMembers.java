@@ -71,4 +71,22 @@ public class SubTeamsHasMembers implements IHasEntity<ISubTeamsHasMembersEntity>
     public boolean isNull() {
         return entity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SubTeamsHasMembers that = (SubTeamsHasMembers) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

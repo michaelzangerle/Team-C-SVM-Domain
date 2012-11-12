@@ -76,4 +76,22 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     public boolean isNull() {
         return departmentEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Department that = (Department) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

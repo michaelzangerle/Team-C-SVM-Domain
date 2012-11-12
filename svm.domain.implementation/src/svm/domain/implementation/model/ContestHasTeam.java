@@ -82,4 +82,22 @@ public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasT
     public boolean isNull() {
         return this.contestsHasTeamsEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContestHasTeam that = (ContestHasTeam) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

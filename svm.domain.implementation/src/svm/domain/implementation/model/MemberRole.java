@@ -45,4 +45,22 @@ public class MemberRole implements IMemberRole, IHasEntity<IMemberRoleEntity> {
     public boolean isNull() {
         return memberRoleEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MemberRole that = (MemberRole) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

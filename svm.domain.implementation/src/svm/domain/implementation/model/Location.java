@@ -170,4 +170,21 @@ public class Location implements ILocation, IHasEntity<ILocationEntity> {
     public boolean isNull() {
         return locationEntity == null;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Location that = (Location) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

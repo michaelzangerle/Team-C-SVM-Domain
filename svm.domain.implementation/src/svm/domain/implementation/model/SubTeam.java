@@ -123,15 +123,17 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SubTeam subTeam1 = (SubTeam) o;
+        SubTeam that = (SubTeam) o;
 
-        if (subTeam != null ? !subTeam.equals(subTeam1.subTeam) : subTeam1.subTeam != null) return false;
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
 
-        return true;
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return subTeam != null ? subTeam.hashCode() : 0;
+        return getEntity().getId();
     }
+
 }

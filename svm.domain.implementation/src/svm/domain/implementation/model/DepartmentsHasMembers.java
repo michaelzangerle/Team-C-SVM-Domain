@@ -32,4 +32,22 @@ public class DepartmentsHasMembers implements IHasEntity<IDepartmentsHasMembersE
     public boolean isNull() {
         return entity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DepartmentsHasMembers that = (DepartmentsHasMembers) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

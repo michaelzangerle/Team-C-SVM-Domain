@@ -49,4 +49,21 @@ public class UserPrivilege implements IUserPrivilege, IHasEntity<IUserPrivilegeE
     public boolean isNull() {
         return userPrivilegeEntity == null;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserPrivilege that = (UserPrivilege) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
 }

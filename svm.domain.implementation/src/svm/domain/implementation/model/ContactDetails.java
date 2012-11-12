@@ -129,4 +129,23 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     public boolean isNull() {
         return this.contactDetailsEntity == null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactDetails that = (ContactDetails) o;
+
+        if(getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return contactDetailsEntity.getId();
+    }
 }

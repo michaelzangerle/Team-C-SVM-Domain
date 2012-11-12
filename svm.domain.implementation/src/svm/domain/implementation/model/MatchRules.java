@@ -4,6 +4,8 @@ import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMatchRules;
 import svm.persistence.abstraction.model.IMatchRulesEntity;
 
+import java.util.regex.MatchResult;
+
 /**
  * Projectteam: Team C
  * Date: 24.10.12
@@ -43,5 +45,23 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     @Override
     public boolean isNull() {
         return matchRulesEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MatchRules that = (MatchRules) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
     }
 }

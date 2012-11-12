@@ -272,16 +272,16 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Contest contest = (Contest) o;
+        Contest that = (Contest) o;
 
-        if (contestEntity != null ? !contestEntity.equals(contest.contestEntity) : contest.contestEntity != null)
-            return false;
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
 
-        return true;
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return contestEntity != null ? contestEntity.hashCode() : 0;
+        return getEntity().getId();
     }
 }

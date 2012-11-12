@@ -141,15 +141,16 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Team team = (Team) o;
+        Team that = (Team) o;
 
-        if (teamEntity != null ? !teamEntity.equals(team.teamEntity) : team.teamEntity != null) return false;
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
 
-        return true;
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return teamEntity != null ? teamEntity.hashCode() : 0;
+        return getEntity().getId();
     }
 }
