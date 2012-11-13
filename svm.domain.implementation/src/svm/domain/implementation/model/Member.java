@@ -201,7 +201,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         Double paidYet = 0.0;
 
         List<IMemberFeeEntity> fees = memberEntity.getFees();
-        if (fees == null) return false;
+        if (fees == null|| fees.size()<=0) return false;
         for (IMemberFeeEntity fee : fees) {
 
             Calendar tmp = Calendar.getInstance();
