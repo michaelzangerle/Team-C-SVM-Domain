@@ -88,6 +88,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
 
     @Override
     public void removeMember(IMember member) {
+        System.out.println("subteam remove member start");
         ISubTeamsHasMembersEntity toRemove = null;
         // Search for member in List
         for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
@@ -101,8 +102,9 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
             toRemove.getMember().getSubTeamHasMember().remove(toRemove);
             subTeam.getSubTeamsHasMembers().remove(toRemove);
             System.out.println("remove member from  subteam has member");
+            System.out.println("subteam remove member ");
         }
-
+        System.out.println("subteam remove member finish");
     }
 
     @Override
