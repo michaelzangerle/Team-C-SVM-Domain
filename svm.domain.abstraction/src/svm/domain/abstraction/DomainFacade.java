@@ -196,8 +196,12 @@ public class DomainFacade {
         return ModelDAOFactory.getInstance().getExternalTeamModelDAO();
     }
 
-    public static IUserPrivilegeModelDAO getUserPrivilegeDAO() {
+    public static IUserPrivilegeModelDAO getUserPrivilegeModelDAO() {
         return ModelDAOFactory.getInstance().getUserPrivilegeDAO();
+    }
+
+    public static ISportModelDAO getSportModelDAO() {
+        return ModelDAOFactory.getInstance().getSportModelDAO();
     }
 
     //endregion

@@ -50,4 +50,12 @@ public interface IContest extends IModel {
     List<ITeam> getTeams();
 
     List<IExternalTeam> getExternalTeams();
+
+    void setFinished(boolean finished);
+
+    boolean getFinished();
+
+    void setSport(ISport sport);
+
+    ISport getSport();
 }

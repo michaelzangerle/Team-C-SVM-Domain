@@ -8,10 +8,7 @@ import svm.domain.implementation.dateClasses.CalendarStartDate;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NotSupportedException;
-import svm.persistence.abstraction.model.IContestEntity;
-import svm.persistence.abstraction.model.IContestsHasExternalTeamsEntity;
-import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
-import svm.persistence.abstraction.model.IMatchEntity;
+import svm.persistence.abstraction.model.*;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -263,6 +260,26 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     }
 
     @Override
+    public ISport getSport() {
+        return new Sport(contestEntity.getSport());
+    }
+
+    @Override
+    public void setSport(ISport sport) {
+        contestEntity.setSport(((IHasEntity<ISportEntity>) sport).getEntity());
+    }
+
+    @Override
+    public boolean getFinished() {
+        return contestEntity.getFinished();
+    }
+
+    @Override
+    public void setFinished(boolean finished) {
+        contestEntity.setFinished(finished);
+    }
+
+    @Override
     public boolean isNull() {
         return this.contestEntity == null;
     }
@@ -274,7 +291,7 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
 
         Contest that = (Contest) o;
 
-        if(this.getEntity().getId() == that.getEntity().getId())
+        if (this.getEntity().getId() == that.getEntity().getId())
             return true;
 
         return false;

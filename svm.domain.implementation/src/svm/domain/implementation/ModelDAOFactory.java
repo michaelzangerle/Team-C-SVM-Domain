@@ -147,4 +147,8 @@ public class ModelDAOFactory {
     public IUserPrivilegeModelDAO getUserPrivilegeDAO() {
         return (IUserPrivilegeModelDAO) getDAO(UserPrivilegeModelDAO.class);
     }
+
+    public ISportModelDAO getSportModelDAO() {
+        return (ISportModelDAO) getDAO(SportModelDAO.class);
+    }
 }
