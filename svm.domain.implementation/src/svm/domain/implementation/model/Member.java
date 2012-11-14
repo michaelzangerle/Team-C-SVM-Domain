@@ -171,7 +171,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         if (getAge() <= 18)
             return 20.0;
         else
-            return 30.0;
+        return 30.0;
     }
 
     @Override
@@ -201,7 +201,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         Double paidYet = 0.0;
 
         List<IMemberFeeEntity> fees = memberEntity.getFees();
-        if (fees == null) return false;
+        if (fees == null|| fees.size()<=0) return false;
         for (IMemberFeeEntity fee : fees) {
 
             Calendar tmp = Calendar.getInstance();
@@ -220,6 +220,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public Integer getAge() {
+        if(getBirthDate()==null)
+            return 0;
         GregorianCalendar cal = new GregorianCalendar();
         int y, d, a;
 

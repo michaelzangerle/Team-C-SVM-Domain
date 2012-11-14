@@ -88,16 +88,23 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
 
     @Override
     public void removeMember(IMember member) {
+        System.out.println("subteam remove member start");
         ISubTeamsHasMembersEntity toRemove = null;
         // Search for member in List
         for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
-            if (entity.getMember().equals(member)) {
+            if (entity.getMember().equals(((Member)member).getEntity())) {
                 toRemove = entity;
                 break;
             }
         }
-        // If found remove from List
-        if (toRemove != null) subTeam.getSubTeamsHasMembers().remove(toRemove);
+       // If found remove from List
+        if (toRemove != null) {
+            toRemove.getMember().getSubTeamHasMember().remove(toRemove);
+            subTeam.getSubTeamsHasMembers().remove(toRemove);
+            System.out.println("remove member from  subteam has member");
+            System.out.println("subteam remove member ");
+        }
+        System.out.println("subteam remove member finish");
     }
 
     @Override
