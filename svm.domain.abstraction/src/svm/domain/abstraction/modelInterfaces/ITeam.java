@@ -40,4 +40,6 @@ public interface ITeam extends IModel {
     Boolean isMember(IMember member);
 
     List<IMember> getMembers();
+
+    List<IContestHasTeam> getAllContests();
 }

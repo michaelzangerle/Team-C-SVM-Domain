@@ -110,6 +110,16 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     }
 
     @Override
+    public List<IContestHasTeam> getAllContests() {
+        List<IContestHasTeam> contests = new LinkedList<IContestHasTeam>();
+        List<IContestsHasTeamsEntity> contestEntities = teamEntity.getContestsHasTeams();
+        for (IContestsHasTeamsEntity contestEntity : contestEntities) {
+            contests.add((new ContestHasTeam(contestEntity)));
+        }
+        return contests;
+    }
+
+    @Override
     public Boolean isMember(IMember member) {
         for (ITeamsHasMembersEntity entity : teamEntity.getTeamsHasMembers()) {
             if (entity.getMember().getId() == ((IHasEntity) member).getEntity().getId()) return true;
@@ -143,7 +153,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
 
         Team that = (Team) o;
 
-        if(this.getEntity().getId() == that.getEntity().getId())
+        if (this.getEntity().getId() == that.getEntity().getId())
             return true;
 
         return false;
