@@ -80,4 +80,8 @@ public interface IMember extends IModel {
     void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException;
 
     List<IUserPrivilege> getPrivileges();
+
+    void setSport(ISport sport);
+
+    ISport getSport();
 }

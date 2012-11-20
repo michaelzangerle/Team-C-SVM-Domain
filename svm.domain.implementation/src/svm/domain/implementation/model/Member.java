@@ -337,12 +337,12 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return getEntity().getId();
     }
 
-
-//    public void setSport(ISport sport){
-//           memberEntity.setSport(((Sport) sport).getEntity());
-//    }
-//
-//    public ISport getSport(){
-//        return new Sport(memberEntity.getSport());
-//    }
+    @Override
+    public void setSport(ISport sport){
+           memberEntity.setSport(((Sport) sport).getEntity());
+    }
+    @Override
+    public ISport getSport(){
+        return new Sport(memberEntity.getSport());
+    }
 }
