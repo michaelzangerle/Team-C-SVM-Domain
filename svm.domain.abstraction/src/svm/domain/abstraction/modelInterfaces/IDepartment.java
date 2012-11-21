@@ -22,4 +22,6 @@ public interface IDepartment extends IModel {
     IContactDetails getContactDetails();
 
     void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException;
+
+    IMember getDepartmentHead();
 }

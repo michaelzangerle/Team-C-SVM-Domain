@@ -4,6 +4,7 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.model.IDepartmentEntity;
 
 /**
@@ -93,5 +94,10 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     @Override
     public int hashCode() {
         return getEntity().getId();
+    }
+
+    @Override
+    public IMember getDepartmentHead(){
+
     }
 }
