@@ -336,4 +336,13 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     public int hashCode() {
         return getEntity().getId();
     }
+
+    @Override
+    public void setSport(ISport sport){
+           memberEntity.setSport(((Sport) sport).getEntity());
+    }
+    @Override
+    public ISport getSport(){
+        return new Sport(memberEntity.getSport());
+    }
 }
