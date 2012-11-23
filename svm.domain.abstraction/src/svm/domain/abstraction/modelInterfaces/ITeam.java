@@ -2,6 +2,8 @@ package svm.domain.abstraction.modelInterfaces;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 
 import java.util.Date;
 import java.util.List;
@@ -42,4 +44,6 @@ public interface ITeam extends IModel {
     List<IMember> getMembers();
 
     List<IContestHasTeam> getAllContests();
+
+    void addMemberToTeam(IMember member) throws NotSupportedException, NoSessionFoundException, InstantiationException, IllegalAccessException;
 }
