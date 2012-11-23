@@ -26,6 +26,11 @@ public class Contest implements IContest, IHasEntity<IContestEntity> {
     }
 
     @Override
+    public int getUID() {
+        return contestEntity.getId();
+    }
+
+    @Override
     public String getName() {
         return contestEntity.getName();
     }

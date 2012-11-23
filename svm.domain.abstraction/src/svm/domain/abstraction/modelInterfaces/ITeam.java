@@ -11,6 +11,8 @@ import java.util.List;
  * Date: 24.10.12
  */
 public interface ITeam extends IModel {
+    int getUID();
+
     String getName();
 
     void setName(String name) throws DomainAttributeException;

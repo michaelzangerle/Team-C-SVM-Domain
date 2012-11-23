@@ -25,6 +25,11 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
     }
 
     @Override
+    public int getUID() {
+        return subTeam.getId();
+    }
+
+    @Override
     public String getName() {
         return subTeam.getName();
     }
@@ -92,12 +97,12 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         ISubTeamsHasMembersEntity toRemove = null;
         // Search for member in List
         for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
-            if (entity.getMember().equals(((Member)member).getEntity())) {
+            if (entity.getMember().equals(((Member) member).getEntity())) {
                 toRemove = entity;
                 break;
             }
         }
-       // If found remove from List
+        // If found remove from List
         if (toRemove != null) {
             toRemove.getMember().getSubTeamHasMember().remove(toRemove);
             subTeam.getSubTeamsHasMembers().remove(toRemove);

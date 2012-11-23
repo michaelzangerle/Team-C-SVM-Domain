@@ -13,6 +13,8 @@ import java.util.List;
  * Date: 24.10.12
  */
 public interface IMember extends IModel {
+    int getUID();
+
     String getTitle();
 
     void setTitle(String title);

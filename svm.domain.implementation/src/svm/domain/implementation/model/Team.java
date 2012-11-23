@@ -23,6 +23,11 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     }
 
     @Override
+    public int getUID() {
+        return teamEntity.getId();
+    }
+
+    @Override
     public String getName() {
         return teamEntity.getName();
     }

@@ -13,6 +13,8 @@ import java.util.List;
  * Date: 24.10.12
  */
 public interface IContest extends IModel {
+    int getUID();
+
     String getName();
 
     void setName(String name) throws DomainAttributeException;
