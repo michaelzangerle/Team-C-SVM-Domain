@@ -8,7 +8,6 @@ import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.IEntity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +24,11 @@ public abstract class AbstractModelDAO<T extends IModel, V extends IEntity> impl
 
     protected IDAO<V> getDAO() {
         return dao;
+    }
+
+    @Override
+    public T getByUID(int sessionId, int id) throws NoSessionFoundException {
+        return wrapObject(getDAO().getById(sessionId, id));
     }
 
     @Override
