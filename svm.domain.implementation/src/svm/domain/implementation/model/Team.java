@@ -3,7 +3,11 @@ package svm.domain.implementation.model;
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
 import svm.domain.abstraction.modelInterfaces.*;
+import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 import svm.persistence.abstraction.model.IContestsHasTeamsEntity;
+import svm.persistence.abstraction.model.IMemberEntity;
 import svm.persistence.abstraction.model.ITeamEntity;
 import svm.persistence.abstraction.model.ITeamsHasMembersEntity;
 
@@ -167,5 +171,19 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     @Override
     public int hashCode() {
         return getEntity().getId();
+    }
+
+
+    @Override
+    public void addMemberToTeam(IMember member) throws NotSupportedException, NoSessionFoundException, InstantiationException, IllegalAccessException {
+        if (member != null) {
+           ITeamsHasMembersEntity entity=PersistenceFacade.getTeamsHasMembersDAO().generateObject();
+            entity.setMember( ((IMemberEntity) ((IHasEntity)member).getEntity()));
+            entity.setTeam(this.teamEntity);
+            teamEntity.getTeamsHasMembers().add(entity);
+
+        }
+
+
     }
 }

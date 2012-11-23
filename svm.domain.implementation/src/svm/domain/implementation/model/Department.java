@@ -4,7 +4,11 @@ import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.model.IDepartmentEntity;
+import svm.persistence.abstraction.model.IDepartmentsHasMembersEntity;
+
+import java.util.List;
 
 /**
  * Projectteam
@@ -93,5 +97,18 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     @Override
     public int hashCode() {
         return getEntity().getId();
+    }
+
+    @Override
+    public IMember getDepartmentHead(){
+              List<IDepartmentsHasMembersEntity> listOfEntity=departmentEntity.getDepartmentHasMembers();
+        for(IDepartmentsHasMembersEntity entity:listOfEntity)
+        {
+            if(entity.getMemberRole().getAlias()==4)
+                return new Member(entity.getMember());
+        }
+
+        return null;
+
     }
 }
