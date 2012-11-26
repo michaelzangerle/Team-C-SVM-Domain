@@ -1,5 +1,7 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+
 /**
  * Projectteam: Team C
  * Date: 24.10.12
@@ -31,7 +33,7 @@ public interface IContactDetails extends IModel {
 
     ILocation getLocation();
 
-    void setLocation(ILocation location);
+    void setLocation(ILocation location) throws DomainAttributeException;
 
     String getCoordLat();
 

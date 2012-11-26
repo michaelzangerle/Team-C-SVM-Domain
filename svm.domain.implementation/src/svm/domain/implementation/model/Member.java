@@ -2,15 +2,14 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
-import svm.domain.abstraction.modelInterfaces.IContactDetails;
-import svm.domain.abstraction.modelInterfaces.IHasEntity;
-import svm.domain.abstraction.modelInterfaces.IMember;
-import svm.persistence.abstraction.model.IMemberEntity;
-import svm.persistence.abstraction.model.IMemberFeeEntity;
+import svm.domain.abstraction.modelInterfaces.*;
+import svm.domain.implementation.dateClasses.CalendarStartDate;
+import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
+import svm.persistence.abstraction.model.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * ProjectTeam: Team C
@@ -25,14 +24,20 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
+    public int getUID() {
+        return memberEntity.getId();
+    }
+
+    @Override
     public String getTitle() {
         return memberEntity.getTitle();
     }
 
     @Override
-    public void setTitle(String title) throws DomainAttributeException {
-        if(title.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+    public void setTitle(String title) {
+        if (title == null || title.isEmpty())
+            title = "";
+
         this.memberEntity.setTitle(title);
     }
 
@@ -43,8 +48,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setFirstName(String firstName) throws DomainAttributeException {
-        if(firstName.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if (firstName == null || firstName.isEmpty())
+            throw new DomainAttributeException("First Name is empty");
         this.memberEntity.setFirstName(firstName);
     }
 
@@ -56,8 +61,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setLastName(String lastName) throws DomainAttributeException {
-        if(lastName.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if (lastName == null || lastName.isEmpty())
+            throw new DomainAttributeException("LastName is empty");
         this.memberEntity.setLastName(lastName);
     }
 
@@ -68,8 +73,8 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setSocialNumber(String socialNumber) throws DomainAttributeException {
-        if(socialNumber.equals(new String()))
-            throw new DomainAttributeException("Title is empty");
+        if (socialNumber == null || socialNumber.isEmpty())
+            throw new DomainAttributeException("FirstName is empty");
         this.memberEntity.setSocialNumber(socialNumber);
     }
 
@@ -80,8 +85,10 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setBirthDate(Date birthDate) throws DomainParameterCheckException {
-        if(!birthDate.after(getCalenderStartDate()))
-            throw new DomainParameterCheckException("Birthday before 1900"+birthDate.toString());
+        if (birthDate == null)
+            throw new DomainParameterCheckException("Birthday is null");
+        if (!birthDate.after(CalendarStartDate.getCalenderStartDate()))
+            throw new DomainParameterCheckException("Birthday before 1900" + birthDate.toString());
 
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setBirthDate(new java.sql.Date(birthDate.getTime()));
@@ -94,11 +101,12 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setGender(String gender) throws DomainAttributeException, DomainParameterCheckException {
-        if(gender.equals(new String()))
+        if (gender == null || gender.isEmpty())
             throw new DomainAttributeException("Gender is empty");
-        String genderUpperCase=gender.toUpperCase();
-        if(!genderUpperCase.equals("F")||!genderUpperCase.equals("M"))
-            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: "+genderUpperCase);
+        String genderUpperCase = gender.toUpperCase();
+        if (!genderUpperCase.equals("F") && !genderUpperCase.equals("M"))
+            throw new DomainParameterCheckException("Wrong Gender. Allow is F for female and M für male. Yours was: " + genderUpperCase);
+        //TODO Look if Database can handle String gender
         this.memberEntity.setGender(gender);
     }
 
@@ -109,8 +117,10 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public void setEntryDate(Date entryDate) throws DomainParameterCheckException {
-        if(!entryDate.after(getCalenderStartDate()))
-            throw new DomainParameterCheckException("EntryDate before 1900"+entryDate.toString());
+        if (entryDate == null)
+            throw new DomainParameterCheckException("EntryDate is null");
+        if (!entryDate.after(CalendarStartDate.getCalenderStartDate()))
+            throw new DomainParameterCheckException("EntryDate before 1900" + entryDate.toString());
         //TODO Check if conversion from util date to sql date is correct
         this.memberEntity.setEntryDate(new java.sql.Date(entryDate.getTime()));
     }
@@ -122,9 +132,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setAvatar(String avatar) throws DomainAttributeException {
-        if(avatar.equals(new String()))
-            throw new DomainAttributeException("Gender is empty");
+    public void setAvatar(String avatar) {
         this.memberEntity.setAvatar(avatar);
     }
 
@@ -134,9 +142,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setUrl(String url) throws DomainAttributeException {
-        if(url.equals(new String()))
-            throw new DomainAttributeException("url is empty");
+    public void setUrl(String url) {
         this.memberEntity.setUrl(url);
     }
 
@@ -146,7 +152,9 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setUserName(String userName) {
+    public void setUserName(String userName) throws DomainAttributeException {
+        if (userName == null || userName.isEmpty())
+            throw new DomainAttributeException("Username is empty");
         this.memberEntity.setUsername(userName);
     }
 
@@ -156,18 +164,32 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public void setContactDetails(IContactDetails contactDetails) {
+    public void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException {
+        if (contactDetails == null)
+            throw new DomainAttributeException("ContactDetails is empty");
         this.memberEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override
     public Double getFee() {
-        return memberEntity.getFee();
+        //TODO Fee get from File
+        if (getAge() <= 18)
+            return 20.0;
+        else
+            return 30.0;
     }
 
     @Override
-    public void setFee(Double fee) {
-        this.memberEntity.setFee(fee);
+    public void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException, NotSupportedException {
+
+        IMemberFeeEntity enity = PersistenceFacade.getMemberFeeDAO().generateObject();
+        enity.setAmount(Float.valueOf(String.valueOf(getFee())));
+
+        enity.setMember(memberEntity);
+
+        enity.setDate(new java.sql.Date(new Date().getTime()));
+        memberEntity.getFees().add(enity);
+
     }
 
     @Override
@@ -177,12 +199,20 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
 
     @Override
     public boolean hasPaidFee(Integer year) throws DomainParameterCheckException {
+
         if (year < 1900)
             throw new DomainParameterCheckException("Year smaller than 1900 " + year);
+
         Double paidYet = 0.0;
+
         List<IMemberFeeEntity> fees = memberEntity.getFees();
+        if (fees == null || fees.size() <= 0) return false;
         for (IMemberFeeEntity fee : fees) {
-            Integer fee_year = fee.getDate().getYear();
+
+            Calendar tmp = Calendar.getInstance();
+            tmp.setTime(fee.getDate());
+            Integer fee_year = tmp.get(Calendar.YEAR);
+
             if (fee_year.equals(year))
                 paidYet += fee.getAmount();
 
@@ -193,11 +223,132 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
         return false;
     }
 
-    private Date getCalenderStartDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.set(1900, 1, 1); //year is as expected, month is zero based, date is as expected
-        Date dt = cal.getTime();
-        return dt;
+    @Override
+    public Integer getAge() {
+        if (getBirthDate() == null)
+            return 0;
+        GregorianCalendar cal = new GregorianCalendar();
+        int y, d, a;
+
+        y = cal.get(cal.YEAR);
+        d = cal.get(cal.DAY_OF_YEAR);
+        cal.setTime(getBirthDate());
+        a = y - cal.get(cal.YEAR);
+        if (d < cal.get(cal.DAY_OF_YEAR)) {
+            --a;
+        }
+        return (a);
+    }
+
+    @Override
+    public List<IDepartmentsHasMembers> getDepartmentsHasMembers() {
+        List<IDepartmentsHasMembers> result = new LinkedList<IDepartmentsHasMembers>();
+        for (IDepartmentsHasMembersEntity entity : this.memberEntity.getDepartmentHasMembers()) {
+            result.add(new DepartmentsHasMembers(entity));
+        }
+        return result;
+    }
+
+    @Override
+    public List<IContestHasTeam> getContestsHasTeamsForPerson() {
+        List<IContestHasTeam> allContestsHasTeams = new LinkedList<IContestHasTeam>();
+        List<ITeamEntity> teams = memberEntity.getTeamForContactPerson();
+        for (ITeamEntity team : teams) {
+            ITeam t = new Team(team);
+            List<IContestHasTeam> contestHasTeams = t.getContest();
+            allContestsHasTeams.addAll(contestHasTeams);
+        }
+
+        return allContestsHasTeams;
+    }
+
+
+    @Override
+    public List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson() {
+        List<ISubTeamsHasMembers> allSubTeamsOfMember = new LinkedList<ISubTeamsHasMembers>();
+
+        for (ISubTeamsHasMembersEntity entity : memberEntity.getSubTeamHasMember()) {
+            allSubTeamsOfMember.add(new SubTeamsHasMembers(entity));
+        }
+        return allSubTeamsOfMember;
+    }
+
+    @Override
+    public Boolean isIn(IDepartment department) {
+        for (IDepartmentsHasMembers d : getDepartmentsHasMembers()) {
+            if (d.getDepartment().getName().equals(department.getName())) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean isIn(IUserPrivilege.Privileges privilege) {
+        for (IUserPrivilegeEntity d : memberEntity.getPrivileges()) {
+            if (privilege.equals(IUserPrivilege.Privileges.get(d.getAlias()))) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<IUserPrivilege> getPrivileges() {
+        List<IUserPrivilege> result = new LinkedList<IUserPrivilege>();
+        for (IUserPrivilegeEntity entity : memberEntity.getPrivileges()) {
+            result.add(new UserPrivilege(entity));
+        }
+        return result;
+    }
+
+    @Override
+    public void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException {
+        if (privilege == null)
+            throw new DomainParameterCheckException("privilege is null");
+        if (memberEntity.getPrivileges().contains(((UserPrivilege) privilege).getEntity()))
+            throw new DomainAttributeException("privilege already added");
+
+        memberEntity.getPrivileges().add(((UserPrivilege) privilege).getEntity());
+
+    }
+
+    @Override
+    public void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException {
+        if (privilege == null)
+            throw new DomainParameterCheckException("privilege is null");
+        if (!memberEntity.getPrivileges().contains(((UserPrivilege) privilege).getEntity()))
+            throw new DomainAttributeException("privilege not exist");
+
+        memberEntity.getPrivileges().remove(((UserPrivilege) privilege).getEntity());
+    }
+
+    @Override
+    public boolean isNull() {
+        return memberEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Member that = (Member) o;
+
+        if (this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
+
+    @Override
+    public void setSport(ISport sport) {
+        memberEntity.setSport(((Sport) sport).getEntity());
+    }
+
+    @Override
+    public ISport getSport() {
+        return new Sport(memberEntity.getSport());
     }
 }

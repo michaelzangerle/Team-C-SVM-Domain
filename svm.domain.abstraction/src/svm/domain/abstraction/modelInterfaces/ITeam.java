@@ -1,33 +1,51 @@
 package svm.domain.abstraction.modelInterfaces;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
+import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Projectteam: Team C
  * Date: 24.10.12
  */
 public interface ITeam extends IModel {
+    int getUID();
+
     String getName();
 
-    void setName(String name);
+    void setName(String name) throws DomainAttributeException;
 
     String getAlias();
 
-    void setAlias(String alias);
+    void setAlias(String alias) throws DomainAttributeException;
 
     Date getFounded();
 
-    void setFounded(Date founded);
+    void setFounded(Date founded) throws DomainParameterCheckException;
 
     ISport getSport();
 
-    void setSport(ISport ISport);
+    void setSport(ISport ISport) throws DomainAttributeException;
 
     ITeamType getTeamType();
 
-    void setTeamType(ITeamType ITeamType);
+    void setTeamType(ITeamType ITeamType) throws DomainAttributeException;
 
     IMember getContactPerson();
 
-    void setContactPerson(IMember contactPerson);
+    void setContactPerson(IMember contactPerson) throws DomainAttributeException;
+
+    public List<IContestHasTeam> getContest();
+
+    Boolean isMember(IMember member);
+
+    List<IMember> getMembers();
+
+    List<IContestHasTeam> getAllContests();
+
+    void addMemberToTeam(IMember member) throws NotSupportedException, NoSessionFoundException, InstantiationException, IllegalAccessException;
 }

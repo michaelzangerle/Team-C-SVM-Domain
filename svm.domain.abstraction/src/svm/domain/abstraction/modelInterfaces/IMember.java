@@ -2,17 +2,22 @@ package svm.domain.abstraction.modelInterfaces;
 
 import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.exception.DomainParameterCheckException;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.exceptions.NotSupportedException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Projectteam: Team C
  * Date: 24.10.12
  */
 public interface IMember extends IModel {
+    int getUID();
+
     String getTitle();
 
-    void setTitle(String title) throws DomainAttributeException;
+    void setTitle(String title);
 
     String getFirstName();
 
@@ -40,23 +45,45 @@ public interface IMember extends IModel {
 
     String getAvatar();
 
-    void setAvatar(String avatar) throws DomainAttributeException;
+    void setAvatar(String avatar);
 
     String getUrl();
 
-    void setUrl(String url) throws DomainAttributeException;
+    void setUrl(String url);
 
     String getUserName();
 
-    void setUserName(String userName);
+    void setUserName(String userName) throws DomainAttributeException;
 
     IContactDetails getContactDetails();
 
-    void setContactDetails(IContactDetails contactDetails);
+    void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException;
 
     Double getFee();
 
-    void setFee(Double fee);
-
     boolean hasPaidFee(Integer year) throws DomainParameterCheckException;
+
+    public List<IContestHasTeam> getContestsHasTeamsForPerson();
+
+    List<IDepartmentsHasMembers> getDepartmentsHasMembers();
+
+    Boolean isIn(IDepartment department);
+
+    Integer getAge();
+
+    List<ISubTeamsHasMembers> getSubTeamsHasMembersForPerson();
+
+    void setPaidCurrentYear() throws NoSessionFoundException, IllegalAccessException, InstantiationException, NotSupportedException;
+
+    Boolean isIn(IUserPrivilege.Privileges privilege);
+
+    void removePrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException;
+
+    void addPrivilege(IUserPrivilege privilege) throws DomainParameterCheckException, DomainAttributeException, NoSessionFoundException, IllegalAccessException, InstantiationException;
+
+    List<IUserPrivilege> getPrivileges();
+
+    void setSport(ISport sport);
+
+    ISport getSport();
 }

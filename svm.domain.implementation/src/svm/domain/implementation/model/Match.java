@@ -1,9 +1,9 @@
 package svm.domain.implementation.model;
 
-import svm.domain.abstraction.modelInterfaces.IContactDetails;
-import svm.domain.abstraction.modelInterfaces.IHasEntity;
-import svm.domain.abstraction.modelInterfaces.IMatch;
-import svm.persistence.abstraction.model.IMatchEntity;
+import svm.domain.abstraction.exception.DomainException;
+import svm.domain.abstraction.modelInterfaces.*;
+import svm.persistence.abstraction.exceptions.NoSessionFoundException;
+import svm.persistence.abstraction.model.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -73,9 +73,30 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
+    public String getDescription() {
+        return this.matchEntity.getDescription();
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.matchEntity.setDescription(description);
+    }
+
+    @Override
     public IContactDetails getContactDetails() {
         return new ContactDetails(matchEntity.getContactDetails());
     }
+
+    @Override
+    public void setMatchType(IMatchType matchType) {
+        this.matchEntity.setMatchType(((IHasEntity<IMatchTypeEntity>) matchType).getEntity());
+    }
+
+    @Override
+    public IMatchType getMatchType() {
+        return new MatchType(this.matchEntity.getMatchType());
+    }
+
 
     @Override
     public void setContactDetails(IContactDetails contactDetails) {
@@ -83,7 +104,110 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
+    public void setContestants(ITeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeInternal(((IHasEntity<ITeamEntity>) home).getEntity());
+        this.matchEntity.setAwayInternal(((IHasEntity<ITeamEntity>) away).getEntity());
+    }
+
+    @Override
+    public void setContestants(IExternalTeam home, ITeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeExternal(((IHasEntity<IExternalTeamEntity>) home).getEntity());
+        this.matchEntity.setAwayInternal(((IHasEntity<ITeamEntity>) away).getEntity());
+    }
+
+    @Override
+    public void setContestants(ITeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeInternal(((IHasEntity<ITeamEntity>) home).getEntity());
+        this.matchEntity.setAwayExternal(((IHasEntity<IExternalTeamEntity>) away).getEntity());
+    }
+
+    @Override
+    public void setContestants(IExternalTeam home, IExternalTeam away) throws NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeExternal(((IHasEntity<IExternalTeamEntity>) home).getEntity());
+        this.matchEntity.setAwayExternal(((IHasEntity<IExternalTeamEntity>) away).getEntity());
+    }
+
+    @Override
+    public void setResult(Integer home, Integer away) throws DomainException, NoSessionFoundException, InstantiationException, IllegalAccessException {
+        this.matchEntity.setHomeResult(home);
+        this.matchEntity.setAwayResult(away);
+    }
+
+    @Override
+    public ITeam getHomeInternal() {
+        return new Team(this.matchEntity.getHomeInternal());
+    }
+
+    @Override
+    public IExternalTeam getHomeExternal() {
+        return new ExternalTeam(this.matchEntity.getHomeExternal());
+    }
+
+    @Override
+    public ITeam getAwayInternal() {
+        return new Team(this.matchEntity.getAwayInternal());
+    }
+
+    @Override
+    public IExternalTeam getAwayExternal() {
+        return new ExternalTeam(this.matchEntity.getAwayExternal());
+    }
+
+    @Override
+    public Integer getHomeResult() {
+        return this.matchEntity.getHomeResult();
+    }
+
+    @Override
+    public Integer getAwayResult() {
+        return this.matchEntity.getAwayResult();
+    }
+
+    @Override
+    public void setHomeResult(Integer value) {
+        this.matchEntity.setHomeResult(value);
+    }
+
+    @Override
+    public void setAwayResult(Integer value) {
+        this.matchEntity.setAwayResult(value);
+    }
+
+    @Override
     public IMatchEntity getEntity() {
         return matchEntity;
+    }
+
+    @Override
+    public IContest getContest() {
+        return new Contest(matchEntity.getContest());
+    }
+
+    @Override
+    public void setContest(IContest contest) {
+        matchEntity.setContest(((IHasEntity<IContestEntity>) contest).getEntity());
+    }
+
+    @Override
+    public boolean isNull() {
+        return matchEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Match that = (Match) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
     }
 }

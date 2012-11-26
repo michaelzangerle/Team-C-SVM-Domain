@@ -2,8 +2,9 @@ package svm.domain.implementation.model;
 
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.IMatchRules;
-import svm.domain.abstraction.modelInterfaces.IMatchType;
 import svm.persistence.abstraction.model.IMatchRulesEntity;
+
+import java.util.regex.MatchResult;
 
 /**
  * Projectteam: Team C
@@ -27,17 +28,6 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     }
 
     @Override
-    public IMatchType getMatchType() {
-        return new MatchType(matchRulesEntity.getMatchType());
-
-    }
-
-    @Override
-    public void setMatchType(IMatchType matchType) {
-        this.matchRulesEntity.setMatchType(((MatchType) matchType).getEntity());
-    }
-
-    @Override
     public String getDescription() {
         return matchRulesEntity.getDescription();
     }
@@ -50,5 +40,28 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     @Override
     public IMatchRulesEntity getEntity() {
         return matchRulesEntity;
+    }
+
+    @Override
+    public boolean isNull() {
+        return matchRulesEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MatchRules that = (MatchRules) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
     }
 }

@@ -7,6 +7,7 @@ import svm.domain.implementation.ModelDAOFactory;
 import svm.domain.implementation.model.ContactDetails;
 import svm.domain.implementation.model.Location;
 import svm.persistence.PersistenceFacade;
+import svm.persistence.abstraction.dao.CompareObject;
 import svm.persistence.abstraction.dao.FindQualifiers;
 import svm.persistence.abstraction.exceptions.NoSessionFoundException;
 import svm.persistence.abstraction.model.IContactDetailsEntity;
@@ -27,7 +28,7 @@ public class ContactDetailsModelDAO extends AbstractModelDAO<IContactDetails, IC
     public List<IContactDetails> findByPlaceName(int sessionId, String placeName) throws NoSessionFoundException {
         List<IContactDetails> ret = new ArrayList<IContactDetails>();
         for (ILocation location : ModelDAOFactory.getInstance().getLocationModelDAO().findByName(sessionId, placeName)) {
-            for (IContactDetailsEntity obj : getDAO().find(sessionId, "location", FindQualifiers.EQUALS, String.valueOf(((Location) location).getEntity().getId()))) {
+            for (IContactDetailsEntity obj : getDAO().find(sessionId, new CompareObject("location", FindQualifiers.EQUALS, String.valueOf(((Location) location).getEntity().getId())))) {
                 ret.add(wrapObject(obj));
             }
         }

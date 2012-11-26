@@ -1,9 +1,14 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IDepartment;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.persistence.abstraction.model.IDepartmentEntity;
+import svm.persistence.abstraction.model.IDepartmentsHasMembersEntity;
+
+import java.util.List;
 
 /**
  * Projectteam
@@ -22,7 +27,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name) throws DomainAttributeException {
+        if (name == null || name.isEmpty())
+            throw new DomainAttributeException("name is empty");
         this.departmentEntity.setName(name);
     }
 
@@ -32,7 +39,9 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setAlias(String alias) {
+    public void setAlias(String alias) throws DomainAttributeException {
+        if (alias == null || alias.isEmpty())
+            throw new DomainAttributeException("alias is empty");
         this.departmentEntity.setAlias(alias);
     }
 
@@ -52,12 +61,54 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
-    public void setContactDetails(IContactDetails contactDetails) {
-        this.departmentEntity.setContactDetails(((ContactDetails)contactDetails).getEntity());
+    public void setContactDetails(IContactDetails contactDetails) throws DomainAttributeException {
+        if (contactDetails == null)
+            throw new DomainAttributeException("contact detail is null");
+        this.departmentEntity.setContactDetails(((ContactDetails) contactDetails).getEntity());
     }
 
     @Override
     public IDepartmentEntity getEntity() {
         return departmentEntity;
+    }
+
+    public Boolean equals(IDepartment obj) {
+        return obj.equals(obj);
+    }
+
+    @Override
+    public boolean isNull() {
+        return departmentEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Department that = (Department) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
+    }
+
+    @Override
+    public IMember getDepartmentHead(){
+              List<IDepartmentsHasMembersEntity> listOfEntity=departmentEntity.getDepartmentHasMembers();
+        for(IDepartmentsHasMembersEntity entity:listOfEntity)
+        {
+            if(entity.getMemberRole().getAlias()==4)
+                return new Member(entity.getMember());
+        }
+
+        return null;
+
     }
 }

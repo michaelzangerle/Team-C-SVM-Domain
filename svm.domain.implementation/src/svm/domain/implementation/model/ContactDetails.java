@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IContactDetails;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.ILocation;
@@ -83,7 +84,9 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
-    public void setLocation(ILocation location) {
+    public void setLocation(ILocation location) throws DomainAttributeException {
+        if (location == null)
+            throw new DomainAttributeException("Location is empty");
         this.contactDetailsEntity.setLocationEntity(((Location) location).getEntity());
     }
 
@@ -120,5 +123,29 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     @Override
     public IContactDetailsEntity getEntity() {
         return contactDetailsEntity;
+    }
+
+    @Override
+    public boolean isNull() {
+        return this.contactDetailsEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactDetails that = (ContactDetails) o;
+
+        if(getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return contactDetailsEntity.getId();
     }
 }

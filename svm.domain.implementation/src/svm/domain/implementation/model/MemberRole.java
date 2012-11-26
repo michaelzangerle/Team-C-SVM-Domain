@@ -8,7 +8,7 @@ import svm.persistence.abstraction.model.IMemberRoleEntity;
  * Projectteam
  * Date: 21.10.12
  */
-public class MemberRole implements IMemberRole,IHasEntity<IMemberRoleEntity> {
+public class MemberRole implements IMemberRole, IHasEntity<IMemberRoleEntity> {
 
     IMemberRoleEntity memberRoleEntity;
 
@@ -39,5 +39,28 @@ public class MemberRole implements IMemberRole,IHasEntity<IMemberRoleEntity> {
     @Override
     public IMemberRoleEntity getEntity() {
         return memberRoleEntity;
+    }
+
+    @Override
+    public boolean isNull() {
+        return memberRoleEntity == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MemberRole that = (MemberRole) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
     }
 }

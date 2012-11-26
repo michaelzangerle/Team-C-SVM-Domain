@@ -1,10 +1,7 @@
 package svm.domain.implementation;
 
 import svm.domain.abstraction.modeldao.*;
-import svm.domain.implementation.modeldao.ContactDetailsModelDAO;
-import svm.domain.implementation.modeldao.ContestModelDAO;
-import svm.domain.implementation.modeldao.LocationModelDAO;
-import svm.domain.implementation.modeldao.MemberModelDAO;
+import svm.domain.implementation.modeldao.*;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -57,6 +54,16 @@ public class ModelDAOFactory {
     }
 
     /**
+     * Returns a ContestHasTeams ModelDAO
+     *
+     * @return IContestModelDAO
+     */
+    public IContestsHasTeamsModelDao getContestHasTeamsModelDao() {
+        return (IContestsHasTeamsModelDao) getDAO(ContestHasTeamsModelDAO.class);
+    }
+
+
+    /**
      * Returns a ContactDetails ModelDAO
      *
      * @return IContactDetailsModelDAO
@@ -81,5 +88,67 @@ public class ModelDAOFactory {
      */
     public IMemberModelDAO getMemberModelDAO() {
         return (IMemberModelDAO) getDAO(MemberModelDAO.class);
+    }
+
+    /**
+     * Returns a Department ModelDAO
+     *
+     * @return IDepartmentModelDAO
+     */
+    public IDepartmentModelDAO getDepartmentModelDAO() {
+        return (IDepartmentModelDAO) getDAO(DepartmentModelDAO.class);
+    }
+
+    /**
+     * Returns a SubTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public ISubTeamModelDAO getSubTeamModelDAO() {
+        return (ISubTeamModelDAO) getDAO(SubTeamModelDAO.class);
+    }
+
+    /**
+     * Returns a SubTeamsHasMembers ModelDAO
+     *
+     * @return ISubTeamsHasMembersModelDAO
+     */
+    public ISubTeamsHasMembersModelDAO getSubTeamsHasMembersModelDAO() {
+        return (ISubTeamsHasMembersModelDAO) getDAO(SubTeamsHasMembersModelDAO.class);
+    }
+
+    /**
+     * Returns a Match ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public IMatchModelDAO getMatchModelDAO() {
+        return (IMatchModelDAO) getDAO(MatchModelDAO.class);
+    }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public ITeamModelDAO getTeamModelDAO() {
+        return (ITeamModelDAO) getDAO(TeamModelDAO.class);
+    }
+
+    /**
+     * Returns a ExternalTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public IExternalTeamModelDAO getExternalTeamModelDAO() {
+        return (IExternalTeamModelDAO) getDAO(ExternalTeamModelDAO.class);
+    }
+
+    public IUserPrivilegeModelDAO getUserPrivilegeDAO() {
+        return (IUserPrivilegeModelDAO) getDAO(UserPrivilegeModelDAO.class);
+    }
+
+    public ISportModelDAO getSportModelDAO() {
+        return (ISportModelDAO) getDAO(SportModelDAO.class);
     }
 }

@@ -1,5 +1,6 @@
 package svm.domain.implementation.model;
 
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IHasEntity;
 import svm.domain.abstraction.modelInterfaces.ITeamType;
 import svm.persistence.abstraction.model.ITeamTypeEntity;
@@ -21,7 +22,9 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name) throws DomainAttributeException {
+        if (name == null || name.isEmpty())
+            throw new DomainAttributeException("name is empty");
         this.teamTypeEntity.setName(name);
     }
 
@@ -33,10 +36,32 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     @Override
     public void setDescription(String description) {
         this.teamTypeEntity.setDescription(description);
-}
+    }
 
     @Override
     public ITeamTypeEntity getEntity() {
         return teamTypeEntity;
+    }
+
+    @Override
+    public boolean isNull() {
+        return teamTypeEntity == null;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TeamType that = (TeamType) o;
+
+        if(this.getEntity().getId() == that.getEntity().getId())
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getEntity().getId();
     }
 }

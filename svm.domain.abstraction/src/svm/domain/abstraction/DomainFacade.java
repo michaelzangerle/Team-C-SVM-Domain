@@ -1,9 +1,8 @@
 package svm.domain.abstraction;
 
-import svm.domain.abstraction.modeldao.IContactDetailsModelDAO;
-import svm.domain.abstraction.modeldao.IContestModelDAO;
-import svm.domain.abstraction.modeldao.ILocationModelDAO;
-import svm.domain.abstraction.modeldao.IMemberModelDAO;
+import svm.domain.abstraction.modelInterfaces.IHasEntity;
+import svm.domain.abstraction.modelInterfaces.IModel;
+import svm.domain.abstraction.modeldao.*;
 import svm.domain.implementation.ModelDAOFactory;
 import svm.persistence.PersistenceFacade;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
@@ -36,6 +35,16 @@ public class DomainFacade {
      */
     public static void closeSession(Integer sessionId) throws NoSessionFoundException {
         PersistenceFacade.closeSession(sessionId);
+    }
+
+    /**
+     * Reattach Object to a Session
+     *
+     * @param sessionId SessionID
+     * @param entity    Entity
+     */
+    public static void reattachObjectToSession(Integer sessionId, IModel entity) throws NoSessionFoundException {
+        PersistenceFacade.reattachObjectToSession(sessionId, ((IHasEntity) entity).getEntity());
     }
 
     /**
@@ -132,5 +141,68 @@ public class DomainFacade {
     public static IMemberModelDAO getMemberModelDAO() {
         return ModelDAOFactory.getInstance().getMemberModelDAO();
     }
+
+    /**
+     * Returns a Department ModelDAO
+     *
+     * @return IDepartmentModelDAO
+     */
+    public static IDepartmentModelDAO getDepartmentModelDAO() {
+        return ModelDAOFactory.getInstance().getDepartmentModelDAO();
+    }
+
+    /**
+     * Returns a SubTeam ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public static ISubTeamModelDAO getSubTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getSubTeamModelDAO();
+    }
+
+    /**
+     * Returns a ContestHasTeams ModelDAO
+     *
+     * @return ISubTeamModelDAO
+     */
+    public static IContestsHasTeamsModelDao getContestsHasTeamsDAO() {
+        return ModelDAOFactory.getInstance().getContestHasTeamsModelDao();
+    }
+
+    /**
+     * Returns a Match ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public static IMatchModelDAO getMatchModelDAO() {
+        return ModelDAOFactory.getInstance().getMatchModelDAO();
+    }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public static ITeamModelDAO getTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getTeamModelDAO();
+    }
+
+    /**
+     * Returns a Team ModelDAO
+     *
+     * @return IMatchModelDAO
+     */
+    public static IExternalTeamModelDAO getExternalTeamModelDAO() {
+        return ModelDAOFactory.getInstance().getExternalTeamModelDAO();
+    }
+
+    public static IUserPrivilegeModelDAO getUserPrivilegeModelDAO() {
+        return ModelDAOFactory.getInstance().getUserPrivilegeDAO();
+    }
+
+    public static ISportModelDAO getSportModelDAO() {
+        return ModelDAOFactory.getInstance().getSportModelDAO();
+    }
+
     //endregion
 }
