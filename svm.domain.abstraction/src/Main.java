@@ -1,4 +1,5 @@
 import svm.domain.abstraction.DomainFacade;
+import svm.domain.abstraction.exception.DomainAttributeException;
 import svm.domain.abstraction.modelInterfaces.IMember;
 import svm.domain.abstraction.modeldao.IMemberModelDAO;
 import svm.persistence.abstraction.exceptions.ExistingTransactionException;
@@ -12,7 +13,7 @@ import java.util.List;
  * Date: 28.10.12
  */
 public class Main {
-    public static void main(String[] args) throws NoSessionFoundException, IllegalAccessException, InstantiationException, ExistingTransactionException, NoTransactionException {
+    public static void main(String[] args) throws NoSessionFoundException, IllegalAccessException, InstantiationException, ExistingTransactionException, NoTransactionException, DomainAttributeException {
         // Generate a session
         Integer sessionId = DomainFacade.generateSessionId();
 
