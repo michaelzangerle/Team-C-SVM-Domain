@@ -97,7 +97,7 @@ public class SubTeam implements IHasEntity<ISubTeamEntity>, ISubTeam {
         ISubTeamsHasMembersEntity toRemove = null;
         // Search for member in List
         for (ISubTeamsHasMembersEntity entity : subTeam.getSubTeamsHasMembers()) {
-            if (entity.getMember().equals(((Member) member).getEntity())) {
+            if (entity.getMember().getId() == member.getUID()) {
                 toRemove = entity;
                 break;
             }
