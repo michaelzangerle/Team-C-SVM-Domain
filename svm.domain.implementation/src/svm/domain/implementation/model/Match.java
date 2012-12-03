@@ -194,6 +194,11 @@ public class Match implements IMatch, IHasEntity<IMatchEntity> {
     }
 
     @Override
+    public Integer getUID() {
+        return this.matchEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

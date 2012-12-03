@@ -58,6 +58,11 @@ public class ExternalTeam implements IExternalTeam, IHasEntity<IExternalTeamEnti
     }
 
     @Override
+    public Integer getUID() {
+        return this.externalTeamEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

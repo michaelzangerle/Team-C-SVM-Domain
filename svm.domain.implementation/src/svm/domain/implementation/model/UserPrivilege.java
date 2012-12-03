@@ -49,6 +49,12 @@ public class UserPrivilege implements IUserPrivilege, IHasEntity<IUserPrivilegeE
     public boolean isNull() {
         return userPrivilegeEntity == null;
     }
+
+    @Override
+    public Integer getUID() {
+        return this.userPrivilegeEntity.getId();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

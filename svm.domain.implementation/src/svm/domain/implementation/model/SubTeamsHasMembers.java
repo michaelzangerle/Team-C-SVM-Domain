@@ -73,6 +73,11 @@ public class SubTeamsHasMembers implements IHasEntity<ISubTeamsHasMembersEntity>
     }
 
     @Override
+    public Integer getUID() {
+        return this.entity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

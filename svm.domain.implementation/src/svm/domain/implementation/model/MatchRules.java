@@ -48,6 +48,11 @@ public class MatchRules implements IMatchRules, IHasEntity<IMatchRulesEntity> {
     }
 
     @Override
+    public Integer getUID() {
+        return this.matchRulesEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

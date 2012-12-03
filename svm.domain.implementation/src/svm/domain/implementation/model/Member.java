@@ -24,7 +24,7 @@ public class Member implements IMember, IHasEntity<IMemberEntity> {
     }
 
     @Override
-    public int getUID() {
+    public Integer getUID() {
         return memberEntity.getId();
     }
 

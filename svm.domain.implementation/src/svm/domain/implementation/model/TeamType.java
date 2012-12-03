@@ -47,6 +47,12 @@ public class TeamType implements ITeamType, IHasEntity<ITeamTypeEntity> {
     public boolean isNull() {
         return teamTypeEntity == null;
     }
+
+    @Override
+    public Integer getUID() {
+        return this.teamTypeEntity.getId();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

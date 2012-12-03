@@ -84,6 +84,11 @@ public class ContestHasTeam implements IContestHasTeam, IHasEntity<IContestsHasT
     }
 
     @Override
+    public Integer getUID() {
+        return this.contestsHasTeamsEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

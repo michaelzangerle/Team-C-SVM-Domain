@@ -27,7 +27,7 @@ public class Team implements ITeam, IHasEntity<ITeamEntity> {
     }
 
     @Override
-    public int getUID() {
+    public Integer getUID() {
         return teamEntity.getId();
     }
 

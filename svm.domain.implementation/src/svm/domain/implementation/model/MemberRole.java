@@ -47,6 +47,11 @@ public class MemberRole implements IMemberRole, IHasEntity<IMemberRoleEntity> {
     }
 
     @Override
+    public Integer getUID() {
+        return this.memberRoleEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

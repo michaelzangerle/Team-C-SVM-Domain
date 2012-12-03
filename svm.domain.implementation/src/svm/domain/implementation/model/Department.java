@@ -82,6 +82,11 @@ public class Department implements IDepartment, IHasEntity<IDepartmentEntity> {
     }
 
     @Override
+    public Integer getUID() {
+        return this.departmentEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

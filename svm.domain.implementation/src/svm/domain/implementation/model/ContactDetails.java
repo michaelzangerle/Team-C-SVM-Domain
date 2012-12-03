@@ -131,6 +131,11 @@ public class ContactDetails implements IContactDetails, IHasEntity<IContactDetai
     }
 
     @Override
+    public Integer getUID() {
+        return this.contactDetailsEntity.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 

@@ -11,7 +11,6 @@ import java.util.List;
  * Date: 01.11.12
  */
 public interface ISubTeam extends IModel {
-    int getUID();
 
     String getName();
 

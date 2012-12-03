@@ -9,4 +9,6 @@ import java.rmi.Remote;
  */
 public interface IModel extends Serializable, Remote {
     boolean isNull();
+
+    Integer getUID();
 }
